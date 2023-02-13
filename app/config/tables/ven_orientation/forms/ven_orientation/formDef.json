@@ -1,0 +1,1053 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
+        "type": "select_multiple",
+        "values_list": "tipo_orientaciones",
+        "name": "sesion_educativa",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Indique en caso de sesiones educativas impartidas en la comunidad",
+              "en": "Indicate in case of education sessions taught in community"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Puede seleccionar multiples opciones",
+              "en": "Multiple choices can be selected"
+            }
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('sesion_educativa'), 'otras-orientaciones')",
+        "_row_num": 4
+      },
+      {
+        "required": "selected(data('sesion_educativa'), 'otras-orientaciones')",
+        "type": "string",
+        "name": "otra_sesion_educativa",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Indique otro tipo de sesiones educativas impartidas",
+              "en": "Indicate other type of education sessions taught"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "clause": "end if",
+        "_row_num": 6
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 7
+      }
+    ],
+    "model": [
+      {
+        "type": "string",
+        "name": "reg_first_name",
+        "isSessionVariable": "true",
+        "_row_num": 2
+      },
+      {
+        "type": "string",
+        "name": "reg_family_name",
+        "isSessionVariable": "true",
+        "_row_num": 3
+      },
+      {
+        "type": "birthdate",
+        "name": "reg_birthday",
+        "isSessionVariable": "true",
+        "_row_num": 4
+      },
+      {
+        "type": "select_one",
+        "name": "reg_gender",
+        "isSessionVariable": "true",
+        "_row_num": 5
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "agua-saneamiento",
+        "display": {
+          "title": {
+            "text": "Agua y Saneamiento"
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "apoyo-psicosocial",
+        "display": {
+          "title": {
+            "text": "Apoyo psicosocial"
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "diarrea-hepatitis",
+        "display": {
+          "title": {
+            "text": "Diarrea y Hepatitis"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "enfermedades-no-transmisibles",
+        "display": {
+          "title": {
+            "text": "Enfermedades no transmisibles"
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "envejecimiento-saludable",
+        "display": {
+          "title": {
+            "text": "Envejecimiento saludable"
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "primeros-auxilios-psicologicos",
+        "display": {
+          "title": {
+            "text": "Primeros auxilios psicológicos"
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "salud-sexual-reproductiva",
+        "display": {
+          "title": {
+            "text": "Salud sexual y reproductiva"
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "tipo_orientaciones",
+        "data_value": "otras-orientaciones",
+        "display": {
+          "title": {
+            "text": "Otro - por favor especificar"
+          }
+        },
+        "_row_num": 10
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "table_id",
+        "value": "ven_orientation",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 20200623,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "INFORMACION DE ORIENTACIONES",
+              "en": "ORIENTATION INFORMATION"
+            }
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "setting_name": "form_id",
+        "value": "ven_orientation",
+        "_row_num": 5
+      },
+      {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "English"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español"
+            }
+          }
+        },
+        "_row_num": 7
+      }
+    ],
+    "initial": [
+      {
+        "clause": "if // start",
+        "condition": "(opendatakit.getCurrentInstanceId() != null)",
+        "_row_num": 2
+      },
+      {
+        "clause": "do section survey",
+        "_row_num": 4
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 5
+      },
+      {
+        "clause": "else // start",
+        "_row_num": 6
+      },
+      {
+        "type": "instances",
+        "display": {
+          "text": "Saved instances"
+        },
+        "_row_num": 7
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 8
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "ven_orientation",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 20200623,
+        "_row_num": 3
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "INFORMACION DE ORIENTACIONES",
+              "en": "ORIENTATION INFORMATION"
+            }
+          }
+        },
+        "_row_num": 4
+      },
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "ven_orientation",
+        "_row_num": 5
+      },
+      "en": {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "English"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      "es": {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 4,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": {
+                  "en": "English",
+                  "es": "Inglés",
+                  "default": "English"
+                }
+              }
+            },
+            "_row_num": 6,
+            "name": "en"
+          },
+          {
+            "display": {
+              "locale": {
+                "text": "default"
+              }
+            },
+            "name": "default"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 4,
+        "value": "en"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "INFORMACION DE ORIENTACIONES",
+              "en": "ORIENTATION INFORMATION"
+            }
+          }
+        },
+        "_row_num": 4
+      }
+    },
+    "choices": {
+      "tipo_orientaciones": [
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "agua-saneamiento",
+          "display": {
+            "title": {
+              "text": "Agua y Saneamiento"
+            }
+          },
+          "_row_num": 3
+        },
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "apoyo-psicosocial",
+          "display": {
+            "title": {
+              "text": "Apoyo psicosocial"
+            }
+          },
+          "_row_num": 4
+        },
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "diarrea-hepatitis",
+          "display": {
+            "title": {
+              "text": "Diarrea y Hepatitis"
+            }
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "enfermedades-no-transmisibles",
+          "display": {
+            "title": {
+              "text": "Enfermedades no transmisibles"
+            }
+          },
+          "_row_num": 6
+        },
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "envejecimiento-saludable",
+          "display": {
+            "title": {
+              "text": "Envejecimiento saludable"
+            }
+          },
+          "_row_num": 7
+        },
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "primeros-auxilios-psicologicos",
+          "display": {
+            "title": {
+              "text": "Primeros auxilios psicológicos"
+            }
+          },
+          "_row_num": 8
+        },
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "salud-sexual-reproductiva",
+          "display": {
+            "title": {
+              "text": "Salud sexual y reproductiva"
+            }
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "tipo_orientaciones",
+          "data_value": "otras-orientaciones",
+          "display": {
+            "title": {
+              "text": "Otro - por favor especificar"
+            }
+          },
+          "_row_num": 10
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "reg_first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_first_name"
+      },
+      "reg_family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_family_name"
+      },
+      "reg_birthday": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_birthday"
+      },
+      "reg_gender": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_gender"
+      },
+      "sesion_educativa": {
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          }
+        ],
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "sesion_educativa_items"
+        },
+        "valuesList": "tipo_orientaciones",
+        "elementKey": "sesion_educativa"
+      },
+      "otra_sesion_educativa": {
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "elementKey": "otra_sesion_educativa"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "select_multiple",
+            "values_list": "tipo_orientaciones",
+            "name": "sesion_educativa",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Indique en caso de sesiones educativas impartidas en la comunidad",
+                  "en": "Indicate in case of education sessions taught in community"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Puede seleccionar multiples opciones",
+                  "en": "Multiple choices can be selected"
+                }
+              }
+            },
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "select_multiple",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "required": "selected(data('sesion_educativa'), 'otras-orientaciones')",
+            "type": "string",
+            "name": "otra_sesion_educativa",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Indique otro tipo de sesiones educativas impartidas",
+                  "en": "Indicate other type of education sessions taught"
+                }
+              }
+            },
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 8,
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            1
+          ]
+        },
+        "operations": [
+          {
+            "clause": "begin screen",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 7,
+              "__rowNum__": 6,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nif (selected(data('sesion_educativa'), 'otras-orientaciones')) {\nactivePromptIndicies.push(1);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 8,
+            "operationIdx": 1
+          },
+          {
+            "_row_num": 8,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 2
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 8,
+            "operationIdx": 3
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_contents": 2,
+          "_screen8": 2
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": {
+                  "default": "INFORMACION DE ORIENTACIONES",
+                  "en": "ORIENTATION INFORMATION"
+                }
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 7
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_else6": 5,
+          "_screen7": 5,
+          "_endif8": 6,
+          "_contents": 7,
+          "_screen9": 7,
+          "_finalize": 9
+        }
+      }
+    },
+    "dataTableModel": {
+      "reg_first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_first_name",
+        "elementName": "reg_first_name",
+        "elementSet": "data",
+        "elementPath": "reg_first_name"
+      },
+      "reg_family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_family_name",
+        "elementName": "reg_family_name",
+        "elementSet": "data",
+        "elementPath": "reg_family_name"
+      },
+      "reg_birthday": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_birthday",
+        "elementName": "reg_birthday",
+        "elementSet": "data",
+        "elementPath": "reg_birthday"
+      },
+      "reg_gender": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_gender",
+        "elementName": "reg_gender",
+        "elementSet": "data",
+        "elementPath": "reg_gender"
+      },
+      "sesion_educativa": {
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          }
+        ],
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "sesion_educativa_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "sesion_educativa.items",
+          "notUnitOfRetention": true
+        },
+        "valuesList": "tipo_orientaciones",
+        "elementKey": "sesion_educativa",
+        "elementName": "sesion_educativa",
+        "elementSet": "data",
+        "elementPath": "sesion_educativa",
+        "listChildElementKeys": [
+          "sesion_educativa_items"
+        ]
+      },
+      "otra_sesion_educativa": {
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "elementKey": "otra_sesion_educativa",
+        "elementName": "otra_sesion_educativa",
+        "elementSet": "data",
+        "elementPath": "otra_sesion_educativa"
+      },
+      "sesion_educativa_items": {
+        "type": "string",
+        "elementKey": "sesion_educativa_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "sesion_educativa.items",
+        "notUnitOfRetention": true
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "sesion_educativa",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"agua-saneamiento\",\"display\":{\"title\":{\"text\":\"Agua y Saneamiento\"}},\"_row_num\":3},{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"apoyo-psicosocial\",\"display\":{\"title\":{\"text\":\"Apoyo psicosocial\"}},\"_row_num\":4},{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"diarrea-hepatitis\",\"display\":{\"title\":{\"text\":\"Diarrea y Hepatitis\"}},\"_row_num\":5},{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"enfermedades-no-transmisibles\",\"display\":{\"title\":{\"text\":\"Enfermedades no transmisibles\"}},\"_row_num\":6},{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"envejecimiento-saludable\",\"display\":{\"title\":{\"text\":\"Envejecimiento saludable\"}},\"_row_num\":7},{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"primeros-auxilios-psicologicos\",\"display\":{\"title\":{\"text\":\"Primeros auxilios psicológicos\"}},\"_row_num\":8},{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"salud-sexual-reproductiva\",\"display\":{\"title\":{\"text\":\"Salud sexual y reproductiva\"}},\"_row_num\":9},{\"choice_list_name\":\"tipo_orientaciones\",\"data_value\":\"otras-orientaciones\",\"display\":{\"title\":{\"text\":\"Otro - por favor especificar\"}},\"_row_num\":10}]"
+      },
+      {
+        "_partition": "FormType",
+        "_aspect": "default",
+        "_key": "FormType.formType",
+        "_type": "string",
+        "_value": "SURVEY"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "ven_orientation"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":{\"default\":\"INFORMACION DE ORIENTACIONES\",\"en\":\"ORIENTATION INFORMATION\"}}"
+      }
+    ]
+  }
+}

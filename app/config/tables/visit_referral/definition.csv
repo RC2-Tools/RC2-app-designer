@@ -1,0 +1,7 @@
+_element_key,_element_name,_element_type,_list_child_element_keys
+internal_program,internal_program,string,[]
+notes,notes,string,[]
+referral_date,referral_date,date,[]
+referral_external_agency,referral_external_agency,string,[]
+referral_external_agency_service,referral_external_agency_service,string,[]
+referral_type,referral_type,string,[]

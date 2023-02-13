@@ -1,0 +1,33 @@
+_partition,_aspect,_key,_type,_value
+SurveyUtil,default,SurveyUtil.formId,string,wrong_form
+Table,default,defaultViewType,string,SPREADSHEET
+Table,default,displayName,object,"{""text"":""Shelter Delivery""}"
+Table,default,onDeliver,string,"(function (entitlementRowId) {
+                            return new Promise(function (resolve, reject) {
+                                odkData.arbitraryQuery(
+                                  'ex_indvidual_reg_shelter',
+                                  'SELECT reg.first_name, reg.last_name, ent.item_name, ent.authorization_id' +
+                                  ' FROM entitlements as ent, ex_indvidual_reg_shelter as reg, beneficiary_entities as ben' +
+                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +
+                                 ' ben.custom_beneficiary_entity_row_id = reg._id',
+                                  [entitlementRowId],
+                                  1,
+                                  null,
+                                  resolve,
+                                  reject
+                                );
+                            })
+                              .then(function (result) {
+                                  console.log(result);
+                                  return {
+                                      jsonMapSurvey: {
+                                          firstName: result.getData(0, 'first_name'),
+                                          lastName: result.getData(0, 'last_name'),
+                                          item_name: result.getData(0, 'item_name'),
+                                          authorization_id: result.getData(0, 'authorization_id')
+                                      }
+                                  };
+                              });
+                        });"
+Table,security,defaultAccessOnCreation,string,HIDDEN
+Table,security,unverifiedUserCanCreate,boolean,false

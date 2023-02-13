@@ -1,0 +1,6 @@
+_partition,_aspect,_key,_type,_value
+SurveyUtil,default,SurveyUtil.formId,string,wrong_form
+Table,default,defaultViewType,string,SPREADSHEET
+Table,default,displayName,object,"{""text"":""Beneficiary Services Received""}"
+Table,security,defaultAccessOnCreation,string,MODIFY
+Table,security,locked,boolean,false

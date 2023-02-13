@@ -1,0 +1,1696 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
+        "type": "select_one_dropdown",
+        "values_list": "especialidad",
+        "name": "espMedica",
+        "display": {
+          "prompt": {
+            "text": "Seleccione la especialidad médica de atención"
+          }
+        },
+        "required": "true",
+        "_row_num": 3
+      },
+      {
+        "type": "select_one_dropdown_autocomplete",
+        "values_list": "diagnostico_csv",
+        "name": "diagMedico",
+        "display": {
+          "prompt": {
+            "text": "Seleccione la impresión diagnostica"
+          }
+        },
+        "required": "true",
+        "_row_num": 4
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('diagMedico'),'OTRO')",
+        "_row_num": 5
+      },
+      {
+        "type": "string",
+        "name": "otrDiagMedico",
+        "display": {
+          "prompt": {
+            "text": "Indique que otro diagnostico médico se le ha indicado al paciente"
+          },
+          "hint": {
+            "text": "En caso de necesitar registrar varios diagnosticos separarlos con (;) punto y coma"
+          }
+        },
+        "required": "selected(data('diagMedico'),'OTRO')",
+        "_row_num": 6
+      },
+      {
+        "clause": "end if",
+        "_row_num": 7
+      },
+      {
+        "type": "textarea",
+        "name": "evalFisicaPaciente",
+        "display": {
+          "prompt": {
+            "text": "Evaluación física del paciente"
+          }
+        },
+        "inputAttributes": {
+          "rows": 20
+        },
+        "_row_num": 8
+      },
+      {
+        "type": "textarea",
+        "name": "tratamientoPaciente",
+        "display": {
+          "prompt": {
+            "text": "Tratamiento"
+          }
+        },
+        "inputAttributes": {
+          "rows": 20
+        },
+        "_row_num": 9
+      },
+      {
+        "type": "text",
+        "name": "medTratante",
+        "display": {
+          "prompt": {
+            "text": "Escriba el nombre del médico tratante del paciente"
+          }
+        },
+        "required": "true",
+        "_row_num": 10
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 11
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "si_no",
+        "data_value": "SI",
+        "display": {
+          "title": {
+            "text": "Si"
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "si_no",
+        "data_value": "NO",
+        "display": {
+          "title": {
+            "text": "No"
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "MEDICINA GENERAL",
+        "display": {
+          "title": {
+            "text": "Medicina General"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "PEDIATRIA",
+        "display": {
+          "title": {
+            "text": "Pediatría"
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "PSOCOLOGIA",
+        "display": {
+          "title": {
+            "text": "Psicología"
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "GINECOLOGIA",
+        "display": {
+          "title": {
+            "text": "Ginecología"
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "MEDICINA INTERNA",
+        "display": {
+          "title": {
+            "text": "Medicina interna"
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "ODONTOLOGIA",
+        "display": {
+          "title": {
+            "text": "Odontología"
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CARDIOLOGIA",
+        "display": {
+          "title": {
+            "text": "Cardiología"
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "OBSTETRICIA",
+        "display": {
+          "title": {
+            "text": "Obstetricia"
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "DERMATOLOGIA",
+        "display": {
+          "title": {
+            "text": "Dermatología"
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "ENDOCRINOLOGIA",
+        "display": {
+          "title": {
+            "text": "Endocrinología"
+          }
+        },
+        "_row_num": 14
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "GASTROENTEROLOGIA",
+        "display": {
+          "title": {
+            "text": "Gastroenterología"
+          }
+        },
+        "_row_num": 15
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "INFECTOLOGIA",
+        "display": {
+          "title": {
+            "text": "Infectología"
+          }
+        },
+        "_row_num": 16
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "FISIOTERAPIA",
+        "display": {
+          "title": {
+            "text": "Fisioterapia"
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "NEFROLOGIA",
+        "display": {
+          "title": {
+            "text": "Nefrología"
+          }
+        },
+        "_row_num": 18
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "NEUMOLOGIA",
+        "display": {
+          "title": {
+            "text": "Neumología"
+          }
+        },
+        "_row_num": 19
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "NEUROLOGIA",
+        "display": {
+          "title": {
+            "text": "Neurología"
+          }
+        },
+        "_row_num": 20
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "NUTRIOLOGIA",
+        "display": {
+          "title": {
+            "text": "Nutriología"
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "ONCOLOGIA",
+        "display": {
+          "title": {
+            "text": "Oncología"
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "PSIQUIATRIA",
+        "display": {
+          "title": {
+            "text": "Psiquiatría"
+          }
+        },
+        "_row_num": 23
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "REUMATOLOGIA",
+        "display": {
+          "title": {
+            "text": "Reumatología"
+          }
+        },
+        "_row_num": 24
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "OFTALMOLOGIA",
+        "display": {
+          "title": {
+            "text": "Oftalmología"
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "OTORRINOLARINGOLOGIA",
+        "display": {
+          "title": {
+            "text": "Otorrinolaringología"
+          }
+        },
+        "_row_num": 26
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "TRAUMATOLOGIA",
+        "display": {
+          "title": {
+            "text": "Traumatología"
+          }
+        },
+        "_row_num": 27
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "UROLOGIA",
+        "display": {
+          "title": {
+            "text": "Urología"
+          }
+        },
+        "_row_num": 28
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA CARDIACA",
+        "display": {
+          "title": {
+            "text": "Cirugía cardíaca"
+          }
+        },
+        "_row_num": 29
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA GENERLA",
+        "display": {
+          "title": {
+            "text": "Cirugía general"
+          }
+        },
+        "_row_num": 30
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA ORAL Y MAXILOFACIAL",
+        "display": {
+          "title": {
+            "text": "Cirugía oral y maxilofacial"
+          }
+        },
+        "_row_num": 31
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA ORTOPEDICA",
+        "display": {
+          "title": {
+            "text": "Cirugía ortopédica"
+          }
+        },
+        "_row_num": 32
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA PEDIATRICA",
+        "display": {
+          "title": {
+            "text": "Cirugía pediátrica"
+          }
+        },
+        "_row_num": 33
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA PLASTICA",
+        "display": {
+          "title": {
+            "text": "Cirugía plástica"
+          }
+        },
+        "_row_num": 34
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA TORACICA",
+        "display": {
+          "title": {
+            "text": "Cirugía torácica"
+          }
+        },
+        "_row_num": 35
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "CIRUGIA VASCULIA",
+        "display": {
+          "title": {
+            "text": "Cirugía vascular"
+          }
+        },
+        "_row_num": 36
+      },
+      {
+        "choice_list_name": "especialidad",
+        "data_value": "NEUROCIRUGIA",
+        "display": {
+          "title": {
+            "text": "Neurocirugía"
+          }
+        },
+        "_row_num": 37
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "table_id",
+        "value": "VZLA_IM_ConsultaMedica",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_id",
+        "value": "VZLA_IM_ConsultaMedica",
+        "_row_num": 3
+      },
+      {
+        "setting_name": "form_version",
+        "display": {
+          "title": {
+            "text": 2020112502
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "CONSULTA MEDICA"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "setting_name": "es",
+        "display": {
+          "locale": {
+            "text": "Español"
+          }
+        },
+        "_row_num": 6
+      }
+    ],
+    "model": [
+      {
+        "type": "select_one_with_other",
+        "name": "espMedica",
+        "_row_num": 2
+      },
+      {
+        "type": "select_one",
+        "name": "diagMedico",
+        "_row_num": 3
+      },
+      {
+        "type": "text",
+        "name": "otrDiagMedico",
+        "_row_num": 4
+      },
+      {
+        "type": "string",
+        "name": "evalFisicaPaciente",
+        "_row_num": 5
+      },
+      {
+        "type": "string",
+        "name": "tratamientoPaciente",
+        "_row_num": 6
+      },
+      {
+        "type": "text",
+        "name": "medTratante",
+        "_row_num": 7
+      }
+    ],
+    "prompt_types": [
+      {
+        "prompt_type_name": "select_one_dropdown_autocomplete",
+        "type": "select_one",
+        "_row_num": 2
+      }
+    ],
+    "queries": [
+      {
+        "query_name": "diagnostico_csv",
+        "query_type": "csv",
+        "uri": "\"diagnosticos.csv\"",
+        "callback": "_.map(context, function(diagnosticos){\ndiagnosticos.data_value = diagnosticos.COD\ndiagnosticos.display = {title: {text:diagnosticos.DIAGNOSTICO } };\nreturn diagnosticos\n})",
+        "_row_num": 2
+      }
+    ],
+    "initial": [
+      {
+        "clause": "if // start",
+        "condition": "(opendatakit.getCurrentInstanceId() != null)",
+        "_row_num": 2
+      },
+      {
+        "clause": "do section survey",
+        "_row_num": 4
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 5
+      },
+      {
+        "clause": "else // start",
+        "_row_num": 6
+      },
+      {
+        "type": "instances",
+        "display": {
+          "text": "Saved instances"
+        },
+        "_row_num": 7
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 8
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "VZLA_IM_ConsultaMedica",
+        "_row_num": 2
+      },
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "VZLA_IM_ConsultaMedica",
+        "_row_num": 3
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "display": {
+          "title": {
+            "text": 2020112502
+          }
+        },
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "CONSULTA MEDICA"
+          }
+        },
+        "_row_num": 5
+      },
+      "es": {
+        "setting_name": "es",
+        "display": {
+          "locale": {
+            "text": "Español"
+          }
+        },
+        "_row_num": 6
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": "default"
+              }
+            },
+            "name": "default"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "default"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "CONSULTA MEDICA"
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "si_no": [
+        {
+          "choice_list_name": "si_no",
+          "data_value": "SI",
+          "display": {
+            "title": {
+              "text": "Si"
+            }
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "si_no",
+          "data_value": "NO",
+          "display": {
+            "title": {
+              "text": "No"
+            }
+          },
+          "_row_num": 3
+        }
+      ],
+      "especialidad": [
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "MEDICINA GENERAL",
+          "display": {
+            "title": {
+              "text": "Medicina General"
+            }
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "PEDIATRIA",
+          "display": {
+            "title": {
+              "text": "Pediatría"
+            }
+          },
+          "_row_num": 6
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "PSOCOLOGIA",
+          "display": {
+            "title": {
+              "text": "Psicología"
+            }
+          },
+          "_row_num": 7
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "GINECOLOGIA",
+          "display": {
+            "title": {
+              "text": "Ginecología"
+            }
+          },
+          "_row_num": 8
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "MEDICINA INTERNA",
+          "display": {
+            "title": {
+              "text": "Medicina interna"
+            }
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "ODONTOLOGIA",
+          "display": {
+            "title": {
+              "text": "Odontología"
+            }
+          },
+          "_row_num": 10
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CARDIOLOGIA",
+          "display": {
+            "title": {
+              "text": "Cardiología"
+            }
+          },
+          "_row_num": 11
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "OBSTETRICIA",
+          "display": {
+            "title": {
+              "text": "Obstetricia"
+            }
+          },
+          "_row_num": 12
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "DERMATOLOGIA",
+          "display": {
+            "title": {
+              "text": "Dermatología"
+            }
+          },
+          "_row_num": 13
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "ENDOCRINOLOGIA",
+          "display": {
+            "title": {
+              "text": "Endocrinología"
+            }
+          },
+          "_row_num": 14
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "GASTROENTEROLOGIA",
+          "display": {
+            "title": {
+              "text": "Gastroenterología"
+            }
+          },
+          "_row_num": 15
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "INFECTOLOGIA",
+          "display": {
+            "title": {
+              "text": "Infectología"
+            }
+          },
+          "_row_num": 16
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "FISIOTERAPIA",
+          "display": {
+            "title": {
+              "text": "Fisioterapia"
+            }
+          },
+          "_row_num": 17
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "NEFROLOGIA",
+          "display": {
+            "title": {
+              "text": "Nefrología"
+            }
+          },
+          "_row_num": 18
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "NEUMOLOGIA",
+          "display": {
+            "title": {
+              "text": "Neumología"
+            }
+          },
+          "_row_num": 19
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "NEUROLOGIA",
+          "display": {
+            "title": {
+              "text": "Neurología"
+            }
+          },
+          "_row_num": 20
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "NUTRIOLOGIA",
+          "display": {
+            "title": {
+              "text": "Nutriología"
+            }
+          },
+          "_row_num": 21
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "ONCOLOGIA",
+          "display": {
+            "title": {
+              "text": "Oncología"
+            }
+          },
+          "_row_num": 22
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "PSIQUIATRIA",
+          "display": {
+            "title": {
+              "text": "Psiquiatría"
+            }
+          },
+          "_row_num": 23
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "REUMATOLOGIA",
+          "display": {
+            "title": {
+              "text": "Reumatología"
+            }
+          },
+          "_row_num": 24
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "OFTALMOLOGIA",
+          "display": {
+            "title": {
+              "text": "Oftalmología"
+            }
+          },
+          "_row_num": 25
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "OTORRINOLARINGOLOGIA",
+          "display": {
+            "title": {
+              "text": "Otorrinolaringología"
+            }
+          },
+          "_row_num": 26
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "TRAUMATOLOGIA",
+          "display": {
+            "title": {
+              "text": "Traumatología"
+            }
+          },
+          "_row_num": 27
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "UROLOGIA",
+          "display": {
+            "title": {
+              "text": "Urología"
+            }
+          },
+          "_row_num": 28
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA CARDIACA",
+          "display": {
+            "title": {
+              "text": "Cirugía cardíaca"
+            }
+          },
+          "_row_num": 29
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA GENERLA",
+          "display": {
+            "title": {
+              "text": "Cirugía general"
+            }
+          },
+          "_row_num": 30
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA ORAL Y MAXILOFACIAL",
+          "display": {
+            "title": {
+              "text": "Cirugía oral y maxilofacial"
+            }
+          },
+          "_row_num": 31
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA ORTOPEDICA",
+          "display": {
+            "title": {
+              "text": "Cirugía ortopédica"
+            }
+          },
+          "_row_num": 32
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA PEDIATRICA",
+          "display": {
+            "title": {
+              "text": "Cirugía pediátrica"
+            }
+          },
+          "_row_num": 33
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA PLASTICA",
+          "display": {
+            "title": {
+              "text": "Cirugía plástica"
+            }
+          },
+          "_row_num": 34
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA TORACICA",
+          "display": {
+            "title": {
+              "text": "Cirugía torácica"
+            }
+          },
+          "_row_num": 35
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "CIRUGIA VASCULIA",
+          "display": {
+            "title": {
+              "text": "Cirugía vascular"
+            }
+          },
+          "_row_num": 36
+        },
+        {
+          "choice_list_name": "especialidad",
+          "data_value": "NEUROCIRUGIA",
+          "display": {
+            "title": {
+              "text": "Neurocirugía"
+            }
+          },
+          "_row_num": 37
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {
+      "diagnostico_csv": {
+        "query_name": "diagnostico_csv",
+        "query_type": "csv",
+        "uri": "\"diagnosticos.csv\"",
+        "callback": "_.map(context, function(diagnosticos){\ndiagnosticos.data_value = diagnosticos.COD\ndiagnosticos.display = {title: {text:diagnosticos.DIAGNOSTICO } };\nreturn diagnosticos\n})",
+        "_row_num": 2
+      }
+    },
+    "calculates": {},
+    "model": {
+      "espMedica": {
+        "type": "string",
+        "valuesList": "especialidad",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "espMedica"
+      },
+      "diagMedico": {
+        "prompt_type_name": "select_one_dropdown_autocomplete",
+        "type": "string",
+        "valuesList": "diagnostico_csv",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagMedico"
+      },
+      "otrDiagMedico": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "otrDiagMedico"
+      },
+      "evalFisicaPaciente": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "evalFisicaPaciente"
+      },
+      "tratamientoPaciente": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "tratamientoPaciente"
+      },
+      "medTratante": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medTratante"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "select_one_dropdown",
+            "values_list": "especialidad",
+            "name": "espMedica",
+            "display": {
+              "prompt": {
+                "text": "Seleccione la especialidad médica de atención"
+              }
+            },
+            "required": "true",
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "select_one_dropdown",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "type": "select_one_dropdown_autocomplete",
+            "values_list": "diagnostico_csv",
+            "name": "diagMedico",
+            "display": {
+              "prompt": {
+                "text": "Seleccione la impresión diagnostica"
+              }
+            },
+            "required": "true",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_type": "select_one_dropdown_autocomplete",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 1
+          },
+          {
+            "type": "string",
+            "name": "otrDiagMedico",
+            "display": {
+              "prompt": {
+                "text": "Indique que otro diagnostico médico se le ha indicado al paciente"
+              },
+              "hint": {
+                "text": "En caso de necesitar registrar varios diagnosticos separarlos con (;) punto y coma"
+              }
+            },
+            "required": "selected(data('diagMedico'),'OTRO')",
+            "_row_num": 6,
+            "__rowNum__": 5,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 2
+          },
+          {
+            "type": "textarea",
+            "name": "evalFisicaPaciente",
+            "display": {
+              "prompt": {
+                "text": "Evaluación física del paciente"
+              }
+            },
+            "inputAttributes": {
+              "rows": 20
+            },
+            "_row_num": 8,
+            "__rowNum__": 7,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 3
+          },
+          {
+            "type": "textarea",
+            "name": "tratamientoPaciente",
+            "display": {
+              "prompt": {
+                "text": "Tratamiento"
+              }
+            },
+            "inputAttributes": {
+              "rows": 20
+            },
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 4
+          },
+          {
+            "type": "text",
+            "name": "medTratante",
+            "display": {
+              "prompt": {
+                "text": "Escriba el nombre del médico tratante del paciente"
+              }
+            },
+            "required": "true",
+            "_row_num": 10,
+            "__rowNum__": 9,
+            "_token_type": "prompt",
+            "_type": "text",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 5
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 12,
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 6
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            0,
+            1,
+            2,
+            5
+          ]
+        },
+        "operations": [
+          {
+            "clause": "begin screen",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 11,
+              "__rowNum__": 10,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nif (selected(data('diagMedico'),'OTRO')) {\nactivePromptIndicies.push(2);\n}\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 12,
+            "operationIdx": 1
+          },
+          {
+            "_row_num": 12,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(6);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 2
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 12,
+            "operationIdx": 3
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_contents": 2,
+          "_screen12": 2
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": "CONSULTA MEDICA"
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 7
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_else6": 5,
+          "_screen7": 5,
+          "_endif8": 6,
+          "_contents": 7,
+          "_screen9": 7,
+          "_finalize": 9
+        }
+      }
+    },
+    "dataTableModel": {
+      "espMedica": {
+        "type": "string",
+        "valuesList": "especialidad",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "espMedica",
+        "elementName": "espMedica",
+        "elementSet": "data",
+        "elementPath": "espMedica"
+      },
+      "diagMedico": {
+        "prompt_type_name": "select_one_dropdown_autocomplete",
+        "type": "string",
+        "valuesList": "diagnostico_csv",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagMedico",
+        "elementName": "diagMedico",
+        "elementSet": "data",
+        "elementPath": "diagMedico"
+      },
+      "otrDiagMedico": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "otrDiagMedico",
+        "elementName": "otrDiagMedico",
+        "elementSet": "data",
+        "elementPath": "otrDiagMedico"
+      },
+      "evalFisicaPaciente": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "evalFisicaPaciente",
+        "elementName": "evalFisicaPaciente",
+        "elementSet": "data",
+        "elementPath": "evalFisicaPaciente"
+      },
+      "tratamientoPaciente": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "tratamientoPaciente",
+        "elementName": "tratamientoPaciente",
+        "elementSet": "data",
+        "elementPath": "tratamientoPaciente"
+      },
+      "medTratante": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medTratante",
+        "elementName": "medTratante",
+        "elementSet": "data",
+        "elementPath": "medTratante"
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "espMedica",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"especialidad\",\"data_value\":\"MEDICINA GENERAL\",\"display\":{\"title\":{\"text\":\"Medicina General\"}},\"_row_num\":5},{\"choice_list_name\":\"especialidad\",\"data_value\":\"PEDIATRIA\",\"display\":{\"title\":{\"text\":\"Pediatría\"}},\"_row_num\":6},{\"choice_list_name\":\"especialidad\",\"data_value\":\"PSOCOLOGIA\",\"display\":{\"title\":{\"text\":\"Psicología\"}},\"_row_num\":7},{\"choice_list_name\":\"especialidad\",\"data_value\":\"GINECOLOGIA\",\"display\":{\"title\":{\"text\":\"Ginecología\"}},\"_row_num\":8},{\"choice_list_name\":\"especialidad\",\"data_value\":\"MEDICINA INTERNA\",\"display\":{\"title\":{\"text\":\"Medicina interna\"}},\"_row_num\":9},{\"choice_list_name\":\"especialidad\",\"data_value\":\"ODONTOLOGIA\",\"display\":{\"title\":{\"text\":\"Odontología\"}},\"_row_num\":10},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CARDIOLOGIA\",\"display\":{\"title\":{\"text\":\"Cardiología\"}},\"_row_num\":11},{\"choice_list_name\":\"especialidad\",\"data_value\":\"OBSTETRICIA\",\"display\":{\"title\":{\"text\":\"Obstetricia\"}},\"_row_num\":12},{\"choice_list_name\":\"especialidad\",\"data_value\":\"DERMATOLOGIA\",\"display\":{\"title\":{\"text\":\"Dermatología\"}},\"_row_num\":13},{\"choice_list_name\":\"especialidad\",\"data_value\":\"ENDOCRINOLOGIA\",\"display\":{\"title\":{\"text\":\"Endocrinología\"}},\"_row_num\":14},{\"choice_list_name\":\"especialidad\",\"data_value\":\"GASTROENTEROLOGIA\",\"display\":{\"title\":{\"text\":\"Gastroenterología\"}},\"_row_num\":15},{\"choice_list_name\":\"especialidad\",\"data_value\":\"INFECTOLOGIA\",\"display\":{\"title\":{\"text\":\"Infectología\"}},\"_row_num\":16},{\"choice_list_name\":\"especialidad\",\"data_value\":\"FISIOTERAPIA\",\"display\":{\"title\":{\"text\":\"Fisioterapia\"}},\"_row_num\":17},{\"choice_list_name\":\"especialidad\",\"data_value\":\"NEFROLOGIA\",\"display\":{\"title\":{\"text\":\"Nefrología\"}},\"_row_num\":18},{\"choice_list_name\":\"especialidad\",\"data_value\":\"NEUMOLOGIA\",\"display\":{\"title\":{\"text\":\"Neumología\"}},\"_row_num\":19},{\"choice_list_name\":\"especialidad\",\"data_value\":\"NEUROLOGIA\",\"display\":{\"title\":{\"text\":\"Neurología\"}},\"_row_num\":20},{\"choice_list_name\":\"especialidad\",\"data_value\":\"NUTRIOLOGIA\",\"display\":{\"title\":{\"text\":\"Nutriología\"}},\"_row_num\":21},{\"choice_list_name\":\"especialidad\",\"data_value\":\"ONCOLOGIA\",\"display\":{\"title\":{\"text\":\"Oncología\"}},\"_row_num\":22},{\"choice_list_name\":\"especialidad\",\"data_value\":\"PSIQUIATRIA\",\"display\":{\"title\":{\"text\":\"Psiquiatría\"}},\"_row_num\":23},{\"choice_list_name\":\"especialidad\",\"data_value\":\"REUMATOLOGIA\",\"display\":{\"title\":{\"text\":\"Reumatología\"}},\"_row_num\":24},{\"choice_list_name\":\"especialidad\",\"data_value\":\"OFTALMOLOGIA\",\"display\":{\"title\":{\"text\":\"Oftalmología\"}},\"_row_num\":25},{\"choice_list_name\":\"especialidad\",\"data_value\":\"OTORRINOLARINGOLOGIA\",\"display\":{\"title\":{\"text\":\"Otorrinolaringología\"}},\"_row_num\":26},{\"choice_list_name\":\"especialidad\",\"data_value\":\"TRAUMATOLOGIA\",\"display\":{\"title\":{\"text\":\"Traumatología\"}},\"_row_num\":27},{\"choice_list_name\":\"especialidad\",\"data_value\":\"UROLOGIA\",\"display\":{\"title\":{\"text\":\"Urología\"}},\"_row_num\":28},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA CARDIACA\",\"display\":{\"title\":{\"text\":\"Cirugía cardíaca\"}},\"_row_num\":29},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA GENERLA\",\"display\":{\"title\":{\"text\":\"Cirugía general\"}},\"_row_num\":30},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA ORAL Y MAXILOFACIAL\",\"display\":{\"title\":{\"text\":\"Cirugía oral y maxilofacial\"}},\"_row_num\":31},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA ORTOPEDICA\",\"display\":{\"title\":{\"text\":\"Cirugía ortopédica\"}},\"_row_num\":32},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA PEDIATRICA\",\"display\":{\"title\":{\"text\":\"Cirugía pediátrica\"}},\"_row_num\":33},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA PLASTICA\",\"display\":{\"title\":{\"text\":\"Cirugía plástica\"}},\"_row_num\":34},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA TORACICA\",\"display\":{\"title\":{\"text\":\"Cirugía torácica\"}},\"_row_num\":35},{\"choice_list_name\":\"especialidad\",\"data_value\":\"CIRUGIA VASCULIA\",\"display\":{\"title\":{\"text\":\"Cirugía vascular\"}},\"_row_num\":36},{\"choice_list_name\":\"especialidad\",\"data_value\":\"NEUROCIRUGIA\",\"display\":{\"title\":{\"text\":\"Neurocirugía\"}},\"_row_num\":37}]"
+      },
+      {
+        "_partition": "FormType",
+        "_aspect": "default",
+        "_key": "FormType.formType",
+        "_type": "string",
+        "_value": "SURVEY"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "VZLA_IM_ConsultaMedica"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":\"CONSULTA MEDICA\"}"
+      }
+    ]
+  }
+}

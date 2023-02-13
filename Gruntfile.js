@@ -164,6 +164,12 @@ module.exports = function (grunt) {
 
     };
 
+    var templateConfig = {
+      templateDir: 'app/config.templates',
+      partialDir: 'app/config.templates/partials',
+      outDir: 'app/config'
+    };
+
     grunt.initConfig({
         // Here we have to set the objects for the exec task. We are using
         // grunt-exec to execute the adb push and adb pull commands.
@@ -2177,4 +2183,103 @@ var zipAllFiles = function( destZipFile, filesList, completionFn ) {
 
             deleteFilesList(grunt, tablesConfig.assetsDir + '/framework/forms', assetsDirToDelete);
         });
+
+    grunt.registerTask(
+      'compile-config-templates',
+      'Compile app/config.templates',
+      function () {
+        var templatesToCompile = grunt.file.expandMapping(
+          ['assets/**/*.handlebars',
+           'relief_assets/**/*.handlebars',
+           'health_assets/**/*.handlebars',
+           'tables/**/*.handlebars'],
+          templateConfig.outDir,
+          {
+            filter: 'isFile',
+            cwd: templateConfig.templateDir,
+            ext: '.html',
+            extDot: 'last'
+          }
+        );
+
+        if (templatesToCompile.length < 1) {
+          return;
+        }
+
+        var Handlebars = require('handlebars');
+        var path = require('path');
+
+        var hbsPartials = grunt.file.expand(
+          {
+            filter: 'isFile',
+            cwd: templateConfig.partialDir
+          },
+          '**/*.handlebars'
+        );
+
+        Handlebars.registerHelper( 'concat', 
+            (...args) => args.slice(0, -1).join('')
+        );
+
+        for (var partial of hbsPartials) {
+          Handlebars.registerPartial(
+            path.basename(partial, '.handlebars'),
+            grunt.file.read(path.join(templateConfig.partialDir, partial))
+          );
+        }
+
+        for (var templ of templatesToCompile) {
+          var hbs = Handlebars.compile(grunt.file.read(templ.src[0]));
+
+          var assetsRelativePath = path.posix.relative(
+            path.posix.dirname(templ.src[0]),
+            path.posix.join(templateConfig.templateDir, 'assets')
+          );
+
+          var reliefAssetsRelativePath = path.posix.relative(
+            path.posix.dirname(templ.src[0]),
+            path.posix.join(templateConfig.templateDir, 'relief_assets')
+          );
+
+          var healthAssetsRelativePath = path.posix.relative(
+            path.posix.dirname(templ.src[0]),
+            path.posix.join(templateConfig.templateDir, 'health_assets')
+          );
+
+          var tablesRelativePath = path.posix.relative(
+            path.posix.dirname(templ.src[0]),
+            path.posix.join(templateConfig.templateDir, 'tables')
+          );
+
+          var systemRelativePath = path.posix.relative(
+            path.posix.dirname(templ.src[0]),
+            path.posix.join(templateConfig.templateDir, '../system')
+          );
+
+          if (assetsRelativePath === '') {
+            assetsRelativePath = '../assets';
+          }
+
+          if (reliefAssetsRelativePath === '') {
+            reliefAssetsRelativePath = '../relief_assets';
+          }
+
+          if (healthAssetsRelativePath === '') {
+            healthAssetsRelativePath = '../health_assets';
+          }
+
+          if (tablesRelativePath === '') {
+            tablesRelativePath = '../tables';
+          }
+
+          grunt.file.write(templ.dest, hbs({
+            assetsPath: assetsRelativePath,
+            reliefAssetsPath: reliefAssetsRelativePath,
+            healthAssetsPath: healthAssetsRelativePath,
+            tablesPath: tablesRelativePath,
+            systemPath: systemRelativePath
+          }));
+        }
+      }
+    );
 };

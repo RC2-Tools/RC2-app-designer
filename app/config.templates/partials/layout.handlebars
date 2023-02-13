@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{ @root.assetsPath }}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ @root.assetsPath }}/css/rc2.css"/>
+
+    <title>RC2 Tool</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div class="flex-grow-1 pt-2">
+    <main role="main" id="main" class="container flex-column">{{> mainContent }}</main>
+</div>
+
+<footer id="rc2Footer" class="d-flex justify-content-center align-items-center my-4">
+    <img src="{{ @root.assetsPath }}/img/ifrc_logo.svg" alt="IFRC Logo" id="rc2FooterLogo" class="h-100">
+</footer>
+
+<script type="text/javascript" src="{{ @root.assetsPath }}/libs/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="{{ @root.assetsPath }}/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="{{ @root.assetsPath }}/js/bootbox.min.js"></script>
+
+<script type="text/javascript" src="{{ @root.assetsPath }}/commonDefinitions.js"></script>
+<script type="text/javascript" src="{{ @root.systemPath }}/js/odkCommon.js"></script>
+<script type="text/javascript" src="{{ @root.systemPath }}/js/odkData.js"></script>
+<script type="text/javascript" src="{{ @root.systemPath }}/tables/js/odkTables.js"></script>
+<script type="text/javascript" src="{{ @root.assetsPath }}/libs/dayjs.min.js"></script>
+<script type="text/javascript" src="{{ @root.assetsPath }}/js/util.js"></script>
+
+{{> bodyEnd }}
+</body>
+</html>

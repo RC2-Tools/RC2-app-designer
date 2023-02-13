@@ -32,7 +32,7 @@ appDir="$rootDir/app"
 appConfig="$appDir/config"
 appSystem="$appDir/system"
 tempZipDir="$rootDir/tempZipDir"
-surveyDir="$tempZipDir/surveyDir"
+surveyDir="$tempZipDir/tablesDir"
 surveyConfig="$surveyDir/config"
 surveySystem="$surveyDir/system"
 tablesDir="$tempZipDir/tablesDir"
@@ -83,30 +83,16 @@ cp -r "$appSystem/libs"/* "$surveySystem/libs"
 cp -r "$appSystem/survey/js"/* "$surveySystem/survey/js"
 cp -r "$appSystem/survey/templates"/* "$surveySystem/survey/templates"
 
-(
-  cd "$surveyDir" || exit
-  zip -r config.zip config
-  zip -r system.zip system
-)
+mkdir -p "$tablesDir"
+mkdir -p "$tablesConfig"
+mkdir -p "$tablesConfig/assets"
+mkdir -p "$tablesConfig/assets/img"
+mkdir -p "$tablesConfig/assets/libs"
 
-mv "$surveyDir/config.zip" "$surveyDir/configzip"
-mv "$surveyDir/system.zip" "$surveyDir/systemzip"
-
-if test -n "$surveyCopyPath"; then
-    cp "$surveyDir/configzip" "$surveyCopyPath"
-    cp "$surveyDir/systemzip" "$surveyCopyPath"
-fi
-
-mkdir "$tablesDir"
-mkdir "$tablesConfig"
-mkdir "$tablesConfig/assets"
-mkdir "$tablesConfig/assets/img"
-mkdir "$tablesConfig/assets/libs"
-
-mkdir "$tablesSystem"
-mkdir "$tablesSystem/js"
-mkdir "$tablesSystem/libs"
-mkdir "$tablesSystem/tables"
+mkdir -p "$tablesSystem"
+mkdir -p "$tablesSystem/js"
+mkdir -p "$tablesSystem/libs"
+mkdir -p "$tablesSystem/tables"
 
 
 # Move all the necessary Tables config files over

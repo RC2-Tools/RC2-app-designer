@@ -1,0 +1,14 @@
+{{#> healthListView }}
+    {{#*inline "pageSpecific" }}
+        {{> menuBtn
+                id="addReferralDone"
+                icon=(concat @root.assetsPath "/img/enter_icon.svg")
+                label="ok"
+                class="sticky-top w-100 bg-white"
+        }}
+    {{/inline}}
+
+    {{#*inline "pageScripts" }}
+        <script type="text/javascript" src="{{ @root.tablesPath }}/services/health_assets/js/services_new_referral.js"></script>
+    {{/inline}}
+{{/healthListView}}

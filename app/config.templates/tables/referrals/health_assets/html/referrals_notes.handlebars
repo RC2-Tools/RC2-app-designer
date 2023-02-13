@@ -1,0 +1,23 @@
+{{#> healthLayout }}
+    {{#*inline "mainContent" }}
+        <h1 id="title" class="text-center text-uppercase menu-title py-4 m-0"></h1>
+
+        <div class="form-group">
+            <textarea class="form-control" id="referralNotesTextarea" rows="6"></textarea>
+        </div>
+        <button type="button"
+                class="btn btn-primary btn-red w-50"
+                id="referralNotesSubmit"
+                data-localize="continue"></button>
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="../../tableSpecificDefinitions.js"></script>
+        <script type="text/javascript" src="{{ @root.tablesPath }}/referrals/health_assets/js/referrals_notes.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/healthLayout}}

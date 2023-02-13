@@ -1,0 +1,10 @@
+<div class="menu-item {{ wrapperClass }} {{ class }}">
+    <button type="button" id="{{ id }}"
+            class="btn btn-primary btn-block align-items-center rounded-pill {{ btnClass }}">
+        <span class="d-flex justify-content-center align-items-center {{ iconClass }}">
+            <img src="{{ icon }}" alt="">
+        </span>
+        <span class="text-left text-uppercase font-weight-bold pr-3"
+            {{~#if label}} data-localize="{{ label }}"{{/if}}></span>
+    </button>
+</div>

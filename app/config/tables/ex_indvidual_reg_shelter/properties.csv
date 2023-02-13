@@ -1,0 +1,10 @@
+_partition,_aspect,_key,_type,_value
+Column,gender,displayChoicesList,object,"[{""choice_list_name"":""genders"",""data_value"":""male"",""display"":{""title"":{""text"":""Male""}},""_row_num"":2},{""choice_list_name"":""genders"",""data_value"":""female"",""display"":{""title"":{""text"":""Female""}},""_row_num"":3}]"
+Column,shelter,displayChoicesList,object,"[{""choice_list_name"":""shelter_condition"",""data_value"":""not_usable"",""display"":{""title"":{""text"":""Not able to use""}},""_row_num"":18},{""choice_list_name"":""shelter_condition"",""data_value"":""major_damage"",""display"":{""title"":{""text"":""Major damage""}},""_row_num"":19},{""choice_list_name"":""shelter_condition"",""data_value"":""minor_damage"",""display"":{""title"":{""text"":""Minor damage""}},""_row_num"":20},{""choice_list_name"":""shelter_condition"",""data_value"":""no_damage"",""display"":{""title"":{""text"":""No damage""}},""_row_num"":21}]"
+Column,vulnerability,displayChoicesList,object,"[{""choice_list_name"":""vulnerability_list"",""data_value"":""none"",""display"":{""title"":{""text"":""None""}},""_row_num"":13},{""choice_list_name"":""vulnerability_list"",""data_value"":""disability"",""display"":{""title"":{""text"":""Disability""}},""_row_num"":14},{""choice_list_name"":""vulnerability_list"",""data_value"":""unaccompanied_minors"",""display"":{""title"":{""text"":""Unaccompanied minors""}},""_row_num"":15},{""choice_list_name"":""vulnerability_list"",""data_value"":""single_parent_family"",""display"":{""title"":{""text"":""Single-parent family""}},""_row_num"":16}]"
+FormType,default,FormType.formType,string,SURVEY
+SurveyUtil,default,SurveyUtil.formId,string,ex_indvidual_reg_shelter
+Table,default,defaultViewType,string,SPREADSHEET
+Table,default,displayName,object,"{""text"":""Registration""}"
+Table,security,defaultAccessOnCreation,string,HIDDEN
+Table,security,unverifiedUserCanCreate,boolean,false

@@ -1,0 +1,12 @@
+_element_key,_element_name,_element_type,_list_child_element_keys
+alergiaPersona,alergiaPersona,string,[]
+edoGestacion,edoGestacion,string,[]
+enferPersona,enferPersona,string,[]
+lacMaterna,lacMaterna,string,[]
+semGesEmbarazo,semGesEmbarazo,integer,[]
+slcDiscapacidad,slcDiscapacidad,array,"[""slcDiscapacidad_items""]"
+slcDiscapacidad_items,items,string,[]
+sufrAlergias,sufrAlergias,string,[]
+tieneDiscapacidad,tieneDiscapacidad,string,[]
+tieneEnfermedad,tieneEnfermedad,string,[]
+vcsDiaLacMaterna,vcsDiaLacMaterna,integer,[]

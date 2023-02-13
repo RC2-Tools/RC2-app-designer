@@ -1,0 +1,27 @@
+{{#> layout }}
+    {{#*inline "mainContent" }}
+        <p>Loading...</p>
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script>
+            'use strict';
+
+            $(function () {
+                let module = util.getModule();
+                switch(module) {
+                    case 'RELIEF':
+                        odkTables.launchHTML(null, 'config/relief_assets/relief_index.html');
+                        break;
+                    case 'HEALTH':
+                        odkTables.launchHTML(null, 'config/health_assets/health_index.html');
+                        break;
+                    default:
+                        // Show error
+                        break;
+                };
+            });
+        </script>
+    {{/inline}}
+{{/layout}}
+

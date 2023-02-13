@@ -1,0 +1,2582 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "type": "assign",
+        "name": "date_of_care",
+        "calculation": "(data('date_of_care') !== null && data('date_of_care') !== undefined) ? data('date_of_care') : new Date()",
+        "_row_num": 2
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 3
+      },
+      {
+        "type": "assign",
+        "name": "date_birth",
+        "calculation": "data('reg_birthday')",
+        "_row_num": 4
+      },
+      {
+        "type": "assign",
+        "name": "gender",
+        "calculation": "data('reg_gender')",
+        "_row_num": 5
+      },
+      {
+        "type": "date",
+        "name": "date_of_care",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Date",
+              "es": "Fecha de la atención"
+            }
+          }
+        },
+        "required": true,
+        "_row_num": 6
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 7
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 8
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Please Verify The Following:",
+              "es": "Por favor verifique lo siguiente:"
+            }
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "<b>First name(s)</b><br> {{data.reg_first_name}}",
+              "es": "<b>Nombre(s)</b><br> {{data.reg_first_name}}"
+            }
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "<b>Family name(s)</b><br> {{data.reg_family_name}}",
+              "es": "<b>Apellido(s)</b><br> {{data.reg_family_name}}"
+            }
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "type": "birthdate",
+        "name": "date_birth",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Date of birth",
+              "es": "Fecha de nacimiento"
+            }
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "type": "select_one",
+        "name": "gender",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Gender",
+              "es": "Sexo"
+            }
+          }
+        },
+        "values_list": "gender_choices",
+        "_row_num": 13
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 14
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 15
+      },
+      {
+        "type": "select_one",
+        "name": "diagnostico_1",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Diagnostic 1",
+              "es": "Diagnóstico 1 (Indicar: Definitivo/Presuntivo/ Repetitivo):"
+            }
+          }
+        },
+        "values_list": "diagnostic",
+        "required": true,
+        "_row_num": 16
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('diagnostico_1'), 'otro')",
+        "_row_num": 17
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_otro",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Other diagnostic 1:",
+              "es": "Otro diagnóstico 1:"
+            }
+          }
+        },
+        "inputAttributes": {
+          "rows": 10
+        },
+        "_row_num": 18
+      },
+      {
+        "clause": "end if",
+        "_row_num": 19
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_2",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Diagnostic 2 or more:",
+              "es": "Diagnóstico 2 o más:"
+            }
+          }
+        },
+        "inputAttributes": {
+          "rows": 10
+        },
+        "_row_num": 20
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 21
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 22
+      },
+      {
+        "type": "select_one",
+        "name": "codigo_CIE_1",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Code CIE 10 (1)",
+              "es": "Código CIE 10 (1)"
+            }
+          }
+        },
+        "values_list": "code_cie",
+        "_row_num": 23
+      },
+      {
+        "type": "select_one",
+        "name": "codigo_CIE_2",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Code CIE 10 (2)",
+              "es": "Código CIE 10 (2)"
+            }
+          }
+        },
+        "values_list": "code_cie",
+        "_row_num": 24
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 25
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "form_id",
+        "value": "medical_assessment",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 20200322,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "table_id",
+        "value": "medical_assessment",
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "en": "Medical Assessment",
+              "es": "Medical Assessment",
+              "default": "Medical Assessment"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "setting_name": "instance_name",
+        "value": "name",
+        "_row_num": 6
+      },
+      {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "English"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español",
+              "default": "Spanish"
+            }
+          }
+        },
+        "_row_num": 8
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "yes_no",
+        "data_value": "yes",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Yes",
+              "es": "Si"
+            }
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "yes_no",
+        "data_value": "no",
+        "display": {
+          "title": {
+            "text": {
+              "default": "No",
+              "es": "No"
+            }
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "male",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Male",
+              "es": "Masculino"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "female",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Female",
+              "es": "Femenino"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "other",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Other",
+              "es": "Otro"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "no_response",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Prefer not to respond",
+              "es": "Prefiere no responder"
+            }
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "rinofaringitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Common cold (rinofaringitis)",
+              "es": "Resfrio común (rinofaringitis)"
+            }
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "faringitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Faringitis",
+              "es": "Faringitis"
+            }
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "faringoamigdalitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Faringoamigdalitis",
+              "es": "Faringoamigdalitis"
+            }
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "amigdalitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Amigdalitis",
+              "es": "Amigdalitis"
+            }
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "deshidratacion_leve",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Deshidratación leve",
+              "es": "Deshidratación leve"
+            }
+          }
+        },
+        "_row_num": 14
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "diarrea_eda",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Diarrhea (eda)",
+              "es": "Diarrea (eda)"
+            }
+          }
+        },
+        "_row_num": 15
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "cefalea",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Cefalea",
+              "es": "Cefalea"
+            }
+          }
+        },
+        "_row_num": 16
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "lumbalgia",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Lumbalgia",
+              "es": "Lumbalgia"
+            }
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "otalgia",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otalgia",
+              "es": "Otalgia"
+            }
+          }
+        },
+        "_row_num": 18
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "conjunctivitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Conjuntivitis",
+              "es": "Conjuntivitis"
+            }
+          }
+        },
+        "_row_num": 19
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "sindrome febril",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Sindrome febril",
+              "es": "Sindrome febril"
+            }
+          }
+        },
+        "_row_num": 20
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "epigastralgia",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Epigastralgia",
+              "es": "Epigastralgia"
+            }
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "otro",
+        "display": {
+          "title": {
+            "text": {
+              "default": "OTHER",
+              "es": "OTRO"
+            }
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "Sin_diagnostico",
+        "display": {
+          "title": {
+            "text": {
+              "default": "No diagnostic (no show or healthy person)",
+              "es": "Sin diagnóstico (no se presentó o persona sana)"
+            }
+          }
+        },
+        "_row_num": 24
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_I",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter I - Certain infectious and parasitic diseases (A00-B99)",
+              "es": "Capítulo I Enfermedades infecciosas y parasitarias A00-B99"
+            }
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE II",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter II - Neoplasms (C00-D49)",
+              "es": "Capítulo II Neoplasias C00-D44"
+            }
+          }
+        },
+        "_row_num": 26
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE III",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)",
+              "es": "Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89"
+            }
+          }
+        },
+        "_row_num": 27
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_IV",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)",
+              "es": "Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90"
+            }
+          }
+        },
+        "_row_num": 28
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_V",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter V - Mental and behavioral disorders (F01-F99)",
+              "es": "Capítulo V Transtornos mentales y del comportamiento. F00-F99"
+            }
+          }
+        },
+        "_row_num": 29
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_VI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter VI - Diseases of the nervous system (G00-G99)",
+              "es": "Capítulo VI Enfermedades del sistema nervioso. G00-G99"
+            }
+          }
+        },
+        "_row_num": 30
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_VII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter VII - Diseases of the eye and adnexa (H00-H59)",
+              "es": "Capítulo VII Enfermedades del ojo y sus anexos. H00-H59"
+            }
+          }
+        },
+        "_row_num": 31
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_VIII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter VIII - Diseases of the ear and mastoid process (H60-H95)",
+              "es": "Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95"
+            }
+          }
+        },
+        "_row_num": 32
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_IX",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter IX - Diseases of the circulatory system (I00-I99)",
+              "es": "Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99"
+            }
+          }
+        },
+        "_row_num": 33
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_X",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter X - Diseases of the respiratory system (J00-J99)",
+              "es": "Capítulo X Enfermedades del sistema respiratorio J00-J99"
+            }
+          }
+        },
+        "_row_num": 34
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XI - Diseases of the digestive system (K00-K93)",
+              "es": "Capítulo XI Enfermedades del sistema digestivo K00-K99"
+            }
+          }
+        },
+        "_row_num": 35
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)",
+              "es": "Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99"
+            }
+          }
+        },
+        "_row_num": 36
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XIII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)",
+              "es": "Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99"
+            }
+          }
+        },
+        "_row_num": 37
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XIV",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XIV - Diseases of the genitourinary system (N00-N99)",
+              "es": "Capítulo XIV Enfermedades del sistema genitourinario N00-N98"
+            }
+          }
+        },
+        "_row_num": 38
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XV",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)",
+              "es": "Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99"
+            }
+          }
+        },
+        "_row_num": 39
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XVI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)",
+              "es": "Capítulo XVI Enfermedades del feto y recién nacido P00-P96"
+            }
+          }
+        },
+        "_row_num": 40
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XVII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)",
+              "es": "Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99"
+            }
+          }
+        },
+        "_row_num": 41
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XVIII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)",
+              "es": "Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99"
+            }
+          }
+        },
+        "_row_num": 42
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XIX",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)",
+              "es": "Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98"
+            }
+          }
+        },
+        "_row_num": 43
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XX",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XX - External causes of morbidity (V01-Y99)",
+              "es": "Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98"
+            }
+          }
+        },
+        "_row_num": 44
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XXI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)",
+              "es": "Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99"
+            }
+          }
+        },
+        "_row_num": 45
+      }
+    ],
+    "properties": [
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "defaultAccessOnCreation",
+        "type": "string",
+        "value": "HIDDEN",
+        "_row_num": 2
+      },
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "unverifiedUserCanCreate",
+        "type": "boolean",
+        "value": "TRUE",
+        "_row_num": 3
+      }
+    ],
+    "initial": [
+      {
+        "clause": "if // start",
+        "condition": "(opendatakit.getCurrentInstanceId() != null)",
+        "_row_num": 2
+      },
+      {
+        "clause": "do section survey",
+        "_row_num": 4
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 5
+      },
+      {
+        "clause": "else // start",
+        "_row_num": 6
+      },
+      {
+        "type": "instances",
+        "display": {
+          "text": "Saved instances"
+        },
+        "_row_num": 7
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 8
+      }
+    ],
+    "model": [
+      {
+        "type": "string",
+        "name": "reg_first_name",
+        "isSessionVariable": "true",
+        "_row_num": 2
+      },
+      {
+        "type": "string",
+        "name": "reg_family_name",
+        "isSessionVariable": "true",
+        "_row_num": 3
+      },
+      {
+        "type": "birthdate",
+        "name": "reg_birthday",
+        "isSessionVariable": "true",
+        "_row_num": 4
+      },
+      {
+        "type": "select_one",
+        "name": "reg_gender",
+        "isSessionVariable": "true",
+        "_row_num": 5
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_otro",
+        "elementType": "string(1023)",
+        "_row_num": 6
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_2",
+        "elementType": "string(1023)",
+        "_row_num": 7
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "medical_assessment",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 20200322,
+        "_row_num": 3
+      },
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "medical_assessment",
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "en": "Medical Assessment",
+              "es": "Medical Assessment",
+              "default": "Medical Assessment"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      "instance_name": {
+        "setting_name": "instance_name",
+        "value": "name",
+        "_row_num": 6
+      },
+      "en": {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "English"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      "es": {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español",
+              "default": "Spanish"
+            }
+          }
+        },
+        "_row_num": 8
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": {
+                  "en": "English",
+                  "es": "Inglés",
+                  "default": "English"
+                }
+              }
+            },
+            "_row_num": 7,
+            "name": "en"
+          },
+          {
+            "display": {
+              "locale": {
+                "text": {
+                  "en": "Spanish",
+                  "es": "Español",
+                  "default": "Spanish"
+                }
+              }
+            },
+            "_row_num": 8,
+            "name": "es"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "en"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "en": "Medical Assessment",
+              "es": "Medical Assessment",
+              "default": "Medical Assessment"
+            }
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "yes_no": [
+        {
+          "choice_list_name": "yes_no",
+          "data_value": "yes",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Yes",
+                "es": "Si"
+              }
+            }
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "yes_no",
+          "data_value": "no",
+          "display": {
+            "title": {
+              "text": {
+                "default": "No",
+                "es": "No"
+              }
+            }
+          },
+          "_row_num": 3
+        }
+      ],
+      "gender_choices": [
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "male",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Male",
+                "es": "Masculino"
+              }
+            }
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "female",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Female",
+                "es": "Femenino"
+              }
+            }
+          },
+          "_row_num": 6
+        },
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "other",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Other",
+                "es": "Otro"
+              }
+            }
+          },
+          "_row_num": 7
+        },
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "no_response",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Prefer not to respond",
+                "es": "Prefiere no responder"
+              }
+            }
+          },
+          "_row_num": 8
+        }
+      ],
+      "diagnostic": [
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "rinofaringitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Common cold (rinofaringitis)",
+                "es": "Resfrio común (rinofaringitis)"
+              }
+            }
+          },
+          "_row_num": 10
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "faringitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Faringitis",
+                "es": "Faringitis"
+              }
+            }
+          },
+          "_row_num": 11
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "faringoamigdalitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Faringoamigdalitis",
+                "es": "Faringoamigdalitis"
+              }
+            }
+          },
+          "_row_num": 12
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "amigdalitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Amigdalitis",
+                "es": "Amigdalitis"
+              }
+            }
+          },
+          "_row_num": 13
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "deshidratacion_leve",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Deshidratación leve",
+                "es": "Deshidratación leve"
+              }
+            }
+          },
+          "_row_num": 14
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "diarrea_eda",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Diarrhea (eda)",
+                "es": "Diarrea (eda)"
+              }
+            }
+          },
+          "_row_num": 15
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "cefalea",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Cefalea",
+                "es": "Cefalea"
+              }
+            }
+          },
+          "_row_num": 16
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "lumbalgia",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Lumbalgia",
+                "es": "Lumbalgia"
+              }
+            }
+          },
+          "_row_num": 17
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "otalgia",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otalgia",
+                "es": "Otalgia"
+              }
+            }
+          },
+          "_row_num": 18
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "conjunctivitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Conjuntivitis",
+                "es": "Conjuntivitis"
+              }
+            }
+          },
+          "_row_num": 19
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "sindrome febril",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Sindrome febril",
+                "es": "Sindrome febril"
+              }
+            }
+          },
+          "_row_num": 20
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "epigastralgia",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Epigastralgia",
+                "es": "Epigastralgia"
+              }
+            }
+          },
+          "_row_num": 21
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "otro",
+          "display": {
+            "title": {
+              "text": {
+                "default": "OTHER",
+                "es": "OTRO"
+              }
+            }
+          },
+          "_row_num": 22
+        }
+      ],
+      "code_cie": [
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "Sin_diagnostico",
+          "display": {
+            "title": {
+              "text": {
+                "default": "No diagnostic (no show or healthy person)",
+                "es": "Sin diagnóstico (no se presentó o persona sana)"
+              }
+            }
+          },
+          "_row_num": 24
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_I",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter I - Certain infectious and parasitic diseases (A00-B99)",
+                "es": "Capítulo I Enfermedades infecciosas y parasitarias A00-B99"
+              }
+            }
+          },
+          "_row_num": 25
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE II",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter II - Neoplasms (C00-D49)",
+                "es": "Capítulo II Neoplasias C00-D44"
+              }
+            }
+          },
+          "_row_num": 26
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE III",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)",
+                "es": "Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89"
+              }
+            }
+          },
+          "_row_num": 27
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_IV",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)",
+                "es": "Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90"
+              }
+            }
+          },
+          "_row_num": 28
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_V",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter V - Mental and behavioral disorders (F01-F99)",
+                "es": "Capítulo V Transtornos mentales y del comportamiento. F00-F99"
+              }
+            }
+          },
+          "_row_num": 29
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_VI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter VI - Diseases of the nervous system (G00-G99)",
+                "es": "Capítulo VI Enfermedades del sistema nervioso. G00-G99"
+              }
+            }
+          },
+          "_row_num": 30
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_VII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter VII - Diseases of the eye and adnexa (H00-H59)",
+                "es": "Capítulo VII Enfermedades del ojo y sus anexos. H00-H59"
+              }
+            }
+          },
+          "_row_num": 31
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_VIII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter VIII - Diseases of the ear and mastoid process (H60-H95)",
+                "es": "Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95"
+              }
+            }
+          },
+          "_row_num": 32
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_IX",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter IX - Diseases of the circulatory system (I00-I99)",
+                "es": "Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99"
+              }
+            }
+          },
+          "_row_num": 33
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_X",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter X - Diseases of the respiratory system (J00-J99)",
+                "es": "Capítulo X Enfermedades del sistema respiratorio J00-J99"
+              }
+            }
+          },
+          "_row_num": 34
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XI - Diseases of the digestive system (K00-K93)",
+                "es": "Capítulo XI Enfermedades del sistema digestivo K00-K99"
+              }
+            }
+          },
+          "_row_num": 35
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)",
+                "es": "Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99"
+              }
+            }
+          },
+          "_row_num": 36
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XIII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)",
+                "es": "Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99"
+              }
+            }
+          },
+          "_row_num": 37
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XIV",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XIV - Diseases of the genitourinary system (N00-N99)",
+                "es": "Capítulo XIV Enfermedades del sistema genitourinario N00-N98"
+              }
+            }
+          },
+          "_row_num": 38
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XV",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)",
+                "es": "Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99"
+              }
+            }
+          },
+          "_row_num": 39
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XVI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)",
+                "es": "Capítulo XVI Enfermedades del feto y recién nacido P00-P96"
+              }
+            }
+          },
+          "_row_num": 40
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XVII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)",
+                "es": "Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99"
+              }
+            }
+          },
+          "_row_num": 41
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XVIII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)",
+                "es": "Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99"
+              }
+            }
+          },
+          "_row_num": 42
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XIX",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)",
+                "es": "Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98"
+              }
+            }
+          },
+          "_row_num": 43
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XX",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XX - External causes of morbidity (V01-Y99)",
+                "es": "Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98"
+              }
+            }
+          },
+          "_row_num": 44
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XXI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)",
+                "es": "Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99"
+              }
+            }
+          },
+          "_row_num": 45
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "reg_first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_first_name"
+      },
+      "reg_family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_family_name"
+      },
+      "reg_birthday": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_birthday"
+      },
+      "reg_gender": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_gender"
+      },
+      "diagnostico_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 18,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementType": "string(1023)",
+        "elementKey": "diagnostico_otro"
+      },
+      "diagnostico_2": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 20,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementType": "string(1023)",
+        "elementKey": "diagnostico_2"
+      },
+      "date_of_care": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "survey"
+          }
+        ],
+        "elementKey": "date_of_care"
+      },
+      "date_birth": {
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "elementType": "date",
+        "elementKey": "date_birth"
+      },
+      "gender": {
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "gender_choices",
+        "elementKey": "gender"
+      },
+      "diagnostico_1": {
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "diagnostic",
+        "elementKey": "diagnostico_1"
+      },
+      "codigo_CIE_1": {
+        "_defn": [
+          {
+            "_row_num": 23,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "code_cie",
+        "elementKey": "codigo_CIE_1"
+      },
+      "codigo_CIE_2": {
+        "_defn": [
+          {
+            "_row_num": 24,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "code_cie",
+        "elementKey": "codigo_CIE_2"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "date",
+            "name": "date_of_care",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Date",
+                  "es": "Fecha de la atención"
+                }
+              }
+            },
+            "required": true,
+            "_row_num": 6,
+            "__rowNum__": 5,
+            "_token_type": "prompt",
+            "_type": "date",
+            "_branch_label_enclosing_screen": "survey/_screen3",
+            "promptIdx": 0
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Please Verify The Following:",
+                  "es": "Por favor verifique lo siguiente:"
+                }
+              }
+            },
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 1
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "<b>First name(s)</b><br> {{data.reg_first_name}}",
+                  "es": "<b>Nombre(s)</b><br> {{data.reg_first_name}}"
+                }
+              }
+            },
+            "_row_num": 10,
+            "__rowNum__": 9,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 2
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "<b>Family name(s)</b><br> {{data.reg_family_name}}",
+                  "es": "<b>Apellido(s)</b><br> {{data.reg_family_name}}"
+                }
+              }
+            },
+            "_row_num": 11,
+            "__rowNum__": 10,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 3
+          },
+          {
+            "type": "birthdate",
+            "name": "date_birth",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Date of birth",
+                  "es": "Fecha de nacimiento"
+                }
+              }
+            },
+            "_row_num": 12,
+            "__rowNum__": 11,
+            "_token_type": "prompt",
+            "_type": "birthdate",
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 4
+          },
+          {
+            "type": "select_one",
+            "name": "gender",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Gender",
+                  "es": "Sexo"
+                }
+              }
+            },
+            "values_list": "gender_choices",
+            "_row_num": 13,
+            "__rowNum__": 12,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 5
+          },
+          {
+            "type": "select_one",
+            "name": "diagnostico_1",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Diagnostic 1",
+                  "es": "Diagnóstico 1 (Indicar: Definitivo/Presuntivo/ Repetitivo):"
+                }
+              }
+            },
+            "values_list": "diagnostic",
+            "required": true,
+            "_row_num": 16,
+            "__rowNum__": 15,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen15",
+            "promptIdx": 6
+          },
+          {
+            "type": "textarea",
+            "name": "diagnostico_otro",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Other diagnostic 1:",
+                  "es": "Otro diagnóstico 1:"
+                }
+              }
+            },
+            "inputAttributes": {
+              "rows": 10
+            },
+            "_row_num": 18,
+            "__rowNum__": 17,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen15",
+            "promptIdx": 7
+          },
+          {
+            "type": "textarea",
+            "name": "diagnostico_2",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Diagnostic 2 or more:",
+                  "es": "Diagnóstico 2 o más:"
+                }
+              }
+            },
+            "inputAttributes": {
+              "rows": 10
+            },
+            "_row_num": 20,
+            "__rowNum__": 19,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen15",
+            "promptIdx": 8
+          },
+          {
+            "type": "select_one",
+            "name": "codigo_CIE_1",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Code CIE 10 (1)",
+                  "es": "Código CIE 10 (1)"
+                }
+              }
+            },
+            "values_list": "code_cie",
+            "_row_num": 23,
+            "__rowNum__": 22,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen22",
+            "promptIdx": 9
+          },
+          {
+            "type": "select_one",
+            "name": "codigo_CIE_2",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Code CIE 10 (2)",
+                  "es": "Código CIE 10 (2)"
+                }
+              }
+            },
+            "values_list": "code_cie",
+            "_row_num": 24,
+            "__rowNum__": 23,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen22",
+            "promptIdx": 10
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 26,
+            "_branch_label_enclosing_screen": "survey/_screen26",
+            "promptIdx": 11
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            0,
+            6
+          ]
+        },
+        "operations": [
+          {
+            "type": "assign",
+            "name": "date_of_care",
+            "calculation": "(data('date_of_care') !== null && data('date_of_care') !== undefined) ? data('date_of_care') : new Date()",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "assign",
+            "operationIdx": 0
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 7,
+              "__rowNum__": 6,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nassign('date_birth', data('reg_birthday'));\nassign('gender', data('reg_gender'));\nactivePromptIndicies.push(0);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 1
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 8,
+            "__rowNum__": 7,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 14,
+              "__rowNum__": 13,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 2
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 15,
+            "__rowNum__": 14,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 21,
+              "__rowNum__": 20,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(6);\nif (selected(data('diagnostico_1'), 'otro')) {\nactivePromptIndicies.push(7);\n}\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 3
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 22,
+            "__rowNum__": 21,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 25,
+              "__rowNum__": 24,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 4
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 26,
+            "operationIdx": 5
+          },
+          {
+            "_row_num": 26,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 6
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 26,
+            "operationIdx": 7
+          }
+        ],
+        "branch_label_map": {
+          "_screen3": 1,
+          "_screen8": 2,
+          "_screen15": 3,
+          "_screen22": 4,
+          "_contents": 6,
+          "_screen26": 6
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": {
+                  "en": "Medical Assessment",
+                  "es": "Medical Assessment",
+                  "default": "Medical Assessment"
+                }
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 7
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_else6": 5,
+          "_screen7": 5,
+          "_endif8": 6,
+          "_contents": 7,
+          "_screen9": 7,
+          "_finalize": 9
+        }
+      }
+    },
+    "dataTableModel": {
+      "reg_first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_first_name",
+        "elementName": "reg_first_name",
+        "elementSet": "data",
+        "elementPath": "reg_first_name"
+      },
+      "reg_family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_family_name",
+        "elementName": "reg_family_name",
+        "elementSet": "data",
+        "elementPath": "reg_family_name"
+      },
+      "reg_birthday": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_birthday",
+        "elementName": "reg_birthday",
+        "elementSet": "data",
+        "elementPath": "reg_birthday"
+      },
+      "reg_gender": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_gender",
+        "elementName": "reg_gender",
+        "elementSet": "data",
+        "elementPath": "reg_gender"
+      },
+      "diagnostico_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 18,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementType": "string(1023)",
+        "elementKey": "diagnostico_otro",
+        "elementName": "diagnostico_otro",
+        "elementSet": "data",
+        "elementPath": "diagnostico_otro"
+      },
+      "diagnostico_2": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 20,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementType": "string(1023)",
+        "elementKey": "diagnostico_2",
+        "elementName": "diagnostico_2",
+        "elementSet": "data",
+        "elementPath": "diagnostico_2"
+      },
+      "date_of_care": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "survey"
+          }
+        ],
+        "elementKey": "date_of_care",
+        "elementName": "date_of_care",
+        "elementSet": "data",
+        "elementPath": "date_of_care"
+      },
+      "date_birth": {
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "elementType": "date",
+        "elementKey": "date_birth",
+        "elementName": "date_birth",
+        "elementSet": "data",
+        "elementPath": "date_birth"
+      },
+      "gender": {
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "gender_choices",
+        "elementKey": "gender",
+        "elementName": "gender",
+        "elementSet": "data",
+        "elementPath": "gender"
+      },
+      "diagnostico_1": {
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "diagnostic",
+        "elementKey": "diagnostico_1",
+        "elementName": "diagnostico_1",
+        "elementSet": "data",
+        "elementPath": "diagnostico_1"
+      },
+      "codigo_CIE_1": {
+        "_defn": [
+          {
+            "_row_num": 23,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "code_cie",
+        "elementKey": "codigo_CIE_1",
+        "elementName": "codigo_CIE_1",
+        "elementSet": "data",
+        "elementPath": "codigo_CIE_1"
+      },
+      "codigo_CIE_2": {
+        "_defn": [
+          {
+            "_row_num": 24,
+            "section_name": "survey"
+          }
+        ],
+        "type": "string",
+        "valuesList": "code_cie",
+        "elementKey": "codigo_CIE_2",
+        "elementName": "codigo_CIE_2",
+        "elementSet": "data",
+        "elementPath": "codigo_CIE_2"
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "codigo_CIE_1",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"code_cie\",\"data_value\":\"Sin_diagnostico\",\"display\":{\"title\":{\"text\":{\"default\":\"No diagnostic (no show or healthy person)\",\"es\":\"Sin diagnóstico (no se presentó o persona sana)\"}}},\"_row_num\":24},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_I\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter I - Certain infectious and parasitic diseases (A00-B99)\",\"es\":\"Capítulo I Enfermedades infecciosas y parasitarias A00-B99\"}}},\"_row_num\":25},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE II\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter II - Neoplasms (C00-D49)\",\"es\":\"Capítulo II Neoplasias C00-D44\"}}},\"_row_num\":26},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE III\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)\",\"es\":\"Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89\"}}},\"_row_num\":27},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IV\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)\",\"es\":\"Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90\"}}},\"_row_num\":28},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_V\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter V - Mental and behavioral disorders (F01-F99)\",\"es\":\"Capítulo V Transtornos mentales y del comportamiento. F00-F99\"}}},\"_row_num\":29},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter VI - Diseases of the nervous system (G00-G99)\",\"es\":\"Capítulo VI Enfermedades del sistema nervioso. G00-G99\"}}},\"_row_num\":30},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter VII - Diseases of the eye and adnexa (H00-H59)\",\"es\":\"Capítulo VII Enfermedades del ojo y sus anexos. H00-H59\"}}},\"_row_num\":31},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter VIII - Diseases of the ear and mastoid process (H60-H95)\",\"es\":\"Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95\"}}},\"_row_num\":32},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IX\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter IX - Diseases of the circulatory system (I00-I99)\",\"es\":\"Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99\"}}},\"_row_num\":33},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_X\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter X - Diseases of the respiratory system (J00-J99)\",\"es\":\"Capítulo X Enfermedades del sistema respiratorio J00-J99\"}}},\"_row_num\":34},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XI - Diseases of the digestive system (K00-K93)\",\"es\":\"Capítulo XI Enfermedades del sistema digestivo K00-K99\"}}},\"_row_num\":35},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)\",\"es\":\"Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99\"}}},\"_row_num\":36},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)\",\"es\":\"Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99\"}}},\"_row_num\":37},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIV\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XIV - Diseases of the genitourinary system (N00-N99)\",\"es\":\"Capítulo XIV Enfermedades del sistema genitourinario N00-N98\"}}},\"_row_num\":38},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XV\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)\",\"es\":\"Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99\"}}},\"_row_num\":39},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)\",\"es\":\"Capítulo XVI Enfermedades del feto y recién nacido P00-P96\"}}},\"_row_num\":40},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)\",\"es\":\"Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99\"}}},\"_row_num\":41},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)\",\"es\":\"Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99\"}}},\"_row_num\":42},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIX\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)\",\"es\":\"Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98\"}}},\"_row_num\":43},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XX\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XX - External causes of morbidity (V01-Y99)\",\"es\":\"Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98\"}}},\"_row_num\":44},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XXI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)\",\"es\":\"Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99\"}}},\"_row_num\":45}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "codigo_CIE_2",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"code_cie\",\"data_value\":\"Sin_diagnostico\",\"display\":{\"title\":{\"text\":{\"default\":\"No diagnostic (no show or healthy person)\",\"es\":\"Sin diagnóstico (no se presentó o persona sana)\"}}},\"_row_num\":24},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_I\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter I - Certain infectious and parasitic diseases (A00-B99)\",\"es\":\"Capítulo I Enfermedades infecciosas y parasitarias A00-B99\"}}},\"_row_num\":25},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE II\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter II - Neoplasms (C00-D49)\",\"es\":\"Capítulo II Neoplasias C00-D44\"}}},\"_row_num\":26},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE III\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)\",\"es\":\"Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89\"}}},\"_row_num\":27},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IV\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)\",\"es\":\"Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90\"}}},\"_row_num\":28},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_V\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter V - Mental and behavioral disorders (F01-F99)\",\"es\":\"Capítulo V Transtornos mentales y del comportamiento. F00-F99\"}}},\"_row_num\":29},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter VI - Diseases of the nervous system (G00-G99)\",\"es\":\"Capítulo VI Enfermedades del sistema nervioso. G00-G99\"}}},\"_row_num\":30},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter VII - Diseases of the eye and adnexa (H00-H59)\",\"es\":\"Capítulo VII Enfermedades del ojo y sus anexos. H00-H59\"}}},\"_row_num\":31},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter VIII - Diseases of the ear and mastoid process (H60-H95)\",\"es\":\"Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95\"}}},\"_row_num\":32},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IX\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter IX - Diseases of the circulatory system (I00-I99)\",\"es\":\"Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99\"}}},\"_row_num\":33},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_X\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter X - Diseases of the respiratory system (J00-J99)\",\"es\":\"Capítulo X Enfermedades del sistema respiratorio J00-J99\"}}},\"_row_num\":34},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XI - Diseases of the digestive system (K00-K93)\",\"es\":\"Capítulo XI Enfermedades del sistema digestivo K00-K99\"}}},\"_row_num\":35},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)\",\"es\":\"Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99\"}}},\"_row_num\":36},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)\",\"es\":\"Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99\"}}},\"_row_num\":37},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIV\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XIV - Diseases of the genitourinary system (N00-N99)\",\"es\":\"Capítulo XIV Enfermedades del sistema genitourinario N00-N98\"}}},\"_row_num\":38},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XV\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)\",\"es\":\"Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99\"}}},\"_row_num\":39},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)\",\"es\":\"Capítulo XVI Enfermedades del feto y recién nacido P00-P96\"}}},\"_row_num\":40},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)\",\"es\":\"Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99\"}}},\"_row_num\":41},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)\",\"es\":\"Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99\"}}},\"_row_num\":42},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIX\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)\",\"es\":\"Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98\"}}},\"_row_num\":43},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XX\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XX - External causes of morbidity (V01-Y99)\",\"es\":\"Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98\"}}},\"_row_num\":44},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XXI\",\"display\":{\"title\":{\"text\":{\"default\":\"Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)\",\"es\":\"Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99\"}}},\"_row_num\":45}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "diagnostico_1",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"diagnostic\",\"data_value\":\"rinofaringitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Common cold (rinofaringitis)\",\"es\":\"Resfrio común (rinofaringitis)\"}}},\"_row_num\":10},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"faringitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Faringitis\",\"es\":\"Faringitis\"}}},\"_row_num\":11},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"faringoamigdalitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Faringoamigdalitis\",\"es\":\"Faringoamigdalitis\"}}},\"_row_num\":12},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"amigdalitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Amigdalitis\",\"es\":\"Amigdalitis\"}}},\"_row_num\":13},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"deshidratacion_leve\",\"display\":{\"title\":{\"text\":{\"default\":\"Deshidratación leve\",\"es\":\"Deshidratación leve\"}}},\"_row_num\":14},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"diarrea_eda\",\"display\":{\"title\":{\"text\":{\"default\":\"Diarrhea (eda)\",\"es\":\"Diarrea (eda)\"}}},\"_row_num\":15},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"cefalea\",\"display\":{\"title\":{\"text\":{\"default\":\"Cefalea\",\"es\":\"Cefalea\"}}},\"_row_num\":16},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"lumbalgia\",\"display\":{\"title\":{\"text\":{\"default\":\"Lumbalgia\",\"es\":\"Lumbalgia\"}}},\"_row_num\":17},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"otalgia\",\"display\":{\"title\":{\"text\":{\"default\":\"Otalgia\",\"es\":\"Otalgia\"}}},\"_row_num\":18},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"conjunctivitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Conjuntivitis\",\"es\":\"Conjuntivitis\"}}},\"_row_num\":19},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"sindrome febril\",\"display\":{\"title\":{\"text\":{\"default\":\"Sindrome febril\",\"es\":\"Sindrome febril\"}}},\"_row_num\":20},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"epigastralgia\",\"display\":{\"title\":{\"text\":{\"default\":\"Epigastralgia\",\"es\":\"Epigastralgia\"}}},\"_row_num\":21},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"otro\",\"display\":{\"title\":{\"text\":{\"default\":\"OTHER\",\"es\":\"OTRO\"}}},\"_row_num\":22}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "gender",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"gender_choices\",\"data_value\":\"male\",\"display\":{\"title\":{\"text\":{\"default\":\"Male\",\"es\":\"Masculino\"}}},\"_row_num\":5},{\"choice_list_name\":\"gender_choices\",\"data_value\":\"female\",\"display\":{\"title\":{\"text\":{\"default\":\"Female\",\"es\":\"Femenino\"}}},\"_row_num\":6},{\"choice_list_name\":\"gender_choices\",\"data_value\":\"other\",\"display\":{\"title\":{\"text\":{\"default\":\"Other\",\"es\":\"Otro\"}}},\"_row_num\":7},{\"choice_list_name\":\"gender_choices\",\"data_value\":\"no_response\",\"display\":{\"title\":{\"text\":{\"default\":\"Prefer not to respond\",\"es\":\"Prefiere no responder\"}}},\"_row_num\":8}]"
+      },
+      {
+        "_partition": "FormType",
+        "_aspect": "default",
+        "_key": "FormType.formType",
+        "_type": "string",
+        "_value": "SURVEY"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "medical_assessment"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":{\"en\":\"Medical Assessment\",\"es\":\"Medical Assessment\",\"default\":\"Medical Assessment\"}}"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "defaultAccessOnCreation",
+        "_type": "string",
+        "_value": "HIDDEN"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "unverifiedUserCanCreate",
+        "_type": "boolean",
+        "_value": "TRUE"
+      }
+    ]
+  }
+}

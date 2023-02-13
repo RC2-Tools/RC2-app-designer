@@ -1,0 +1,9 @@
+_element_key,_element_name,_element_type,_list_child_element_keys
+description,description,string,[]
+end_with_referrals,end_with_referrals,boolean,[]
+name,name,string,[]
+referral_form_id,referral_form_id,string,[]
+referral_table_id,referral_table_id,string,[]
+requires_referral,requires_referral,boolean,[]
+service_form_id,service_form_id,string,[]
+service_table_id,service_table_id,string,[]

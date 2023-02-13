@@ -1,0 +1,32 @@
+{{#> reliefLayout }}
+    {{#*inline "mainContent" }}
+        {{> pageTitle token="distribution_options" }}
+
+        {{> menuItem
+                id="newEntitlement"
+                icon=(concat @root.assetsPath "/img/dist_icon.svg")
+                label="create_new_entitlement"
+        }}
+
+        {{> menuItem
+                id="changeEntStatus"
+                icon=(concat @root.assetsPath "/img/on_off_icon.svg")
+                label="change_entitlement_status"
+        }}
+
+        {{> menuItem
+                id="distribution_report"
+                icon=(concat @root.assetsPath "/img/report_icon.svg")
+                label="fill_field_report"
+        }}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="{{ @root.reliefAssetsPath }}/js/renderers/distribution_overrides.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/reliefLayout}}

@@ -1,0 +1,32 @@
+{{#> healthDetailView }}
+    {{#*inline "pageSpecific" }}
+      {{> menuItem
+              id="medical_history_button"
+              class="workflow-required workflow-optional workflow-id-only"
+              icon=(concat @root.assetsPath "/img/dist_icon.svg")
+              label="medical_history_menu"
+      }}
+      {{> menuItem
+              id="service_button"
+              class="workflow-required workflow-optional workflow-id-only"
+              icon=(concat @root.assetsPath "/img/dist_icon.svg")
+              label="service_menu"
+      }}
+      {{> menuItem
+              id="deliveries_button"
+              class="workflow-required workflow-optional workflow-id-only"
+              icon=(concat @root.assetsPath "/img/dist_icon.svg")
+              label="distributions"
+      }}
+      {{> menuItem
+              id="referrals_button"
+              class="workflow-required workflow-optional workflow-id-only"
+              icon=(concat @root.assetsPath "/img/dist_icon.svg")
+              label="referrals"
+      }}
+    {{/inline}}
+
+    {{#*inline "pageScripts" }}
+        <script type="text/javascript" src="{{ @root.tablesPath }}/beneficiary_entities/health_assets/js/beneficiary_entities_sublist.js"></script>
+    {{/inline}}
+{{/healthDetailView}}

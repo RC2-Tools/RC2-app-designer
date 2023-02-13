@@ -1,0 +1,17 @@
+{{#> reliefListView error="no_visit_program_found" }}
+    {{#*inline "pageSpecific" }}
+        <div id="deliveryVisitTabs" class="list-group list-group-horizontal text-center order-first">
+            <button id="deliveryTab"
+                    type="button"
+                    class="list-group-item list-group-item-action flex-fill py-1"
+                    data-localize="delivery_upper_case"></button>
+            <button id="visitTab"
+                    type="button"
+                    class="list-group-item list-group-item-action flex-fill py-1 active"
+                    data-localize="visit_menu"></button>
+        </div>
+    {{/inline}}
+    {{#*inline "pageScripts" }}
+        <script type="text/javascript" src="{{ @root.tablesPath }}/visit_programs/relief_assets/js/visit_programs_list.js"></script>
+    {{/inline}}
+{{/reliefListView}}

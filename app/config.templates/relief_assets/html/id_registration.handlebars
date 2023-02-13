@@ -1,0 +1,22 @@
+{{#> reliefLocateBeneficiaryBase title="registration_title" }}
+    {{#*inline "pageSpecific" }}
+        {{> syncList registration=true }}
+
+        {{> menuBtn
+                id="launch"
+                icon=(concat @root.assetsPath "/img/reg_icon.svg")
+                label="register"
+        }}
+
+        {{> menuBtn
+                id="find"
+                icon=(concat @root.assetsPath "/img/search_icon.svg")
+                label="search"
+        }}
+
+        {{> chooseDefaultGroup }}
+    {{/inline}}
+    {{#*inline "pageScripts" }}
+        <script type="text/javascript" src="{{ @root.reliefAssetsPath }}/js/renderers/id_registration.js"></script>
+    {{/inline}}
+{{/reliefLocateBeneficiaryBase}}

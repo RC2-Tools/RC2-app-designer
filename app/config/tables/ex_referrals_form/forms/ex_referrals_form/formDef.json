@@ -1,0 +1,3886 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "type": "assign",
+        "name": "date",
+        "calculation": "(data('date') !== null && data('date') !== undefined) ? data('date') : new Date()",
+        "_row_num": 2
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 3
+      },
+      {
+        "type": "date",
+        "required": true,
+        "name": "date",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Fecha de la atención",
+              "en": "Date"
+            }
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 5
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 6
+      },
+      {
+        "type": "integer",
+        "required": true,
+        "name": "numero_ficha",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Número de atención de la ficha",
+              "en": "ID number of clinical history"
+            }
+          },
+          "hint": {
+            "text": {
+              "es": "Por favor reusa el numero de ficha antiguo si es un paciente reingresante o continuador"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "type": "string",
+        "required": true,
+        "name": "name",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Nombre(s)",
+              "en": "First name(s)"
+            }
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "type": "string",
+        "required": true,
+        "name": "family_name",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Apellido(s)",
+              "en": "Family names(s)"
+            }
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "type": "birthdate",
+        "required": true,
+        "name": "date_birth",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Fecha de nacimiento",
+              "en": "Date of birth"
+            }
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "type": "select_one",
+        "values_list": "gender_choices",
+        "required": true,
+        "name": "gender",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Sexo",
+              "en": "Gender"
+            }
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 12
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 13
+      },
+      {
+        "type": "select_one",
+        "values_list": "diagnostic",
+        "name": "diagnostico_1",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Diagnóstico 1 (Indicar: Definitivo/Presuntivo/ Repetitivo):",
+              "en": "Diagnostic 1"
+            }
+          }
+        },
+        "_row_num": 14
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('diagnostico_1'), 'otro')",
+        "_row_num": 15
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_otro",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Otro diagnóstico 1:",
+              "en": "Other diagnostic 1:"
+            }
+          }
+        },
+        "inputAttributes": {
+          "rows": 10
+        },
+        "_row_num": 16
+      },
+      {
+        "clause": "end if",
+        "_row_num": 17
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_2",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Diagnóstico 2 o más:",
+              "en": "Diagnostic 2 or more:"
+            }
+          }
+        },
+        "inputAttributes": {
+          "rows": 10
+        },
+        "_row_num": 18
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 19
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 20
+      },
+      {
+        "type": "select_one",
+        "values_list": "code_cie",
+        "name": "codigo_CIE_1",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Código CIE 10 (1)",
+              "en": "Code CIE 10 (1)"
+            }
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "type": "select_one",
+        "values_list": "code_cie",
+        "name": "codigo_CIE_2",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Código CIE 10 (2)",
+              "en": "Code CIE 10 (2)"
+            }
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 23
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 24
+      },
+      {
+        "type": "select_one",
+        "values_list": "referencia_lugar",
+        "required": true,
+        "name": "referencia_lugar",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Lugar de la referencia",
+              "en": "Referral to?"
+            }
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('referencia_lugar'), 'otro')",
+        "_row_num": 26
+      },
+      {
+        "type": "textarea",
+        "name": "referencia_lugar_otro",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Otro lugar de referencia",
+              "en": "Other referral organisation?"
+            }
+          }
+        },
+        "_row_num": 27
+      },
+      {
+        "clause": "end if",
+        "_row_num": 28
+      },
+      {
+        "type": "select_multiple",
+        "values_list": "referencia_motivo",
+        "required": true,
+        "name": "referencia_motivo",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Motivo de la referencia",
+              "en": "Reason for the reference?"
+            }
+          }
+        },
+        "_row_num": 29
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('referencia_motivo'), 'otro')",
+        "_row_num": 30
+      },
+      {
+        "type": "textarea",
+        "name": "referencia_motivo_otro",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Otro motivo de referencia",
+              "en": "Other reason for reference?"
+            }
+          }
+        },
+        "_row_num": 31
+      },
+      {
+        "clause": "end if",
+        "_row_num": 32
+      },
+      {
+        "type": "string",
+        "name": "nombre_de_medico",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Nombre del médico",
+              "en": "Doctor name"
+            }
+          }
+        },
+        "_row_num": 33
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 34
+      },
+      {
+        "type": "textarea",
+        "name": "comments",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Algunas observaciones, preguntas o sugerencias? (facultativo)",
+              "en": "Do you have any observations, questions or suggestions? (optional)"
+            }
+          }
+        },
+        "inputAttributes": {
+          "rows": 20
+        },
+        "_row_num": 35
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "male",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Masculino",
+              "en": "Male"
+            }
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "female",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Femenino",
+              "en": "Female"
+            }
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "other",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otro",
+              "en": "Other"
+            }
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "choice_list_name": "gender_choices",
+        "data_value": "no_response",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Prefiere no responder",
+              "en": "Prefer not to respond"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "rinofaringitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Resfrio común (rinofaringitis)",
+              "en": "Common cold (rinofaringitis)"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "faringitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Faringitis",
+              "en": "Faringitis"
+            }
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "faringoamigdalitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Faringoamigdalitis",
+              "en": "Faringoamigdalitis"
+            }
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "amigdalitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Amigdalitis",
+              "en": "Amigdalitis"
+            }
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "deshidratacion_leve",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Deshidratación leve",
+              "en": "Deshidratación leve"
+            }
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "diarrea_eda",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Diarrea (eda)",
+              "en": "Diarrhea (eda)"
+            }
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "cefalea",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Cefalea",
+              "en": "Cefalea"
+            }
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "lumbalgia",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Lumbalgia",
+              "en": "Lumbalgia"
+            }
+          }
+        },
+        "_row_num": 14
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "otalgia",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otalgia",
+              "en": "Otalgia"
+            }
+          }
+        },
+        "_row_num": 15
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "conjunctivitis",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Conjuntivitis",
+              "en": "Conjuntivitis"
+            }
+          }
+        },
+        "_row_num": 16
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "sindrome febril",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Sindrome febril",
+              "en": "Sindrome febril"
+            }
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "epigastralgia",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Epigastralgia",
+              "en": "Epigastralgia"
+            }
+          }
+        },
+        "_row_num": 18
+      },
+      {
+        "choice_list_name": "diagnostic",
+        "data_value": "otro",
+        "display": {
+          "title": {
+            "text": {
+              "default": "OTRO",
+              "en": "OTHER"
+            }
+          }
+        },
+        "_row_num": 19
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "Sin_diagnostico",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Sin diagnóstico (no se presentó o persona sana)",
+              "en": "No diagnostic (no show or healthy person)"
+            }
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_I",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo I Enfermedades infecciosas y parasitarias A00-B99",
+              "en": "Chapter I - Certain infectious and parasitic diseases (A00-B99)"
+            }
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE II",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo II Neoplasias C00-D44",
+              "en": "Chapter II - Neoplasms (C00-D49)"
+            }
+          }
+        },
+        "_row_num": 23
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE III",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89",
+              "en": "Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)"
+            }
+          }
+        },
+        "_row_num": 24
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_IV",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90",
+              "en": "Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)"
+            }
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_V",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo V Transtornos mentales y del comportamiento. F00-F99",
+              "en": "Chapter V - Mental and behavioral disorders (F01-F99)"
+            }
+          }
+        },
+        "_row_num": 26
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_VI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo VI Enfermedades del sistema nervioso. G00-G99",
+              "en": "Chapter VI - Diseases of the nervous system (G00-G99)"
+            }
+          }
+        },
+        "_row_num": 27
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_VII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo VII Enfermedades del ojo y sus anexos. H00-H59",
+              "en": "Chapter VII - Diseases of the eye and adnexa (H00-H59)"
+            }
+          }
+        },
+        "_row_num": 28
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_VIII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95",
+              "en": "Chapter VIII - Diseases of the ear and mastoid process (H60-H95)"
+            }
+          }
+        },
+        "_row_num": 29
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_IX",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99",
+              "en": "Chapter IX - Diseases of the circulatory system (I00-I99)"
+            }
+          }
+        },
+        "_row_num": 30
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_X",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo X Enfermedades del sistema respiratorio J00-J99",
+              "en": "Chapter X - Diseases of the respiratory system (J00-J99)"
+            }
+          }
+        },
+        "_row_num": 31
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XI Enfermedades del sistema digestivo K00-K99",
+              "en": "Chapter XI - Diseases of the digestive system (K00-K93)"
+            }
+          }
+        },
+        "_row_num": 32
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99",
+              "en": "Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)"
+            }
+          }
+        },
+        "_row_num": 33
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XIII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99",
+              "en": "Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)"
+            }
+          }
+        },
+        "_row_num": 34
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XIV",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XIV Enfermedades del sistema genitourinario N00-N98",
+              "en": "Chapter XIV - Diseases of the genitourinary system (N00-N99)"
+            }
+          }
+        },
+        "_row_num": 35
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XV",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99",
+              "en": "Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)"
+            }
+          }
+        },
+        "_row_num": 36
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XVI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XVI Enfermedades del feto y recién nacido P00-P96",
+              "en": "Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)"
+            }
+          }
+        },
+        "_row_num": 37
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XVII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99",
+              "en": "Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)"
+            }
+          }
+        },
+        "_row_num": 38
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XVIII",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99",
+              "en": "Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)"
+            }
+          }
+        },
+        "_row_num": 39
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XIX",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98",
+              "en": "Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)"
+            }
+          }
+        },
+        "_row_num": 40
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XX",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98",
+              "en": "Chapter XX - External causes of morbidity (V01-Y99)"
+            }
+          }
+        },
+        "_row_num": 41
+      },
+      {
+        "choice_list_name": "code_cie",
+        "data_value": "CIE_XXI",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99",
+              "en": "Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)"
+            }
+          }
+        },
+        "_row_num": 42
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "cs_zarumilla",
+        "display": {
+          "title": {
+            "text": {
+              "default": "C.S. Zarumilla",
+              "en": "Health Centre of Zarumilla (C.S. Zarumilla)"
+            }
+          }
+        },
+        "_row_num": 44
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "hospital_regional_tumbes",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Hospital Regional de Tumbes",
+              "en": "Regional Hospital of Tumbes"
+            }
+          }
+        },
+        "_row_num": 45
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "establecimiento_salud_lima",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Establecimiento de salud en Lima",
+              "en": "Health centre in Lima"
+            }
+          }
+        },
+        "_row_num": 46
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "establecimiento_salud_destino",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Establecimiento de salud en lugar de destino",
+              "en": "Health Centre at destination location"
+            }
+          }
+        },
+        "_row_num": 47
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Anzoategui_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Anzoategui Hospital",
+              "en": "Anzoategui Hospital"
+            }
+          }
+        },
+        "_row_num": 48
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Anzoategui_Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Anzoategui Ambulatorio",
+              "en": "Anzoategui Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 49
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Barinas_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Barinas Hospital",
+              "en": "Barinas Hospital"
+            }
+          }
+        },
+        "_row_num": 50
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Carabobo_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Carabobo Hospital",
+              "en": "Carabobo Hospital"
+            }
+          }
+        },
+        "_row_num": 51
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Merida _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Merida  Ambulatorio",
+              "en": "Merida  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 52
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Sucre _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Sucre  Ambulatorio",
+              "en": "Sucre  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 53
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Apure_ Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Apure  Ambulatorio",
+              "en": "Apure  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 54
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Apure _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Apure  Ambulatorio",
+              "en": "Apure  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 55
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Aragua_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Aragua Hospital",
+              "en": "Aragua Hospital"
+            }
+          }
+        },
+        "_row_num": 56
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Bolivar_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Bolivar Hospital",
+              "en": "Bolivar Hospital"
+            }
+          }
+        },
+        "_row_num": 57
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Bolivar _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Bolivar  Ambulatorio",
+              "en": "Bolivar  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 58
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Carabobo _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Carabobo  Ambulatorio",
+              "en": "Carabobo  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 59
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Distrito_Capital_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Distrito Capital Hospital",
+              "en": "Distrito Capital Hospital"
+            }
+          }
+        },
+        "_row_num": 60
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Falcon_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Falcon Hospital",
+              "en": "Falcon Hospital"
+            }
+          }
+        },
+        "_row_num": 61
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Guarico _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Guarico  Ambulatorio",
+              "en": "Guarico  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 62
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Lara _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Lara  Ambulatorio",
+              "en": "Lara  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 63
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Miranda _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Miranda  Ambulatorio",
+              "en": "Miranda  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 64
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Miranda _Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Miranda  Hospital",
+              "en": "Miranda  Hospital"
+            }
+          }
+        },
+        "_row_num": 65
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Nueva_Esparta _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Nueva Esparta  Ambulatorio",
+              "en": "Nueva Esparta  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 66
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Portuguesa _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Portuguesa  Ambulatorio",
+              "en": "Portuguesa  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 67
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Tachira_Hospital",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Tachira Hospital",
+              "en": "Tachira Hospital"
+            }
+          }
+        },
+        "_row_num": 68
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Tachira_Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Tachira  Ambulatorio",
+              "en": "Tachira  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 69
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Yaracuy _Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Yaracuy  Ambulatorio",
+              "en": "Yaracuy  Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 70
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Zulia_Ambulatorio",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Zulia Ambulatorio",
+              "en": "Zulia Ambulatorio"
+            }
+          }
+        },
+        "_row_num": 71
+      },
+      {
+        "choice_list_name": "referencia_lugar",
+        "data_value": "Otro",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otro",
+              "en": "Otro"
+            }
+          }
+        },
+        "_row_num": 72
+      },
+      {
+        "choice_list_name": "referencia_motivo",
+        "data_value": "confirmacion_diagnostico",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Confirmación de diagnóstico",
+              "en": "Confirmation of diagnosis"
+            }
+          }
+        },
+        "_row_num": 74
+      },
+      {
+        "choice_list_name": "referencia_motivo",
+        "data_value": "acceso_programa",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Acceso a programa o intervención sanitaria",
+              "en": "Access to program"
+            }
+          }
+        },
+        "_row_num": 75
+      },
+      {
+        "choice_list_name": "referencia_motivo",
+        "data_value": "investigacion_epidemiologica",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Investigación epidemiológica",
+              "en": "Epidemiological investigation"
+            }
+          }
+        },
+        "_row_num": 76
+      },
+      {
+        "choice_list_name": "referencia_motivo",
+        "data_value": "confirmacion_diagnostico_y_acceso_programa",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Confirmación de diagnóstico y acceso a programa",
+              "en": "Confirmation of diagnosis and access to program"
+            }
+          }
+        },
+        "_row_num": 77
+      },
+      {
+        "choice_list_name": "referencia_motivo",
+        "data_value": "otro",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otro",
+              "en": "Other"
+            }
+          }
+        },
+        "_row_num": 78
+      }
+    ],
+    "model": [
+      {
+        "type": "date",
+        "name": "date",
+        "_row_num": 2
+      },
+      {
+        "type": "integer",
+        "name": "numero_ficha",
+        "_row_num": 3
+      },
+      {
+        "type": "string",
+        "name": "name",
+        "_row_num": 4
+      },
+      {
+        "type": "string",
+        "name": "family_name",
+        "_row_num": 5
+      },
+      {
+        "type": "birthdate",
+        "name": "date_birth",
+        "_row_num": 6
+      },
+      {
+        "type": "select_one",
+        "name": "gender",
+        "_row_num": 7
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_1",
+        "_row_num": 8
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_otro",
+        "_row_num": 9
+      },
+      {
+        "type": "textarea",
+        "name": "diagnostico_2",
+        "_row_num": 10
+      },
+      {
+        "type": "select_one",
+        "name": "codigo_CIE_1",
+        "_row_num": 11
+      },
+      {
+        "type": "select_one",
+        "name": "codigo_CIE_2",
+        "_row_num": 12
+      },
+      {
+        "type": "select_one",
+        "name": "referencia_lugar",
+        "_row_num": 13
+      },
+      {
+        "type": "textarea",
+        "name": "referencia_lugar_otro",
+        "_row_num": 14
+      },
+      {
+        "type": "select_multiple",
+        "name": "referencia_motivo",
+        "_row_num": 15
+      },
+      {
+        "type": "textarea",
+        "name": "referencia_motivo_otro",
+        "_row_num": 16
+      },
+      {
+        "type": "string",
+        "name": "nombre_de_medico",
+        "_row_num": 17
+      },
+      {
+        "type": "textarea",
+        "name": "comments",
+        "_row_num": 18
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "form_id",
+        "value": "ex_referrals_form",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 20202403,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "table_id",
+        "value": "ex_referrals_form",
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Referrals"
+          }
+        },
+        "_row_num": 5
+      }
+    ],
+    "properties": [
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "defaultAccessOnCreation",
+        "type": "string",
+        "value": "READ_ONLY",
+        "_row_num": 2
+      },
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "locked",
+        "type": "boolean",
+        "value": "true",
+        "_row_num": 3
+      },
+      {
+        "partition": "SurveyUtil",
+        "aspect": "default",
+        "key": "SurveyUtil.formId",
+        "type": "string",
+        "value": "wrong_form",
+        "_row_num": 4
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "ex_referrals_form",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 20202403,
+        "_row_num": 3
+      },
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "ex_referrals_form",
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Referrals"
+          }
+        },
+        "_row_num": 5
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": "default"
+              }
+            },
+            "name": "default"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "default"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Referrals"
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "gender_choices": [
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "male",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Masculino",
+                "en": "Male"
+              }
+            }
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "female",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Femenino",
+                "en": "Female"
+              }
+            }
+          },
+          "_row_num": 3
+        },
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "other",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otro",
+                "en": "Other"
+              }
+            }
+          },
+          "_row_num": 4
+        },
+        {
+          "choice_list_name": "gender_choices",
+          "data_value": "no_response",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Prefiere no responder",
+                "en": "Prefer not to respond"
+              }
+            }
+          },
+          "_row_num": 5
+        }
+      ],
+      "diagnostic": [
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "rinofaringitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Resfrio común (rinofaringitis)",
+                "en": "Common cold (rinofaringitis)"
+              }
+            }
+          },
+          "_row_num": 7
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "faringitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Faringitis",
+                "en": "Faringitis"
+              }
+            }
+          },
+          "_row_num": 8
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "faringoamigdalitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Faringoamigdalitis",
+                "en": "Faringoamigdalitis"
+              }
+            }
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "amigdalitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Amigdalitis",
+                "en": "Amigdalitis"
+              }
+            }
+          },
+          "_row_num": 10
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "deshidratacion_leve",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Deshidratación leve",
+                "en": "Deshidratación leve"
+              }
+            }
+          },
+          "_row_num": 11
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "diarrea_eda",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Diarrea (eda)",
+                "en": "Diarrhea (eda)"
+              }
+            }
+          },
+          "_row_num": 12
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "cefalea",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Cefalea",
+                "en": "Cefalea"
+              }
+            }
+          },
+          "_row_num": 13
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "lumbalgia",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Lumbalgia",
+                "en": "Lumbalgia"
+              }
+            }
+          },
+          "_row_num": 14
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "otalgia",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otalgia",
+                "en": "Otalgia"
+              }
+            }
+          },
+          "_row_num": 15
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "conjunctivitis",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Conjuntivitis",
+                "en": "Conjuntivitis"
+              }
+            }
+          },
+          "_row_num": 16
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "sindrome febril",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Sindrome febril",
+                "en": "Sindrome febril"
+              }
+            }
+          },
+          "_row_num": 17
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "epigastralgia",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Epigastralgia",
+                "en": "Epigastralgia"
+              }
+            }
+          },
+          "_row_num": 18
+        },
+        {
+          "choice_list_name": "diagnostic",
+          "data_value": "otro",
+          "display": {
+            "title": {
+              "text": {
+                "default": "OTRO",
+                "en": "OTHER"
+              }
+            }
+          },
+          "_row_num": 19
+        }
+      ],
+      "code_cie": [
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "Sin_diagnostico",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Sin diagnóstico (no se presentó o persona sana)",
+                "en": "No diagnostic (no show or healthy person)"
+              }
+            }
+          },
+          "_row_num": 21
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_I",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo I Enfermedades infecciosas y parasitarias A00-B99",
+                "en": "Chapter I - Certain infectious and parasitic diseases (A00-B99)"
+              }
+            }
+          },
+          "_row_num": 22
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE II",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo II Neoplasias C00-D44",
+                "en": "Chapter II - Neoplasms (C00-D49)"
+              }
+            }
+          },
+          "_row_num": 23
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE III",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89",
+                "en": "Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)"
+              }
+            }
+          },
+          "_row_num": 24
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_IV",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90",
+                "en": "Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)"
+              }
+            }
+          },
+          "_row_num": 25
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_V",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo V Transtornos mentales y del comportamiento. F00-F99",
+                "en": "Chapter V - Mental and behavioral disorders (F01-F99)"
+              }
+            }
+          },
+          "_row_num": 26
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_VI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo VI Enfermedades del sistema nervioso. G00-G99",
+                "en": "Chapter VI - Diseases of the nervous system (G00-G99)"
+              }
+            }
+          },
+          "_row_num": 27
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_VII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo VII Enfermedades del ojo y sus anexos. H00-H59",
+                "en": "Chapter VII - Diseases of the eye and adnexa (H00-H59)"
+              }
+            }
+          },
+          "_row_num": 28
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_VIII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95",
+                "en": "Chapter VIII - Diseases of the ear and mastoid process (H60-H95)"
+              }
+            }
+          },
+          "_row_num": 29
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_IX",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99",
+                "en": "Chapter IX - Diseases of the circulatory system (I00-I99)"
+              }
+            }
+          },
+          "_row_num": 30
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_X",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo X Enfermedades del sistema respiratorio J00-J99",
+                "en": "Chapter X - Diseases of the respiratory system (J00-J99)"
+              }
+            }
+          },
+          "_row_num": 31
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XI Enfermedades del sistema digestivo K00-K99",
+                "en": "Chapter XI - Diseases of the digestive system (K00-K93)"
+              }
+            }
+          },
+          "_row_num": 32
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99",
+                "en": "Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)"
+              }
+            }
+          },
+          "_row_num": 33
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XIII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99",
+                "en": "Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)"
+              }
+            }
+          },
+          "_row_num": 34
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XIV",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XIV Enfermedades del sistema genitourinario N00-N98",
+                "en": "Chapter XIV - Diseases of the genitourinary system (N00-N99)"
+              }
+            }
+          },
+          "_row_num": 35
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XV",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99",
+                "en": "Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)"
+              }
+            }
+          },
+          "_row_num": 36
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XVI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XVI Enfermedades del feto y recién nacido P00-P96",
+                "en": "Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)"
+              }
+            }
+          },
+          "_row_num": 37
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XVII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99",
+                "en": "Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)"
+              }
+            }
+          },
+          "_row_num": 38
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XVIII",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99",
+                "en": "Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)"
+              }
+            }
+          },
+          "_row_num": 39
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XIX",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98",
+                "en": "Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)"
+              }
+            }
+          },
+          "_row_num": 40
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XX",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98",
+                "en": "Chapter XX - External causes of morbidity (V01-Y99)"
+              }
+            }
+          },
+          "_row_num": 41
+        },
+        {
+          "choice_list_name": "code_cie",
+          "data_value": "CIE_XXI",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99",
+                "en": "Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)"
+              }
+            }
+          },
+          "_row_num": 42
+        }
+      ],
+      "referencia_lugar": [
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "cs_zarumilla",
+          "display": {
+            "title": {
+              "text": {
+                "default": "C.S. Zarumilla",
+                "en": "Health Centre of Zarumilla (C.S. Zarumilla)"
+              }
+            }
+          },
+          "_row_num": 44
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "hospital_regional_tumbes",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Hospital Regional de Tumbes",
+                "en": "Regional Hospital of Tumbes"
+              }
+            }
+          },
+          "_row_num": 45
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "establecimiento_salud_lima",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Establecimiento de salud en Lima",
+                "en": "Health centre in Lima"
+              }
+            }
+          },
+          "_row_num": 46
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "establecimiento_salud_destino",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Establecimiento de salud en lugar de destino",
+                "en": "Health Centre at destination location"
+              }
+            }
+          },
+          "_row_num": 47
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Anzoategui_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Anzoategui Hospital",
+                "en": "Anzoategui Hospital"
+              }
+            }
+          },
+          "_row_num": 48
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Anzoategui_Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Anzoategui Ambulatorio",
+                "en": "Anzoategui Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 49
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Barinas_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Barinas Hospital",
+                "en": "Barinas Hospital"
+              }
+            }
+          },
+          "_row_num": 50
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Carabobo_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Carabobo Hospital",
+                "en": "Carabobo Hospital"
+              }
+            }
+          },
+          "_row_num": 51
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Merida _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Merida  Ambulatorio",
+                "en": "Merida  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 52
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Sucre _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Sucre  Ambulatorio",
+                "en": "Sucre  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 53
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Apure_ Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Apure  Ambulatorio",
+                "en": "Apure  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 54
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Apure _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Apure  Ambulatorio",
+                "en": "Apure  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 55
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Aragua_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Aragua Hospital",
+                "en": "Aragua Hospital"
+              }
+            }
+          },
+          "_row_num": 56
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Bolivar_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Bolivar Hospital",
+                "en": "Bolivar Hospital"
+              }
+            }
+          },
+          "_row_num": 57
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Bolivar _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Bolivar  Ambulatorio",
+                "en": "Bolivar  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 58
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Carabobo _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Carabobo  Ambulatorio",
+                "en": "Carabobo  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 59
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Distrito_Capital_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Distrito Capital Hospital",
+                "en": "Distrito Capital Hospital"
+              }
+            }
+          },
+          "_row_num": 60
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Falcon_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Falcon Hospital",
+                "en": "Falcon Hospital"
+              }
+            }
+          },
+          "_row_num": 61
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Guarico _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Guarico  Ambulatorio",
+                "en": "Guarico  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 62
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Lara _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Lara  Ambulatorio",
+                "en": "Lara  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 63
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Miranda _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Miranda  Ambulatorio",
+                "en": "Miranda  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 64
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Miranda _Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Miranda  Hospital",
+                "en": "Miranda  Hospital"
+              }
+            }
+          },
+          "_row_num": 65
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Nueva_Esparta _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Nueva Esparta  Ambulatorio",
+                "en": "Nueva Esparta  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 66
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Portuguesa _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Portuguesa  Ambulatorio",
+                "en": "Portuguesa  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 67
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Tachira_Hospital",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Tachira Hospital",
+                "en": "Tachira Hospital"
+              }
+            }
+          },
+          "_row_num": 68
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Tachira_Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Tachira  Ambulatorio",
+                "en": "Tachira  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 69
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Yaracuy _Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Yaracuy  Ambulatorio",
+                "en": "Yaracuy  Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 70
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Zulia_Ambulatorio",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Zulia Ambulatorio",
+                "en": "Zulia Ambulatorio"
+              }
+            }
+          },
+          "_row_num": 71
+        },
+        {
+          "choice_list_name": "referencia_lugar",
+          "data_value": "Otro",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otro",
+                "en": "Otro"
+              }
+            }
+          },
+          "_row_num": 72
+        }
+      ],
+      "referencia_motivo": [
+        {
+          "choice_list_name": "referencia_motivo",
+          "data_value": "confirmacion_diagnostico",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Confirmación de diagnóstico",
+                "en": "Confirmation of diagnosis"
+              }
+            }
+          },
+          "_row_num": 74
+        },
+        {
+          "choice_list_name": "referencia_motivo",
+          "data_value": "acceso_programa",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Acceso a programa o intervención sanitaria",
+                "en": "Access to program"
+              }
+            }
+          },
+          "_row_num": 75
+        },
+        {
+          "choice_list_name": "referencia_motivo",
+          "data_value": "investigacion_epidemiologica",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Investigación epidemiológica",
+                "en": "Epidemiological investigation"
+              }
+            }
+          },
+          "_row_num": 76
+        },
+        {
+          "choice_list_name": "referencia_motivo",
+          "data_value": "confirmacion_diagnostico_y_acceso_programa",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Confirmación de diagnóstico y acceso a programa",
+                "en": "Confirmation of diagnosis and access to program"
+              }
+            }
+          },
+          "_row_num": 77
+        },
+        {
+          "choice_list_name": "referencia_motivo",
+          "data_value": "otro",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otro",
+                "en": "Other"
+              }
+            }
+          },
+          "_row_num": 78
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "date": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "date"
+      },
+      "numero_ficha": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 7,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "numero_ficha"
+      },
+      "name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "name"
+      },
+      "family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "family_name"
+      },
+      "date_birth": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "date_birth"
+      },
+      "gender": {
+        "type": "string",
+        "valuesList": "gender_choices",
+        "_defn": [
+          {
+            "_row_num": 11,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "gender"
+      },
+      "diagnostico_1": {
+        "type": "string",
+        "valuesList": "diagnostic",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_1"
+      },
+      "diagnostico_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_otro"
+      },
+      "diagnostico_2": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 18,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_2"
+      },
+      "codigo_CIE_1": {
+        "type": "string",
+        "valuesList": "code_cie",
+        "_defn": [
+          {
+            "_row_num": 21,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "codigo_CIE_1"
+      },
+      "codigo_CIE_2": {
+        "type": "string",
+        "valuesList": "code_cie",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "codigo_CIE_2"
+      },
+      "referencia_lugar": {
+        "type": "string",
+        "valuesList": "referencia_lugar",
+        "_defn": [
+          {
+            "_row_num": 25,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_lugar"
+      },
+      "referencia_lugar_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 27,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_lugar_otro"
+      },
+      "referencia_motivo": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "referencia_motivo_items"
+        },
+        "valuesList": "referencia_motivo",
+        "_defn": [
+          {
+            "_row_num": 29,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_motivo"
+      },
+      "referencia_motivo_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 31,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_motivo_otro"
+      },
+      "nombre_de_medico": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 33,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nombre_de_medico"
+      },
+      "comments": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 35,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "comments"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "date",
+            "required": true,
+            "name": "date",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Fecha de la atención",
+                  "en": "Date"
+                }
+              }
+            },
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_type": "date",
+            "_branch_label_enclosing_screen": "survey/_screen3",
+            "promptIdx": 0
+          },
+          {
+            "type": "integer",
+            "required": true,
+            "name": "numero_ficha",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Número de atención de la ficha",
+                  "en": "ID number of clinical history"
+                }
+              },
+              "hint": {
+                "text": {
+                  "es": "Por favor reusa el numero de ficha antiguo si es un paciente reingresante o continuador"
+                }
+              }
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen6",
+            "promptIdx": 1
+          },
+          {
+            "type": "string",
+            "required": true,
+            "name": "name",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Nombre(s)",
+                  "en": "First name(s)"
+                }
+              }
+            },
+            "_row_num": 8,
+            "__rowNum__": 7,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen6",
+            "promptIdx": 2
+          },
+          {
+            "type": "string",
+            "required": true,
+            "name": "family_name",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Apellido(s)",
+                  "en": "Family names(s)"
+                }
+              }
+            },
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen6",
+            "promptIdx": 3
+          },
+          {
+            "type": "birthdate",
+            "required": true,
+            "name": "date_birth",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Fecha de nacimiento",
+                  "en": "Date of birth"
+                }
+              }
+            },
+            "_row_num": 10,
+            "__rowNum__": 9,
+            "_token_type": "prompt",
+            "_type": "birthdate",
+            "_branch_label_enclosing_screen": "survey/_screen6",
+            "promptIdx": 4
+          },
+          {
+            "type": "select_one",
+            "values_list": "gender_choices",
+            "required": true,
+            "name": "gender",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Sexo",
+                  "en": "Gender"
+                }
+              }
+            },
+            "_row_num": 11,
+            "__rowNum__": 10,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen6",
+            "promptIdx": 5
+          },
+          {
+            "type": "select_one",
+            "values_list": "diagnostic",
+            "name": "diagnostico_1",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Diagnóstico 1 (Indicar: Definitivo/Presuntivo/ Repetitivo):",
+                  "en": "Diagnostic 1"
+                }
+              }
+            },
+            "_row_num": 14,
+            "__rowNum__": 13,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen13",
+            "promptIdx": 6
+          },
+          {
+            "type": "textarea",
+            "name": "diagnostico_otro",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Otro diagnóstico 1:",
+                  "en": "Other diagnostic 1:"
+                }
+              }
+            },
+            "inputAttributes": {
+              "rows": 10
+            },
+            "_row_num": 16,
+            "__rowNum__": 15,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen13",
+            "promptIdx": 7
+          },
+          {
+            "type": "textarea",
+            "name": "diagnostico_2",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Diagnóstico 2 o más:",
+                  "en": "Diagnostic 2 or more:"
+                }
+              }
+            },
+            "inputAttributes": {
+              "rows": 10
+            },
+            "_row_num": 18,
+            "__rowNum__": 17,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen13",
+            "promptIdx": 8
+          },
+          {
+            "type": "select_one",
+            "values_list": "code_cie",
+            "name": "codigo_CIE_1",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Código CIE 10 (1)",
+                  "en": "Code CIE 10 (1)"
+                }
+              }
+            },
+            "_row_num": 21,
+            "__rowNum__": 20,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen20",
+            "promptIdx": 9
+          },
+          {
+            "type": "select_one",
+            "values_list": "code_cie",
+            "name": "codigo_CIE_2",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Código CIE 10 (2)",
+                  "en": "Code CIE 10 (2)"
+                }
+              }
+            },
+            "_row_num": 22,
+            "__rowNum__": 21,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen20",
+            "promptIdx": 10
+          },
+          {
+            "type": "select_one",
+            "values_list": "referencia_lugar",
+            "required": true,
+            "name": "referencia_lugar",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Lugar de la referencia",
+                  "en": "Referral to?"
+                }
+              }
+            },
+            "_row_num": 25,
+            "__rowNum__": 24,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen24",
+            "promptIdx": 11
+          },
+          {
+            "type": "textarea",
+            "name": "referencia_lugar_otro",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Otro lugar de referencia",
+                  "en": "Other referral organisation?"
+                }
+              }
+            },
+            "_row_num": 27,
+            "__rowNum__": 26,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen24",
+            "promptIdx": 12
+          },
+          {
+            "type": "select_multiple",
+            "values_list": "referencia_motivo",
+            "required": true,
+            "name": "referencia_motivo",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Motivo de la referencia",
+                  "en": "Reason for the reference?"
+                }
+              }
+            },
+            "_row_num": 29,
+            "__rowNum__": 28,
+            "_token_type": "prompt",
+            "_type": "select_multiple",
+            "_branch_label_enclosing_screen": "survey/_screen24",
+            "promptIdx": 13
+          },
+          {
+            "type": "textarea",
+            "name": "referencia_motivo_otro",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Otro motivo de referencia",
+                  "en": "Other reason for reference?"
+                }
+              }
+            },
+            "_row_num": 31,
+            "__rowNum__": 30,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen24",
+            "promptIdx": 14
+          },
+          {
+            "type": "string",
+            "name": "nombre_de_medico",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Nombre del médico",
+                  "en": "Doctor name"
+                }
+              }
+            },
+            "_row_num": 33,
+            "__rowNum__": 32,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen24",
+            "promptIdx": 15
+          },
+          {
+            "type": "textarea",
+            "name": "comments",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Algunas observaciones, preguntas o sugerencias? (facultativo)",
+                  "en": "Do you have any observations, questions or suggestions? (optional)"
+                }
+              }
+            },
+            "inputAttributes": {
+              "rows": 20
+            },
+            "_row_num": 35,
+            "__rowNum__": 34,
+            "_token_type": "prompt",
+            "_type": "textarea",
+            "_branch_label_enclosing_screen": "survey/_screen35",
+            "promptIdx": 16
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 36,
+            "_branch_label_enclosing_screen": "survey/_screen36",
+            "promptIdx": 17
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            13
+          ]
+        },
+        "operations": [
+          {
+            "type": "assign",
+            "name": "date",
+            "calculation": "(data('date') !== null && data('date') !== undefined) ? data('date') : new Date()",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "assign",
+            "operationIdx": 0
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 5,
+              "__rowNum__": 4,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 1
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 6,
+            "__rowNum__": 5,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 12,
+              "__rowNum__": 11,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 2
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 13,
+            "__rowNum__": 12,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 19,
+              "__rowNum__": 18,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(6);\nif (selected(data('diagnostico_1'), 'otro')) {\nactivePromptIndicies.push(7);\n}\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 3
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 20,
+            "__rowNum__": 19,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 23,
+              "__rowNum__": 22,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 4
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 24,
+            "__rowNum__": 23,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 34,
+              "__rowNum__": 33,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\nif (selected(data('referencia_lugar'), 'otro')) {\nactivePromptIndicies.push(12);\n}\nactivePromptIndicies.push(13);\nif (selected(data('referencia_motivo'), 'otro')) {\nactivePromptIndicies.push(14);\n}\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_row_num": 35,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 6
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 36,
+            "operationIdx": 7
+          },
+          {
+            "_row_num": 36,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 36,
+            "operationIdx": 9
+          }
+        ],
+        "branch_label_map": {
+          "_screen3": 1,
+          "_screen6": 2,
+          "_screen13": 3,
+          "_screen20": 4,
+          "_screen24": 5,
+          "_screen35": 6,
+          "_contents": 8,
+          "_screen36": 8
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "_row_num": 3,
+            "type": "opening",
+            "display": {
+              "text": "Edit form"
+            },
+            "_token_type": "prompt",
+            "_type": "opening",
+            "_branch_label_enclosing_screen": "initial/_screen3",
+            "promptIdx": 0
+          },
+          {
+            "_row_num": 4,
+            "clause": "do section survey",
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 1,
+            "display": {
+              "title": {
+                "text": "Referrals"
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "_row_num": 5,
+            "type": "finalize",
+            "display": {
+              "text": "Save form"
+            },
+            "_token_type": "prompt",
+            "_type": "finalize",
+            "_branch_label_enclosing_screen": "initial/_screen5",
+            "promptIdx": 2
+          },
+          {
+            "_row_num": 7,
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 3
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 4
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "_row_num": 2,
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "_row_num": 3,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 2
+          },
+          {
+            "_row_num": 4,
+            "clause": "do section survey",
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 3
+          },
+          {
+            "_row_num": 5,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 4
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 5
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(3);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 6
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 7
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(4);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 11
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 12
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_screen3": 2,
+          "_screen5": 4,
+          "_else6": 6,
+          "_screen7": 6,
+          "_endif8": 7,
+          "_contents": 8,
+          "_screen9": 8,
+          "_finalize": 10
+        }
+      }
+    },
+    "dataTableModel": {
+      "date": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "date",
+        "elementName": "date",
+        "elementSet": "data",
+        "elementPath": "date"
+      },
+      "numero_ficha": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 7,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "numero_ficha",
+        "elementName": "numero_ficha",
+        "elementSet": "data",
+        "elementPath": "numero_ficha"
+      },
+      "name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "name",
+        "elementName": "name",
+        "elementSet": "data",
+        "elementPath": "name"
+      },
+      "family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "family_name",
+        "elementName": "family_name",
+        "elementSet": "data",
+        "elementPath": "family_name"
+      },
+      "date_birth": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "date_birth",
+        "elementName": "date_birth",
+        "elementSet": "data",
+        "elementPath": "date_birth"
+      },
+      "gender": {
+        "type": "string",
+        "valuesList": "gender_choices",
+        "_defn": [
+          {
+            "_row_num": 11,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "gender",
+        "elementName": "gender",
+        "elementSet": "data",
+        "elementPath": "gender"
+      },
+      "diagnostico_1": {
+        "type": "string",
+        "valuesList": "diagnostic",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_1",
+        "elementName": "diagnostico_1",
+        "elementSet": "data",
+        "elementPath": "diagnostico_1"
+      },
+      "diagnostico_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_otro",
+        "elementName": "diagnostico_otro",
+        "elementSet": "data",
+        "elementPath": "diagnostico_otro"
+      },
+      "diagnostico_2": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 18,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_2",
+        "elementName": "diagnostico_2",
+        "elementSet": "data",
+        "elementPath": "diagnostico_2"
+      },
+      "codigo_CIE_1": {
+        "type": "string",
+        "valuesList": "code_cie",
+        "_defn": [
+          {
+            "_row_num": 21,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "codigo_CIE_1",
+        "elementName": "codigo_CIE_1",
+        "elementSet": "data",
+        "elementPath": "codigo_CIE_1"
+      },
+      "codigo_CIE_2": {
+        "type": "string",
+        "valuesList": "code_cie",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "codigo_CIE_2",
+        "elementName": "codigo_CIE_2",
+        "elementSet": "data",
+        "elementPath": "codigo_CIE_2"
+      },
+      "referencia_lugar": {
+        "type": "string",
+        "valuesList": "referencia_lugar",
+        "_defn": [
+          {
+            "_row_num": 25,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_lugar",
+        "elementName": "referencia_lugar",
+        "elementSet": "data",
+        "elementPath": "referencia_lugar"
+      },
+      "referencia_lugar_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 27,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_lugar_otro",
+        "elementName": "referencia_lugar_otro",
+        "elementSet": "data",
+        "elementPath": "referencia_lugar_otro"
+      },
+      "referencia_motivo": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "referencia_motivo_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "referencia_motivo.items",
+          "notUnitOfRetention": true
+        },
+        "valuesList": "referencia_motivo",
+        "_defn": [
+          {
+            "_row_num": 29,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_motivo",
+        "elementName": "referencia_motivo",
+        "elementSet": "data",
+        "elementPath": "referencia_motivo",
+        "listChildElementKeys": [
+          "referencia_motivo_items"
+        ]
+      },
+      "referencia_motivo_otro": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 31,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "referencia_motivo_otro",
+        "elementName": "referencia_motivo_otro",
+        "elementSet": "data",
+        "elementPath": "referencia_motivo_otro"
+      },
+      "nombre_de_medico": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 33,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nombre_de_medico",
+        "elementName": "nombre_de_medico",
+        "elementSet": "data",
+        "elementPath": "nombre_de_medico"
+      },
+      "comments": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 35,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "comments",
+        "elementName": "comments",
+        "elementSet": "data",
+        "elementPath": "comments"
+      },
+      "referencia_motivo_items": {
+        "type": "string",
+        "elementKey": "referencia_motivo_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "referencia_motivo.items",
+        "notUnitOfRetention": true
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "codigo_CIE_1",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"code_cie\",\"data_value\":\"Sin_diagnostico\",\"display\":{\"title\":{\"text\":{\"default\":\"Sin diagnóstico (no se presentó o persona sana)\",\"en\":\"No diagnostic (no show or healthy person)\"}}},\"_row_num\":21},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_I\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo I Enfermedades infecciosas y parasitarias A00-B99\",\"en\":\"Chapter I - Certain infectious and parasitic diseases (A00-B99)\"}}},\"_row_num\":22},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE II\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo II Neoplasias C00-D44\",\"en\":\"Chapter II - Neoplasms (C00-D49)\"}}},\"_row_num\":23},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE III\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89\",\"en\":\"Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)\"}}},\"_row_num\":24},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IV\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90\",\"en\":\"Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)\"}}},\"_row_num\":25},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_V\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo V Transtornos mentales y del comportamiento. F00-F99\",\"en\":\"Chapter V - Mental and behavioral disorders (F01-F99)\"}}},\"_row_num\":26},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo VI Enfermedades del sistema nervioso. G00-G99\",\"en\":\"Chapter VI - Diseases of the nervous system (G00-G99)\"}}},\"_row_num\":27},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo VII Enfermedades del ojo y sus anexos. H00-H59\",\"en\":\"Chapter VII - Diseases of the eye and adnexa (H00-H59)\"}}},\"_row_num\":28},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95\",\"en\":\"Chapter VIII - Diseases of the ear and mastoid process (H60-H95)\"}}},\"_row_num\":29},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IX\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99\",\"en\":\"Chapter IX - Diseases of the circulatory system (I00-I99)\"}}},\"_row_num\":30},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_X\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo X Enfermedades del sistema respiratorio J00-J99\",\"en\":\"Chapter X - Diseases of the respiratory system (J00-J99)\"}}},\"_row_num\":31},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XI Enfermedades del sistema digestivo K00-K99\",\"en\":\"Chapter XI - Diseases of the digestive system (K00-K93)\"}}},\"_row_num\":32},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99\",\"en\":\"Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)\"}}},\"_row_num\":33},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99\",\"en\":\"Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)\"}}},\"_row_num\":34},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIV\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XIV Enfermedades del sistema genitourinario N00-N98\",\"en\":\"Chapter XIV - Diseases of the genitourinary system (N00-N99)\"}}},\"_row_num\":35},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XV\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99\",\"en\":\"Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)\"}}},\"_row_num\":36},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XVI Enfermedades del feto y recién nacido P00-P96\",\"en\":\"Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)\"}}},\"_row_num\":37},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99\",\"en\":\"Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)\"}}},\"_row_num\":38},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99\",\"en\":\"Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)\"}}},\"_row_num\":39},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIX\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98\",\"en\":\"Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)\"}}},\"_row_num\":40},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XX\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98\",\"en\":\"Chapter XX - External causes of morbidity (V01-Y99)\"}}},\"_row_num\":41},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XXI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99\",\"en\":\"Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)\"}}},\"_row_num\":42}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "codigo_CIE_2",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"code_cie\",\"data_value\":\"Sin_diagnostico\",\"display\":{\"title\":{\"text\":{\"default\":\"Sin diagnóstico (no se presentó o persona sana)\",\"en\":\"No diagnostic (no show or healthy person)\"}}},\"_row_num\":21},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_I\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo I Enfermedades infecciosas y parasitarias A00-B99\",\"en\":\"Chapter I - Certain infectious and parasitic diseases (A00-B99)\"}}},\"_row_num\":22},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE II\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo II Neoplasias C00-D44\",\"en\":\"Chapter II - Neoplasms (C00-D49)\"}}},\"_row_num\":23},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE III\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo III Enfermedades de la sangre y de los órganos hematopoyéticos D50-D89\",\"en\":\"Chapter III - Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism (D50-D89)\"}}},\"_row_num\":24},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IV\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo IV Enfermedades endocrinas, nutricionales y metabólicas. E00-E90\",\"en\":\"Chapter IV - Endocrine, nutritional and metabolic diseases (E00-E90)\"}}},\"_row_num\":25},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_V\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo V Transtornos mentales y del comportamiento. F00-F99\",\"en\":\"Chapter V - Mental and behavioral disorders (F01-F99)\"}}},\"_row_num\":26},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo VI Enfermedades del sistema nervioso. G00-G99\",\"en\":\"Chapter VI - Diseases of the nervous system (G00-G99)\"}}},\"_row_num\":27},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo VII Enfermedades del ojo y sus anexos. H00-H59\",\"en\":\"Chapter VII - Diseases of the eye and adnexa (H00-H59)\"}}},\"_row_num\":28},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_VIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo VIII Enfermedades del oído y de la apófisis mastoides H60-H95\",\"en\":\"Chapter VIII - Diseases of the ear and mastoid process (H60-H95)\"}}},\"_row_num\":29},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_IX\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo IX Enfermedades del sistema cardiocirculatorio I00-I99\",\"en\":\"Chapter IX - Diseases of the circulatory system (I00-I99)\"}}},\"_row_num\":30},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_X\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo X Enfermedades del sistema respiratorio J00-J99\",\"en\":\"Chapter X - Diseases of the respiratory system (J00-J99)\"}}},\"_row_num\":31},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XI Enfermedades del sistema digestivo K00-K99\",\"en\":\"Chapter XI - Diseases of the digestive system (K00-K93)\"}}},\"_row_num\":32},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XII Enfermedades de la piel y tejido subcutáneo LOO-L99\",\"en\":\"Chapter XII - Diseases of the skin and subcutaneous tissue (L00-L99)\"}}},\"_row_num\":33},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XIII Enfermedades del sistema osteomuscular y del tejido conjuntivo. M00-M99\",\"en\":\"Chapter XIII - Diseases of the musculoskeletal system and connective tissue (M00-M99)\"}}},\"_row_num\":34},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIV\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XIV Enfermedades del sistema genitourinario N00-N98\",\"en\":\"Chapter XIV - Diseases of the genitourinary system (N00-N99)\"}}},\"_row_num\":35},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XV\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XV Enfermedades del embarazo, parto y puerperio O00-O99\",\"en\":\"Chapter XV - Pregnancy, childbirth and the puerperium (O00-O99)\"}}},\"_row_num\":36},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XVI Enfermedades del feto y recién nacido P00-P96\",\"en\":\"Chapter XVI - Certain conditions originating in the perinatal period (P00-P96)\"}}},\"_row_num\":37},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XVII Enfermedades congénitas, malformaciones y alteraciones cromosómicas Q00-Q99\",\"en\":\"Chapter XVII - Congenital malformations, deformations and chromosomal abnormalities (Q00-Q99)\"}}},\"_row_num\":38},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XVIII\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XVIII Síntomas y observaciones clínicas o de laboratorio anormales no clasificados en otras parte R00-R99\",\"en\":\"Chapter XVIII - Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (R00-R99)\"}}},\"_row_num\":39},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XIX\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XIX Lesiones, heridas, intoxicaciones y otros factores externos S00-T98\",\"en\":\"Chapter XIX - Injury, poisoning and certain other consequences of external causes (S00-T98)\"}}},\"_row_num\":40},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XX\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XX Causas externas de mortalidad y morbilidad V00-Y98\",\"en\":\"Chapter XX - External causes of morbidity (V01-Y99)\"}}},\"_row_num\":41},{\"choice_list_name\":\"code_cie\",\"data_value\":\"CIE_XXI\",\"display\":{\"title\":{\"text\":{\"default\":\"Capítulo XXI Factores que influyen en el estado de salud y contacto con los servicios de salud. Z00-Z99\",\"en\":\"Chapter XXI - Factors influencing health status and contact with health services (Z00-Z99)\"}}},\"_row_num\":42}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "diagnostico_1",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"diagnostic\",\"data_value\":\"rinofaringitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Resfrio común (rinofaringitis)\",\"en\":\"Common cold (rinofaringitis)\"}}},\"_row_num\":7},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"faringitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Faringitis\",\"en\":\"Faringitis\"}}},\"_row_num\":8},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"faringoamigdalitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Faringoamigdalitis\",\"en\":\"Faringoamigdalitis\"}}},\"_row_num\":9},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"amigdalitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Amigdalitis\",\"en\":\"Amigdalitis\"}}},\"_row_num\":10},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"deshidratacion_leve\",\"display\":{\"title\":{\"text\":{\"default\":\"Deshidratación leve\",\"en\":\"Deshidratación leve\"}}},\"_row_num\":11},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"diarrea_eda\",\"display\":{\"title\":{\"text\":{\"default\":\"Diarrea (eda)\",\"en\":\"Diarrhea (eda)\"}}},\"_row_num\":12},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"cefalea\",\"display\":{\"title\":{\"text\":{\"default\":\"Cefalea\",\"en\":\"Cefalea\"}}},\"_row_num\":13},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"lumbalgia\",\"display\":{\"title\":{\"text\":{\"default\":\"Lumbalgia\",\"en\":\"Lumbalgia\"}}},\"_row_num\":14},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"otalgia\",\"display\":{\"title\":{\"text\":{\"default\":\"Otalgia\",\"en\":\"Otalgia\"}}},\"_row_num\":15},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"conjunctivitis\",\"display\":{\"title\":{\"text\":{\"default\":\"Conjuntivitis\",\"en\":\"Conjuntivitis\"}}},\"_row_num\":16},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"sindrome febril\",\"display\":{\"title\":{\"text\":{\"default\":\"Sindrome febril\",\"en\":\"Sindrome febril\"}}},\"_row_num\":17},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"epigastralgia\",\"display\":{\"title\":{\"text\":{\"default\":\"Epigastralgia\",\"en\":\"Epigastralgia\"}}},\"_row_num\":18},{\"choice_list_name\":\"diagnostic\",\"data_value\":\"otro\",\"display\":{\"title\":{\"text\":{\"default\":\"OTRO\",\"en\":\"OTHER\"}}},\"_row_num\":19}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "gender",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"gender_choices\",\"data_value\":\"male\",\"display\":{\"title\":{\"text\":{\"default\":\"Masculino\",\"en\":\"Male\"}}},\"_row_num\":2},{\"choice_list_name\":\"gender_choices\",\"data_value\":\"female\",\"display\":{\"title\":{\"text\":{\"default\":\"Femenino\",\"en\":\"Female\"}}},\"_row_num\":3},{\"choice_list_name\":\"gender_choices\",\"data_value\":\"other\",\"display\":{\"title\":{\"text\":{\"default\":\"Otro\",\"en\":\"Other\"}}},\"_row_num\":4},{\"choice_list_name\":\"gender_choices\",\"data_value\":\"no_response\",\"display\":{\"title\":{\"text\":{\"default\":\"Prefiere no responder\",\"en\":\"Prefer not to respond\"}}},\"_row_num\":5}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "referencia_lugar",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"cs_zarumilla\",\"display\":{\"title\":{\"text\":{\"default\":\"C.S. Zarumilla\",\"en\":\"Health Centre of Zarumilla (C.S. Zarumilla)\"}}},\"_row_num\":44},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"hospital_regional_tumbes\",\"display\":{\"title\":{\"text\":{\"default\":\"Hospital Regional de Tumbes\",\"en\":\"Regional Hospital of Tumbes\"}}},\"_row_num\":45},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"establecimiento_salud_lima\",\"display\":{\"title\":{\"text\":{\"default\":\"Establecimiento de salud en Lima\",\"en\":\"Health centre in Lima\"}}},\"_row_num\":46},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"establecimiento_salud_destino\",\"display\":{\"title\":{\"text\":{\"default\":\"Establecimiento de salud en lugar de destino\",\"en\":\"Health Centre at destination location\"}}},\"_row_num\":47},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Anzoategui_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Anzoategui Hospital\",\"en\":\"Anzoategui Hospital\"}}},\"_row_num\":48},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Anzoategui_Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Anzoategui Ambulatorio\",\"en\":\"Anzoategui Ambulatorio\"}}},\"_row_num\":49},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Barinas_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Barinas Hospital\",\"en\":\"Barinas Hospital\"}}},\"_row_num\":50},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Carabobo_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Carabobo Hospital\",\"en\":\"Carabobo Hospital\"}}},\"_row_num\":51},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Merida _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Merida  Ambulatorio\",\"en\":\"Merida  Ambulatorio\"}}},\"_row_num\":52},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Sucre _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Sucre  Ambulatorio\",\"en\":\"Sucre  Ambulatorio\"}}},\"_row_num\":53},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Apure_ Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Apure  Ambulatorio\",\"en\":\"Apure  Ambulatorio\"}}},\"_row_num\":54},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Apure _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Apure  Ambulatorio\",\"en\":\"Apure  Ambulatorio\"}}},\"_row_num\":55},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Aragua_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Aragua Hospital\",\"en\":\"Aragua Hospital\"}}},\"_row_num\":56},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Bolivar_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Bolivar Hospital\",\"en\":\"Bolivar Hospital\"}}},\"_row_num\":57},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Bolivar _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Bolivar  Ambulatorio\",\"en\":\"Bolivar  Ambulatorio\"}}},\"_row_num\":58},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Carabobo _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Carabobo  Ambulatorio\",\"en\":\"Carabobo  Ambulatorio\"}}},\"_row_num\":59},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Distrito_Capital_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Distrito Capital Hospital\",\"en\":\"Distrito Capital Hospital\"}}},\"_row_num\":60},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Falcon_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Falcon Hospital\",\"en\":\"Falcon Hospital\"}}},\"_row_num\":61},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Guarico _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Guarico  Ambulatorio\",\"en\":\"Guarico  Ambulatorio\"}}},\"_row_num\":62},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Lara _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Lara  Ambulatorio\",\"en\":\"Lara  Ambulatorio\"}}},\"_row_num\":63},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Miranda _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Miranda  Ambulatorio\",\"en\":\"Miranda  Ambulatorio\"}}},\"_row_num\":64},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Miranda _Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Miranda  Hospital\",\"en\":\"Miranda  Hospital\"}}},\"_row_num\":65},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Nueva_Esparta _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Nueva Esparta  Ambulatorio\",\"en\":\"Nueva Esparta  Ambulatorio\"}}},\"_row_num\":66},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Portuguesa _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Portuguesa  Ambulatorio\",\"en\":\"Portuguesa  Ambulatorio\"}}},\"_row_num\":67},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Tachira_Hospital\",\"display\":{\"title\":{\"text\":{\"default\":\"Tachira Hospital\",\"en\":\"Tachira Hospital\"}}},\"_row_num\":68},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Tachira_Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Tachira  Ambulatorio\",\"en\":\"Tachira  Ambulatorio\"}}},\"_row_num\":69},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Yaracuy _Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Yaracuy  Ambulatorio\",\"en\":\"Yaracuy  Ambulatorio\"}}},\"_row_num\":70},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Zulia_Ambulatorio\",\"display\":{\"title\":{\"text\":{\"default\":\"Zulia Ambulatorio\",\"en\":\"Zulia Ambulatorio\"}}},\"_row_num\":71},{\"choice_list_name\":\"referencia_lugar\",\"data_value\":\"Otro\",\"display\":{\"title\":{\"text\":{\"default\":\"Otro\",\"en\":\"Otro\"}}},\"_row_num\":72}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "referencia_motivo",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"referencia_motivo\",\"data_value\":\"confirmacion_diagnostico\",\"display\":{\"title\":{\"text\":{\"default\":\"Confirmación de diagnóstico\",\"en\":\"Confirmation of diagnosis\"}}},\"_row_num\":74},{\"choice_list_name\":\"referencia_motivo\",\"data_value\":\"acceso_programa\",\"display\":{\"title\":{\"text\":{\"default\":\"Acceso a programa o intervención sanitaria\",\"en\":\"Access to program\"}}},\"_row_num\":75},{\"choice_list_name\":\"referencia_motivo\",\"data_value\":\"investigacion_epidemiologica\",\"display\":{\"title\":{\"text\":{\"default\":\"Investigación epidemiológica\",\"en\":\"Epidemiological investigation\"}}},\"_row_num\":76},{\"choice_list_name\":\"referencia_motivo\",\"data_value\":\"confirmacion_diagnostico_y_acceso_programa\",\"display\":{\"title\":{\"text\":{\"default\":\"Confirmación de diagnóstico y acceso a programa\",\"en\":\"Confirmation of diagnosis and access to program\"}}},\"_row_num\":77},{\"choice_list_name\":\"referencia_motivo\",\"data_value\":\"otro\",\"display\":{\"title\":{\"text\":{\"default\":\"Otro\",\"en\":\"Other\"}}},\"_row_num\":78}]"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "wrong_form"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":\"Referrals\"}"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "defaultAccessOnCreation",
+        "_type": "string",
+        "_value": "READ_ONLY"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "locked",
+        "_type": "boolean",
+        "_value": "true"
+      }
+    ]
+  }
+}

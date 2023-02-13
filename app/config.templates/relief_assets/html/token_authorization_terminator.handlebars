@@ -1,0 +1,22 @@
+{{#> reliefLayout }}
+    {{#*inline "mainContent" }}
+        {{> pageTitle }}
+
+        {{> menuBtn
+                id="trigger"
+                icon=(concat @root.assetsPath "/img/on_off_icon.svg")
+                label="terminate_authorization"
+        }}
+
+        {{> textBlock id="confirmation" }}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="{{ @root.reliefAssetsPath }}/js/renderers/token_authorization_terminator.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/reliefLayout}}

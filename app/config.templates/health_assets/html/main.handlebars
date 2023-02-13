@@ -1,0 +1,40 @@
+<!-- TODO
+    - Read in program ID
+    - Make button to launch volunteer registration form
+        - Read form id from config.json
+        - Launch form
+        - Should return here when form is done
+        - Form should probably not have that instance screen
+        - On return, write to read from results and write to volunteers table and volunteers_at_program table
+    - Make button to launch beneficiary identification screen
+        - Redirect to beneficiary ID screen, pass the program ID
+        -->
+{{#> layout }}
+    {{#*inline "mainContent" }}
+        <!--{{> pageTitle token="main_title" }} -->
+
+        {{> menuItem
+                id="beneficiary"
+                class="workflow-required workflow-optional workflow-id-only"
+                icon=(concat @root.assetsPath "/img/reg_icon.svg")
+                label="beneficiaries"
+        }}
+
+        {{> menuItem
+                id="volunteer"
+                class="workflow-required workflow-optional workflow-none"
+                icon=(concat @root.assetsPath "/img/admin_icon.svg")
+                label="volunteers"
+        }}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="{{ @root.healthAssetsPath }}/js/renderers/main_site_tree.js"></script>
+
+        <script>
+            'use strict';
+
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/layout}}

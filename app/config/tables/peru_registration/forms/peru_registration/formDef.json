@@ -1,0 +1,4004 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Este registro sera utilizado para seguimiento a la prestación de servicios. \nLa informacion recolectada podria ser compartida con donantes u otras organizaciones.\n¿Acepta continuar?",
+              "en": "This record will be used to monitor the provision of services.\nThe information collected could be shared with donors or other organizations.\nDo you accept?",
+              "es": "Este registro sera utilizado para seguimiento a la prestación de servicios. \nLa informacion recolectada podria ser compartida con donantes u otras organizaciones.\n¿Acepta continuar?"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "*en caso de respuesta negativa, algunos servicios no podrian ser brindados.",
+              "es": "*en caso de respuesta negativa, algunos servicios no podrian ser brindados."
+            }
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "type": "select_one",
+        "name": "consentimiento",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Continuar",
+              "en": "Continue",
+              "es": "Continuar"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "required": true,
+        "_row_num": 4
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('consentimiento'), 'no')",
+        "_row_num": 5
+      },
+      {
+        "type": "string",
+        "name": "Comentario",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Comentario",
+              "en": "Comments",
+              "es": "Comentario"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "clause": "end if",
+        "_row_num": 7
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 8
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('consentimiento'), 'no')",
+        "_row_num": 9
+      },
+      {
+        "clause": "goto end_of_survey",
+        "_row_num": 10
+      },
+      {
+        "clause": "end if",
+        "_row_num": 11
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 12
+      },
+      {
+        "type": "string",
+        "name": "first_name",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Nombres",
+              "en": "First names",
+              "es": "Nombres"
+            }
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "type": "string",
+        "name": "last_name",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Apellidos",
+              "en": "Surnames",
+              "es": "Apellidos"
+            }
+          }
+        },
+        "_row_num": 14
+      },
+      {
+        "type": "integer",
+        "name": "edad",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Edad",
+              "en": "Age",
+              "es": "Edad"
+            }
+          }
+        },
+        "_row_num": 15
+      },
+      {
+        "type": "select_one",
+        "name": "gender",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Sexo",
+              "en": "Gender",
+              "es": "Sexo"
+            }
+          }
+        },
+        "values_list": "genero_opciones",
+        "_row_num": 16
+      },
+      {
+        "type": "select_one",
+        "name": "nacionalidad",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Nacionalidad",
+              "en": "Nationality",
+              "es": "Nacionalidad"
+            }
+          }
+        },
+        "values_list": "pais",
+        "_row_num": 17
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('nacionalidad'), 'otro')",
+        "_row_num": 18
+      },
+      {
+        "type": "string",
+        "name": "nacionalidad_otra",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Especifique",
+              "en": "Specify nationality",
+              "es": "Especifique"
+            }
+          }
+        },
+        "_row_num": 19
+      },
+      {
+        "clause": "end if",
+        "_row_num": 20
+      },
+      {
+        "type": "string",
+        "name": "tel",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Número telefónico",
+              "en": "Telephone number",
+              "es": "Número telefónico"
+            }
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "type": "string",
+        "name": "residencia",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Barrio de residencia",
+              "en": "Neighborhood of reesidence",
+              "es": "Barrio de residencia"
+            }
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "type": "integer",
+        "name": "nucleo_familiar",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Total de personas en el núcleo familiar",
+              "en": "Total people in nuclear family",
+              "es": "Total de personas en el núcleo familiar"
+            }
+          }
+        },
+        "_row_num": 23
+      },
+      {
+        "type": "integer",
+        "name": "range0_5",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "0-5 años",
+              "en": "0-5 years",
+              "es": "0-5 años"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "desagregar el total por edad",
+              "es": "desagregar el total por edad"
+            }
+          }
+        },
+        "_row_num": 24
+      },
+      {
+        "type": "integer",
+        "name": "range6_11",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "6-11 años",
+              "en": "6-11 years",
+              "es": "6-11 años"
+            }
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "type": "integer",
+        "name": "range12_17",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "12-17años",
+              "en": "12-17 years",
+              "es": "12-17años"
+            }
+          }
+        },
+        "_row_num": 26
+      },
+      {
+        "type": "integer",
+        "name": "range18_23",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "18-23 años",
+              "en": "18-23 years",
+              "es": "18-23 años"
+            }
+          }
+        },
+        "_row_num": 27
+      },
+      {
+        "type": "integer",
+        "name": "range24_65",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "24-65 años",
+              "en": "24-65 years",
+              "es": "24-65 años"
+            }
+          }
+        },
+        "_row_num": 28
+      },
+      {
+        "type": "integer",
+        "name": "mas65",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "mas de 65 años",
+              "en": "older than 65",
+              "es": "mas de 65 años"
+            }
+          }
+        },
+        "_row_num": 29
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 30
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 31
+      },
+      {
+        "type": "select_one",
+        "name": "discapacidad",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Usted o alguien de su familia presentan algún tipo de discapacidad en este momento",
+              "en": "Do you or anyone in your family have any disabilities?",
+              "es": "¿Usted o alguien de su familia presentan algún tipo de discapacidad en este momento"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 32
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('discapacidad'), 'si')",
+        "_row_num": 33
+      },
+      {
+        "type": "string",
+        "name": "discapacidad_si",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Explica",
+              "en": "Explain",
+              "es": "Explica"
+            }
+          }
+        },
+        "_row_num": 34
+      },
+      {
+        "clause": "end if",
+        "_row_num": 35
+      },
+      {
+        "type": "select_one",
+        "name": "problema_salud",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Usted o alguien de su familia presentan algún tipo de problema de salud crónico en este momento?",
+              "en": "Do you or anyone in your family have any chronic health conditions?",
+              "es": "¿Usted o alguien de su familia presentan algún tipo de problema de salud crónico en este momento?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 36
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('problema_salud'), 'si')",
+        "_row_num": 37
+      },
+      {
+        "type": "string",
+        "name": "problema_salud_si",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Explica",
+              "en": "Explain",
+              "es": "Explica"
+            }
+          }
+        },
+        "_row_num": 38
+      },
+      {
+        "clause": "end if",
+        "_row_num": 39
+      },
+      {
+        "type": "select_one",
+        "name": "medicamento",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Necesita algún tipo de medicamento?",
+              "en": "Do you need medicine?",
+              "es": "¿Necesita algún tipo de medicamento?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 40
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('medicamento'), 'si')",
+        "_row_num": 41
+      },
+      {
+        "type": "select_one",
+        "name": "medicamento_accesible",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Es accesible conseguirlo?",
+              "en": "Are you able to obtain this medicine?",
+              "es": "¿Es accesible conseguirlo?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 42
+      },
+      {
+        "clause": "end if",
+        "_row_num": 43
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 44
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 45
+      },
+      {
+        "type": "select_one",
+        "name": "necesidad",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Usted o alguien de su familia va con regularidad a realizar compras en los mercados cercanos a su domicilio?",
+              "en": "Do you or anyone in your family regularly go shopping in the markets close to your home?",
+              "es": "¿Usted o alguien de su familia va con regularidad a realizar compras en los mercados cercanos a su domicilio?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "required": true,
+        "_row_num": 46
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('necesidad'), 'si')",
+        "_row_num": 47
+      },
+      {
+        "type": "select_one",
+        "name": "mejoraria_otro",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Hay desabastecimiento de productos?",
+              "en": "Are there any product shortages?",
+              "es": "¿Hay desabastecimiento de productos?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "required": "selected(data('necesidad'), 'si')",
+        "_row_num": 48
+      },
+      {
+        "clause": "end if",
+        "_row_num": 49
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 50
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 51
+      },
+      {
+        "type": "select_one",
+        "name": "situacion_laboral",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Cuál era situación laboral antes de las medidas tomadas por covid-19?",
+              "en": "What was your employment situation before the Covid-19 measures?",
+              "es": "¿Cuál era situación laboral antes de las medidas tomadas por covid-19?"
+            }
+          }
+        },
+        "values_list": "laboral",
+        "_row_num": 52
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('situacion_laboral'), 'independiente') || selected(data('situacion_laboral'), 'dependiente')",
+        "_row_num": 53
+      },
+      {
+        "type": "select_one",
+        "name": "trabajo",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿A que grupo de trabajo pertenece usted?",
+              "en": "To what group of work do you belong?",
+              "es": "¿A que grupo de trabajo pertenece usted?"
+            }
+          }
+        },
+        "values_list": "trabajo_opciones",
+        "_row_num": 54
+      },
+      {
+        "type": "select_one",
+        "name": "fuera_casa",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Tiene la necesidad de trabajar físicamente fuera de casa durante la cuarentena?",
+              "en": "Do you need to work outside of your house during quarantine?",
+              "es": "¿Tiene la necesidad de trabajar físicamente fuera de casa durante la cuarentena?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 55
+      },
+      {
+        "clause": "end if",
+        "_row_num": 56
+      },
+      {
+        "type": "select_one",
+        "name": "bioseguridad",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Cuenta con material de bioseguridad suficiente paras su cuidado?",
+              "en": "Do you have enough protective equipment for your care?",
+              "es": "¿Cuenta con material de bioseguridad suficiente paras su cuidado?"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "mascarillas, alcohol en gel, jabón o útiles de aseo",
+              "es": "mascarillas, alcohol en gel, jabón o útiles de aseo"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 57
+      },
+      {
+        "type": "select_one",
+        "name": "diagnostico_positivo",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Conoce a alguna persona que haya sido diagnostico con covid19?",
+              "en": "Do you know anyone who has been diagnosed with Covid-19?",
+              "es": "¿Conoce a alguna persona que haya sido diagnostico con covid19?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 58
+      },
+      {
+        "type": "select_one",
+        "name": "medida",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Conoce alguna medida que está tomando su municipalidad frente al covid 19?",
+              "en": "Do you know of any measures your municipality is taking against Covid-19?",
+              "es": "¿Conoce alguna medida que está tomando su municipalidad frente al covid 19?"
+            }
+          }
+        },
+        "values_list": "si_no",
+        "_row_num": 59
+      },
+      {
+        "type": "string",
+        "name": "otra_necesidad",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "¿Ha percibido alguna otra necesidad? Por favor, coméntenos",
+              "en": "Do you need anything else? Please comment.",
+              "es": "¿Ha percibido alguna otra necesidad? Por favor, coméntenos"
+            }
+          }
+        },
+        "_row_num": 60
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 61
+      },
+      {
+        "branch_label": "end_of_survey",
+        "_row_num": 62
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "form_id",
+        "value": "peru_registration",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 20200419,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "table_id",
+        "value": "peru_registration",
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "en": "Registration Form",
+              "es": "Registration Form",
+              "default": "Registration Form"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "setting_name": "instance_name",
+        "value": "nombre",
+        "_row_num": 6
+      },
+      {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Español",
+              "en": "Spanish",
+              "es": "Español"
+            }
+          },
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español",
+              "default": "Español"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Inglés",
+              "en": "English",
+              "es": "Inglés"
+            }
+          },
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "Inglés"
+            }
+          }
+        },
+        "_row_num": 8
+      }
+    ],
+    "model": [
+      {
+        "type": "select_one",
+        "name": "consentimiento",
+        "_row_num": 2
+      },
+      {
+        "type": "string",
+        "name": "Comentario",
+        "_row_num": 3
+      },
+      {
+        "type": "string",
+        "name": "first_name",
+        "_row_num": 4
+      },
+      {
+        "type": "string",
+        "name": "last_name",
+        "_row_num": 5
+      },
+      {
+        "type": "integer",
+        "name": "edad",
+        "_row_num": 6
+      },
+      {
+        "type": "select_one",
+        "name": "gender",
+        "_row_num": 7
+      },
+      {
+        "type": "select_one",
+        "name": "nacionalidad",
+        "_row_num": 8
+      },
+      {
+        "type": "string",
+        "name": "nacionalidad_otra",
+        "_row_num": 9
+      },
+      {
+        "type": "string",
+        "name": "tel",
+        "_row_num": 10
+      },
+      {
+        "type": "string",
+        "name": "residencia",
+        "_row_num": 11
+      },
+      {
+        "type": "integer",
+        "name": "nucleo_familiar",
+        "_row_num": 12
+      },
+      {
+        "type": "integer",
+        "name": "range0_5",
+        "_row_num": 13
+      },
+      {
+        "type": "integer",
+        "name": "range6_11",
+        "_row_num": 14
+      },
+      {
+        "type": "integer",
+        "name": "range12_17",
+        "_row_num": 15
+      },
+      {
+        "type": "integer",
+        "name": "range18_23",
+        "_row_num": 16
+      },
+      {
+        "type": "integer",
+        "name": "range24_65",
+        "_row_num": 17
+      },
+      {
+        "type": "integer",
+        "name": "mas65",
+        "_row_num": 18
+      },
+      {
+        "type": "select_one",
+        "name": "discapacidad",
+        "_row_num": 19
+      },
+      {
+        "type": "string",
+        "name": "discapacidad_si",
+        "_row_num": 20
+      },
+      {
+        "type": "select_one",
+        "name": "problema_salud",
+        "_row_num": 21
+      },
+      {
+        "type": "string",
+        "name": "problema_salud_si",
+        "_row_num": 22
+      },
+      {
+        "type": "select_one",
+        "name": "medicamento",
+        "_row_num": 23
+      },
+      {
+        "type": "select_one",
+        "name": "medicamento_accesible",
+        "_row_num": 24
+      },
+      {
+        "type": "select_one",
+        "name": "necesidad",
+        "_row_num": 25
+      },
+      {
+        "type": "select_one",
+        "name": "mejoraria_otro",
+        "_row_num": 26
+      },
+      {
+        "type": "select_one",
+        "name": "situacion_laboral",
+        "_row_num": 27
+      },
+      {
+        "type": "select_one",
+        "name": "trabajo",
+        "_row_num": 28
+      },
+      {
+        "type": "select_one",
+        "name": "fuera_casa",
+        "_row_num": 29
+      },
+      {
+        "type": "select_one",
+        "name": "bioseguridad",
+        "_row_num": 30
+      },
+      {
+        "type": "select_one",
+        "name": "diagnostico_positivo",
+        "_row_num": 31
+      },
+      {
+        "type": "select_one",
+        "name": "medida",
+        "_row_num": 32
+      },
+      {
+        "type": "string",
+        "name": "otra_necesidad",
+        "_row_num": 33
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "si_no",
+        "data_value": "si",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Si",
+              "en": "Yes",
+              "es": "Si"
+            }
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "si_no",
+        "data_value": "no",
+        "display": {
+          "title": {
+            "text": {
+              "default": "No",
+              "en": "No",
+              "es": "No"
+            }
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "genero_opciones",
+        "data_value": "masculino",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Masculino",
+              "en": "Male",
+              "es": "Masculino"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "genero_opciones",
+        "data_value": "femenino",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Femenino",
+              "en": "Female",
+              "es": "Femenino"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "genero_opciones",
+        "data_value": "otro",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otro",
+              "en": "Other",
+              "es": "Otro"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "pais",
+        "data_value": "venezuela",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Venezuela",
+              "en": "Venezuela",
+              "es": "Venezuela"
+            }
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "pais",
+        "data_value": "peru",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Perú",
+              "en": "Perú",
+              "es": "Perú"
+            }
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "pais",
+        "data_value": "colombia",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Colombia",
+              "en": "Colombia",
+              "es": "Colombia"
+            }
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "choice_list_name": "pais",
+        "data_value": "ecuador",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Ecuador",
+              "en": "Ecuador",
+              "es": "Ecuador"
+            }
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "choice_list_name": "pais",
+        "data_value": "otro",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otro",
+              "en": "Other",
+              "es": "Otro"
+            }
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "choice_list_name": "laboral",
+        "data_value": "dependiente",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Trabajo Dependiente",
+              "en": "Dependent worker",
+              "es": "Trabajo Dependiente"
+            }
+          }
+        },
+        "_row_num": 15
+      },
+      {
+        "choice_list_name": "laboral",
+        "data_value": "independiente",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Trabajo Independiente",
+              "en": "Independent worker",
+              "es": "Trabajo Independiente"
+            }
+          }
+        },
+        "_row_num": 16
+      },
+      {
+        "choice_list_name": "laboral",
+        "data_value": "estudiante",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Estudiante",
+              "en": "Student",
+              "es": "Estudiante"
+            }
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "choice_list_name": "laboral",
+        "data_value": "desempleado",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Desempleado",
+              "en": "Unemployed",
+              "es": "Desempleado"
+            }
+          }
+        },
+        "_row_num": 18
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "salud",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Salud",
+              "en": "Health",
+              "es": "Salud"
+            }
+          }
+        },
+        "_row_num": 20
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "seguridad",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Seguridad privada",
+              "en": "Private Secuirty",
+              "es": "Seguridad privada"
+            }
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "abastecimiento",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Abastecimiento de productos de primera necesidad (alimentos, medicamentos etc)",
+              "en": "Supply of basic necessities (food, medicine, etc.)",
+              "es": "Abastecimiento de productos de primera necesidad (alimentos, medicamentos etc)"
+            }
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "financiero",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Entidades financieras",
+              "en": "Finance",
+              "es": "Entidades financieras"
+            }
+          }
+        },
+        "_row_num": 23
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "producción_transporte",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Producción, almacenamiento o transporte",
+              "en": "Manufacturing, storage or transporation",
+              "es": "Producción, almacenamiento o transporte"
+            }
+          }
+        },
+        "_row_num": 24
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "alojamiento",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Hoteles y/o alojamientos",
+              "en": "Hotels and/or accomodation",
+              "es": "Hoteles y/o alojamientos"
+            }
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "medios_comunicacion",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Medios de comunicación",
+              "en": "Media",
+              "es": "Medios de comunicación"
+            }
+          }
+        },
+        "_row_num": 26
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "central_telefonica",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Central telefónica",
+              "en": "Telephone",
+              "es": "Central telefónica"
+            }
+          }
+        },
+        "_row_num": 27
+      },
+      {
+        "choice_list_name": "trabajo_opciones",
+        "data_value": "otro",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Otro",
+              "en": "Other",
+              "es": "Otro"
+            }
+          }
+        },
+        "_row_num": 28
+      }
+    ],
+    "properties": [
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "defaultAccessOnCreation",
+        "type": "string",
+        "value": "HIDDEN",
+        "_row_num": 2
+      },
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "unverifiedUserCanCreate",
+        "type": "boolean",
+        "value": "false",
+        "_row_num": 3
+      }
+    ],
+    "initial": [
+      {
+        "clause": "if // start",
+        "condition": "(opendatakit.getCurrentInstanceId() != null)",
+        "_row_num": 2
+      },
+      {
+        "clause": "do section survey",
+        "_row_num": 4
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 5
+      },
+      {
+        "clause": "else // start",
+        "_row_num": 6
+      },
+      {
+        "type": "instances",
+        "display": {
+          "text": "Saved instances"
+        },
+        "_row_num": 7
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 8
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "peru_registration",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 20200419,
+        "_row_num": 3
+      },
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "peru_registration",
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "en": "Registration Form",
+              "es": "Registration Form",
+              "default": "Registration Form"
+            }
+          }
+        },
+        "_row_num": 5
+      },
+      "instance_name": {
+        "setting_name": "instance_name",
+        "value": "nombre",
+        "_row_num": 6
+      },
+      "es": {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Español",
+              "en": "Spanish",
+              "es": "Español"
+            }
+          },
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español",
+              "default": "Español"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      "en": {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "title": {
+            "text": {
+              "default": "Inglés",
+              "en": "English",
+              "es": "Inglés"
+            }
+          },
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "Inglés"
+            }
+          }
+        },
+        "_row_num": 8
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "title": {
+                "text": {
+                  "default": "Español",
+                  "en": "Spanish",
+                  "es": "Español"
+                }
+              },
+              "locale": {
+                "text": {
+                  "en": "Spanish",
+                  "es": "Español",
+                  "default": "Español"
+                }
+              }
+            },
+            "_row_num": 7,
+            "name": "es"
+          },
+          {
+            "display": {
+              "title": {
+                "text": {
+                  "default": "Inglés",
+                  "en": "English",
+                  "es": "Inglés"
+                }
+              },
+              "locale": {
+                "text": {
+                  "en": "English",
+                  "es": "Inglés",
+                  "default": "Inglés"
+                }
+              }
+            },
+            "_row_num": 8,
+            "name": "en"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "es"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "en": "Registration Form",
+              "es": "Registration Form",
+              "default": "Registration Form"
+            }
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "si_no": [
+        {
+          "choice_list_name": "si_no",
+          "data_value": "si",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Si",
+                "en": "Yes",
+                "es": "Si"
+              }
+            }
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "si_no",
+          "data_value": "no",
+          "display": {
+            "title": {
+              "text": {
+                "default": "No",
+                "en": "No",
+                "es": "No"
+              }
+            }
+          },
+          "_row_num": 3
+        }
+      ],
+      "genero_opciones": [
+        {
+          "choice_list_name": "genero_opciones",
+          "data_value": "masculino",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Masculino",
+                "en": "Male",
+                "es": "Masculino"
+              }
+            }
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "genero_opciones",
+          "data_value": "femenino",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Femenino",
+                "en": "Female",
+                "es": "Femenino"
+              }
+            }
+          },
+          "_row_num": 6
+        },
+        {
+          "choice_list_name": "genero_opciones",
+          "data_value": "otro",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otro",
+                "en": "Other",
+                "es": "Otro"
+              }
+            }
+          },
+          "_row_num": 7
+        }
+      ],
+      "pais": [
+        {
+          "choice_list_name": "pais",
+          "data_value": "venezuela",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Venezuela",
+                "en": "Venezuela",
+                "es": "Venezuela"
+              }
+            }
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "pais",
+          "data_value": "peru",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Perú",
+                "en": "Perú",
+                "es": "Perú"
+              }
+            }
+          },
+          "_row_num": 10
+        },
+        {
+          "choice_list_name": "pais",
+          "data_value": "colombia",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Colombia",
+                "en": "Colombia",
+                "es": "Colombia"
+              }
+            }
+          },
+          "_row_num": 11
+        },
+        {
+          "choice_list_name": "pais",
+          "data_value": "ecuador",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Ecuador",
+                "en": "Ecuador",
+                "es": "Ecuador"
+              }
+            }
+          },
+          "_row_num": 12
+        },
+        {
+          "choice_list_name": "pais",
+          "data_value": "otro",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otro",
+                "en": "Other",
+                "es": "Otro"
+              }
+            }
+          },
+          "_row_num": 13
+        }
+      ],
+      "laboral": [
+        {
+          "choice_list_name": "laboral",
+          "data_value": "dependiente",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Trabajo Dependiente",
+                "en": "Dependent worker",
+                "es": "Trabajo Dependiente"
+              }
+            }
+          },
+          "_row_num": 15
+        },
+        {
+          "choice_list_name": "laboral",
+          "data_value": "independiente",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Trabajo Independiente",
+                "en": "Independent worker",
+                "es": "Trabajo Independiente"
+              }
+            }
+          },
+          "_row_num": 16
+        },
+        {
+          "choice_list_name": "laboral",
+          "data_value": "estudiante",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Estudiante",
+                "en": "Student",
+                "es": "Estudiante"
+              }
+            }
+          },
+          "_row_num": 17
+        },
+        {
+          "choice_list_name": "laboral",
+          "data_value": "desempleado",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Desempleado",
+                "en": "Unemployed",
+                "es": "Desempleado"
+              }
+            }
+          },
+          "_row_num": 18
+        }
+      ],
+      "trabajo_opciones": [
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "salud",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Salud",
+                "en": "Health",
+                "es": "Salud"
+              }
+            }
+          },
+          "_row_num": 20
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "seguridad",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Seguridad privada",
+                "en": "Private Secuirty",
+                "es": "Seguridad privada"
+              }
+            }
+          },
+          "_row_num": 21
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "abastecimiento",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Abastecimiento de productos de primera necesidad (alimentos, medicamentos etc)",
+                "en": "Supply of basic necessities (food, medicine, etc.)",
+                "es": "Abastecimiento de productos de primera necesidad (alimentos, medicamentos etc)"
+              }
+            }
+          },
+          "_row_num": 22
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "financiero",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Entidades financieras",
+                "en": "Finance",
+                "es": "Entidades financieras"
+              }
+            }
+          },
+          "_row_num": 23
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "producción_transporte",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Producción, almacenamiento o transporte",
+                "en": "Manufacturing, storage or transporation",
+                "es": "Producción, almacenamiento o transporte"
+              }
+            }
+          },
+          "_row_num": 24
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "alojamiento",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Hoteles y/o alojamientos",
+                "en": "Hotels and/or accomodation",
+                "es": "Hoteles y/o alojamientos"
+              }
+            }
+          },
+          "_row_num": 25
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "medios_comunicacion",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Medios de comunicación",
+                "en": "Media",
+                "es": "Medios de comunicación"
+              }
+            }
+          },
+          "_row_num": 26
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "central_telefonica",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Central telefónica",
+                "en": "Telephone",
+                "es": "Central telefónica"
+              }
+            }
+          },
+          "_row_num": 27
+        },
+        {
+          "choice_list_name": "trabajo_opciones",
+          "data_value": "otro",
+          "display": {
+            "title": {
+              "text": {
+                "default": "Otro",
+                "en": "Other",
+                "es": "Otro"
+              }
+            }
+          },
+          "_row_num": 28
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "consentimiento": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "consentimiento"
+      },
+      "Comentario": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "Comentario"
+      },
+      "first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "first_name"
+      },
+      "last_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "last_name"
+      },
+      "edad": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 15,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "edad"
+      },
+      "gender": {
+        "type": "string",
+        "valuesList": "genero_opciones",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "gender"
+      },
+      "nacionalidad": {
+        "type": "string",
+        "valuesList": "pais",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nacionalidad"
+      },
+      "nacionalidad_otra": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 19,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nacionalidad_otra"
+      },
+      "tel": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 21,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "tel"
+      },
+      "residencia": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "residencia"
+      },
+      "nucleo_familiar": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 23,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nucleo_familiar"
+      },
+      "range0_5": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 24,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range0_5"
+      },
+      "range6_11": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 25,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range6_11"
+      },
+      "range12_17": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 26,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range12_17"
+      },
+      "range18_23": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 27,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range18_23"
+      },
+      "range24_65": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range24_65"
+      },
+      "mas65": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 29,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "mas65"
+      },
+      "discapacidad": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 32,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 19,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "discapacidad"
+      },
+      "discapacidad_si": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 34,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 20,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "discapacidad_si"
+      },
+      "problema_salud": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 36,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 21,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "problema_salud"
+      },
+      "problema_salud_si": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 38,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 22,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "problema_salud_si"
+      },
+      "medicamento": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 40,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 23,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medicamento"
+      },
+      "medicamento_accesible": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 42,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 24,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medicamento_accesible"
+      },
+      "necesidad": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 46,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 25,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "necesidad"
+      },
+      "mejoraria_otro": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 48,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 26,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "mejoraria_otro"
+      },
+      "situacion_laboral": {
+        "type": "string",
+        "valuesList": "laboral",
+        "_defn": [
+          {
+            "_row_num": 52,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 27,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "situacion_laboral"
+      },
+      "trabajo": {
+        "type": "string",
+        "valuesList": "trabajo_opciones",
+        "_defn": [
+          {
+            "_row_num": 54,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 28,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "trabajo"
+      },
+      "fuera_casa": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 55,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 29,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "fuera_casa"
+      },
+      "bioseguridad": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 57,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 30,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "bioseguridad"
+      },
+      "diagnostico_positivo": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 58,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 31,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_positivo"
+      },
+      "medida": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 59,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 32,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medida"
+      },
+      "otra_necesidad": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 60,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 33,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "otra_necesidad"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Este registro sera utilizado para seguimiento a la prestación de servicios. \nLa informacion recolectada podria ser compartida con donantes u otras organizaciones.\n¿Acepta continuar?",
+                  "en": "This record will be used to monitor the provision of services.\nThe information collected could be shared with donors or other organizations.\nDo you accept?",
+                  "es": "Este registro sera utilizado para seguimiento a la prestación de servicios. \nLa informacion recolectada podria ser compartida con donantes u otras organizaciones.\n¿Acepta continuar?"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "*en caso de respuesta negativa, algunos servicios no podrian ser brindados.",
+                  "es": "*en caso de respuesta negativa, algunos servicios no podrian ser brindados."
+                }
+              }
+            },
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "type": "select_one",
+            "name": "consentimiento",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Continuar",
+                  "en": "Continue",
+                  "es": "Continuar"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "required": true,
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 1
+          },
+          {
+            "type": "string",
+            "name": "Comentario",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Comentario",
+                  "en": "Comments",
+                  "es": "Comentario"
+                }
+              }
+            },
+            "_row_num": 6,
+            "__rowNum__": 5,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 2
+          },
+          {
+            "type": "string",
+            "name": "first_name",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Nombres",
+                  "en": "First names",
+                  "es": "Nombres"
+                }
+              }
+            },
+            "_row_num": 13,
+            "__rowNum__": 12,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 3
+          },
+          {
+            "type": "string",
+            "name": "last_name",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Apellidos",
+                  "en": "Surnames",
+                  "es": "Apellidos"
+                }
+              }
+            },
+            "_row_num": 14,
+            "__rowNum__": 13,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 4
+          },
+          {
+            "type": "integer",
+            "name": "edad",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Edad",
+                  "en": "Age",
+                  "es": "Edad"
+                }
+              }
+            },
+            "_row_num": 15,
+            "__rowNum__": 14,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 5
+          },
+          {
+            "type": "select_one",
+            "name": "gender",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Sexo",
+                  "en": "Gender",
+                  "es": "Sexo"
+                }
+              }
+            },
+            "values_list": "genero_opciones",
+            "_row_num": 16,
+            "__rowNum__": 15,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 6
+          },
+          {
+            "type": "select_one",
+            "name": "nacionalidad",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Nacionalidad",
+                  "en": "Nationality",
+                  "es": "Nacionalidad"
+                }
+              }
+            },
+            "values_list": "pais",
+            "_row_num": 17,
+            "__rowNum__": 16,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 7
+          },
+          {
+            "type": "string",
+            "name": "nacionalidad_otra",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Especifique",
+                  "en": "Specify nationality",
+                  "es": "Especifique"
+                }
+              }
+            },
+            "_row_num": 19,
+            "__rowNum__": 18,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 8
+          },
+          {
+            "type": "string",
+            "name": "tel",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Número telefónico",
+                  "en": "Telephone number",
+                  "es": "Número telefónico"
+                }
+              }
+            },
+            "_row_num": 21,
+            "__rowNum__": 20,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 9
+          },
+          {
+            "type": "string",
+            "name": "residencia",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Barrio de residencia",
+                  "en": "Neighborhood of reesidence",
+                  "es": "Barrio de residencia"
+                }
+              }
+            },
+            "_row_num": 22,
+            "__rowNum__": 21,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 10
+          },
+          {
+            "type": "integer",
+            "name": "nucleo_familiar",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Total de personas en el núcleo familiar",
+                  "en": "Total people in nuclear family",
+                  "es": "Total de personas en el núcleo familiar"
+                }
+              }
+            },
+            "_row_num": 23,
+            "__rowNum__": 22,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 11
+          },
+          {
+            "type": "integer",
+            "name": "range0_5",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "0-5 años",
+                  "en": "0-5 years",
+                  "es": "0-5 años"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "desagregar el total por edad",
+                  "es": "desagregar el total por edad"
+                }
+              }
+            },
+            "_row_num": 24,
+            "__rowNum__": 23,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 12
+          },
+          {
+            "type": "integer",
+            "name": "range6_11",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "6-11 años",
+                  "en": "6-11 years",
+                  "es": "6-11 años"
+                }
+              }
+            },
+            "_row_num": 25,
+            "__rowNum__": 24,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 13
+          },
+          {
+            "type": "integer",
+            "name": "range12_17",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "12-17años",
+                  "en": "12-17 years",
+                  "es": "12-17años"
+                }
+              }
+            },
+            "_row_num": 26,
+            "__rowNum__": 25,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 14
+          },
+          {
+            "type": "integer",
+            "name": "range18_23",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "18-23 años",
+                  "en": "18-23 years",
+                  "es": "18-23 años"
+                }
+              }
+            },
+            "_row_num": 27,
+            "__rowNum__": 26,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 15
+          },
+          {
+            "type": "integer",
+            "name": "range24_65",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "24-65 años",
+                  "en": "24-65 years",
+                  "es": "24-65 años"
+                }
+              }
+            },
+            "_row_num": 28,
+            "__rowNum__": 27,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 16
+          },
+          {
+            "type": "integer",
+            "name": "mas65",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "mas de 65 años",
+                  "en": "older than 65",
+                  "es": "mas de 65 años"
+                }
+              }
+            },
+            "_row_num": 29,
+            "__rowNum__": 28,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen12",
+            "promptIdx": 17
+          },
+          {
+            "type": "select_one",
+            "name": "discapacidad",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Usted o alguien de su familia presentan algún tipo de discapacidad en este momento",
+                  "en": "Do you or anyone in your family have any disabilities?",
+                  "es": "¿Usted o alguien de su familia presentan algún tipo de discapacidad en este momento"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 32,
+            "__rowNum__": 31,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen31",
+            "promptIdx": 18
+          },
+          {
+            "type": "string",
+            "name": "discapacidad_si",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Explica",
+                  "en": "Explain",
+                  "es": "Explica"
+                }
+              }
+            },
+            "_row_num": 34,
+            "__rowNum__": 33,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen31",
+            "promptIdx": 19
+          },
+          {
+            "type": "select_one",
+            "name": "problema_salud",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Usted o alguien de su familia presentan algún tipo de problema de salud crónico en este momento?",
+                  "en": "Do you or anyone in your family have any chronic health conditions?",
+                  "es": "¿Usted o alguien de su familia presentan algún tipo de problema de salud crónico en este momento?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 36,
+            "__rowNum__": 35,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen31",
+            "promptIdx": 20
+          },
+          {
+            "type": "string",
+            "name": "problema_salud_si",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Explica",
+                  "en": "Explain",
+                  "es": "Explica"
+                }
+              }
+            },
+            "_row_num": 38,
+            "__rowNum__": 37,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen31",
+            "promptIdx": 21
+          },
+          {
+            "type": "select_one",
+            "name": "medicamento",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Necesita algún tipo de medicamento?",
+                  "en": "Do you need medicine?",
+                  "es": "¿Necesita algún tipo de medicamento?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 40,
+            "__rowNum__": 39,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen31",
+            "promptIdx": 22
+          },
+          {
+            "type": "select_one",
+            "name": "medicamento_accesible",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Es accesible conseguirlo?",
+                  "en": "Are you able to obtain this medicine?",
+                  "es": "¿Es accesible conseguirlo?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 42,
+            "__rowNum__": 41,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen31",
+            "promptIdx": 23
+          },
+          {
+            "type": "select_one",
+            "name": "necesidad",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Usted o alguien de su familia va con regularidad a realizar compras en los mercados cercanos a su domicilio?",
+                  "en": "Do you or anyone in your family regularly go shopping in the markets close to your home?",
+                  "es": "¿Usted o alguien de su familia va con regularidad a realizar compras en los mercados cercanos a su domicilio?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "required": true,
+            "_row_num": 46,
+            "__rowNum__": 45,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen45",
+            "promptIdx": 24
+          },
+          {
+            "type": "select_one",
+            "name": "mejoraria_otro",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Hay desabastecimiento de productos?",
+                  "en": "Are there any product shortages?",
+                  "es": "¿Hay desabastecimiento de productos?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "required": "selected(data('necesidad'), 'si')",
+            "_row_num": 48,
+            "__rowNum__": 47,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen45",
+            "promptIdx": 25
+          },
+          {
+            "type": "select_one",
+            "name": "situacion_laboral",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Cuál era situación laboral antes de las medidas tomadas por covid-19?",
+                  "en": "What was your employment situation before the Covid-19 measures?",
+                  "es": "¿Cuál era situación laboral antes de las medidas tomadas por covid-19?"
+                }
+              }
+            },
+            "values_list": "laboral",
+            "_row_num": 52,
+            "__rowNum__": 51,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen51",
+            "promptIdx": 26
+          },
+          {
+            "type": "select_one",
+            "name": "trabajo",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿A que grupo de trabajo pertenece usted?",
+                  "en": "To what group of work do you belong?",
+                  "es": "¿A que grupo de trabajo pertenece usted?"
+                }
+              }
+            },
+            "values_list": "trabajo_opciones",
+            "_row_num": 54,
+            "__rowNum__": 53,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen51",
+            "promptIdx": 27
+          },
+          {
+            "type": "select_one",
+            "name": "fuera_casa",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Tiene la necesidad de trabajar físicamente fuera de casa durante la cuarentena?",
+                  "en": "Do you need to work outside of your house during quarantine?",
+                  "es": "¿Tiene la necesidad de trabajar físicamente fuera de casa durante la cuarentena?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 55,
+            "__rowNum__": 54,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen51",
+            "promptIdx": 28
+          },
+          {
+            "type": "select_one",
+            "name": "bioseguridad",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Cuenta con material de bioseguridad suficiente paras su cuidado?",
+                  "en": "Do you have enough protective equipment for your care?",
+                  "es": "¿Cuenta con material de bioseguridad suficiente paras su cuidado?"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "mascarillas, alcohol en gel, jabón o útiles de aseo",
+                  "es": "mascarillas, alcohol en gel, jabón o útiles de aseo"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 57,
+            "__rowNum__": 56,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen51",
+            "promptIdx": 29
+          },
+          {
+            "type": "select_one",
+            "name": "diagnostico_positivo",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Conoce a alguna persona que haya sido diagnostico con covid19?",
+                  "en": "Do you know anyone who has been diagnosed with Covid-19?",
+                  "es": "¿Conoce a alguna persona que haya sido diagnostico con covid19?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 58,
+            "__rowNum__": 57,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen51",
+            "promptIdx": 30
+          },
+          {
+            "type": "select_one",
+            "name": "medida",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Conoce alguna medida que está tomando su municipalidad frente al covid 19?",
+                  "en": "Do you know of any measures your municipality is taking against Covid-19?",
+                  "es": "¿Conoce alguna medida que está tomando su municipalidad frente al covid 19?"
+                }
+              }
+            },
+            "values_list": "si_no",
+            "_row_num": 59,
+            "__rowNum__": 58,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen51",
+            "promptIdx": 31
+          },
+          {
+            "type": "string",
+            "name": "otra_necesidad",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "¿Ha percibido alguna otra necesidad? Por favor, coméntenos",
+                  "en": "Do you need anything else? Please comment.",
+                  "es": "¿Ha percibido alguna otra necesidad? Por favor, coméntenos"
+                }
+              }
+            },
+            "_row_num": 60,
+            "__rowNum__": 59,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen51",
+            "promptIdx": 32
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 63,
+            "_branch_label_enclosing_screen": "survey/_screen63",
+            "promptIdx": 33
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            1,
+            24,
+            25
+          ]
+        },
+        "operations": [
+          {
+            "clause": "begin screen",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 8,
+              "__rowNum__": 7,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nif (selected(data('consentimiento'), 'no')) {\nactivePromptIndicies.push(2);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('consentimiento'), 'no')",
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "goto_label",
+            "_branch_label": "_then9",
+            "operationIdx": 1
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else11",
+            "_row_num": 11,
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto end_of_survey",
+            "_row_num": 10,
+            "__rowNum__": 9,
+            "_token_type": "goto_label",
+            "_branch_label": "end_of_survey",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif11",
+            "_row_num": 11,
+            "operationIdx": 4
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 12,
+            "__rowNum__": 11,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 30,
+              "__rowNum__": 29,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(3);\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\nactivePromptIndicies.push(6);\nactivePromptIndicies.push(7);\nif (selected(data('nacionalidad'), 'otro')) {\nactivePromptIndicies.push(8);\n}\nactivePromptIndicies.push(9);\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nactivePromptIndicies.push(12);\nactivePromptIndicies.push(13);\nactivePromptIndicies.push(14);\nactivePromptIndicies.push(15);\nactivePromptIndicies.push(16);\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 31,
+            "__rowNum__": 30,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 44,
+              "__rowNum__": 43,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\nif (selected(data('discapacidad'), 'si')) {\nactivePromptIndicies.push(19);\n}\nactivePromptIndicies.push(20);\nif (selected(data('problema_salud'), 'si')) {\nactivePromptIndicies.push(21);\n}\nactivePromptIndicies.push(22);\nif (selected(data('medicamento'), 'si')) {\nactivePromptIndicies.push(23);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 6
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 45,
+            "__rowNum__": 44,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 50,
+              "__rowNum__": 49,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(24);\nif (selected(data('necesidad'), 'si')) {\nactivePromptIndicies.push(25);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 7
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 51,
+            "__rowNum__": 50,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 61,
+              "__rowNum__": 60,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(26);\nif (selected(data('situacion_laboral'), 'independiente') || selected(data('situacion_laboral'), 'dependiente')) {\nactivePromptIndicies.push(27);\nactivePromptIndicies.push(28);\n}\nactivePromptIndicies.push(29);\nactivePromptIndicies.push(30);\nactivePromptIndicies.push(31);\nactivePromptIndicies.push(32);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 63,
+            "operationIdx": 9
+          },
+          {
+            "_row_num": 63,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(33);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 63,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_then9": 3,
+          "_else11": 5,
+          "_endif11": 5,
+          "_screen12": 5,
+          "_screen31": 6,
+          "_screen45": 7,
+          "_screen51": 8,
+          "end_of_survey": 9,
+          "_contents": 10,
+          "_screen63": 10
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": {
+                  "en": "Registration Form",
+                  "es": "Registration Form",
+                  "default": "Registration Form"
+                }
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 7
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_else6": 5,
+          "_screen7": 5,
+          "_endif8": 6,
+          "_contents": 7,
+          "_screen9": 7,
+          "_finalize": 9
+        }
+      }
+    },
+    "dataTableModel": {
+      "consentimiento": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "consentimiento",
+        "elementName": "consentimiento",
+        "elementSet": "data",
+        "elementPath": "consentimiento"
+      },
+      "Comentario": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "Comentario",
+        "elementName": "Comentario",
+        "elementSet": "data",
+        "elementPath": "Comentario"
+      },
+      "first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "first_name",
+        "elementName": "first_name",
+        "elementSet": "data",
+        "elementPath": "first_name"
+      },
+      "last_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "last_name",
+        "elementName": "last_name",
+        "elementSet": "data",
+        "elementPath": "last_name"
+      },
+      "edad": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 15,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "edad",
+        "elementName": "edad",
+        "elementSet": "data",
+        "elementPath": "edad"
+      },
+      "gender": {
+        "type": "string",
+        "valuesList": "genero_opciones",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "gender",
+        "elementName": "gender",
+        "elementSet": "data",
+        "elementPath": "gender"
+      },
+      "nacionalidad": {
+        "type": "string",
+        "valuesList": "pais",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nacionalidad",
+        "elementName": "nacionalidad",
+        "elementSet": "data",
+        "elementPath": "nacionalidad"
+      },
+      "nacionalidad_otra": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 19,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nacionalidad_otra",
+        "elementName": "nacionalidad_otra",
+        "elementSet": "data",
+        "elementPath": "nacionalidad_otra"
+      },
+      "tel": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 21,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "tel",
+        "elementName": "tel",
+        "elementSet": "data",
+        "elementPath": "tel"
+      },
+      "residencia": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "residencia",
+        "elementName": "residencia",
+        "elementSet": "data",
+        "elementPath": "residencia"
+      },
+      "nucleo_familiar": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 23,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "nucleo_familiar",
+        "elementName": "nucleo_familiar",
+        "elementSet": "data",
+        "elementPath": "nucleo_familiar"
+      },
+      "range0_5": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 24,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range0_5",
+        "elementName": "range0_5",
+        "elementSet": "data",
+        "elementPath": "range0_5"
+      },
+      "range6_11": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 25,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range6_11",
+        "elementName": "range6_11",
+        "elementSet": "data",
+        "elementPath": "range6_11"
+      },
+      "range12_17": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 26,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range12_17",
+        "elementName": "range12_17",
+        "elementSet": "data",
+        "elementPath": "range12_17"
+      },
+      "range18_23": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 27,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range18_23",
+        "elementName": "range18_23",
+        "elementSet": "data",
+        "elementPath": "range18_23"
+      },
+      "range24_65": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "range24_65",
+        "elementName": "range24_65",
+        "elementSet": "data",
+        "elementPath": "range24_65"
+      },
+      "mas65": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 29,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "mas65",
+        "elementName": "mas65",
+        "elementSet": "data",
+        "elementPath": "mas65"
+      },
+      "discapacidad": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 32,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 19,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "discapacidad",
+        "elementName": "discapacidad",
+        "elementSet": "data",
+        "elementPath": "discapacidad"
+      },
+      "discapacidad_si": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 34,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 20,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "discapacidad_si",
+        "elementName": "discapacidad_si",
+        "elementSet": "data",
+        "elementPath": "discapacidad_si"
+      },
+      "problema_salud": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 36,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 21,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "problema_salud",
+        "elementName": "problema_salud",
+        "elementSet": "data",
+        "elementPath": "problema_salud"
+      },
+      "problema_salud_si": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 38,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 22,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "problema_salud_si",
+        "elementName": "problema_salud_si",
+        "elementSet": "data",
+        "elementPath": "problema_salud_si"
+      },
+      "medicamento": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 40,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 23,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medicamento",
+        "elementName": "medicamento",
+        "elementSet": "data",
+        "elementPath": "medicamento"
+      },
+      "medicamento_accesible": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 42,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 24,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medicamento_accesible",
+        "elementName": "medicamento_accesible",
+        "elementSet": "data",
+        "elementPath": "medicamento_accesible"
+      },
+      "necesidad": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 46,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 25,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "necesidad",
+        "elementName": "necesidad",
+        "elementSet": "data",
+        "elementPath": "necesidad"
+      },
+      "mejoraria_otro": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 48,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 26,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "mejoraria_otro",
+        "elementName": "mejoraria_otro",
+        "elementSet": "data",
+        "elementPath": "mejoraria_otro"
+      },
+      "situacion_laboral": {
+        "type": "string",
+        "valuesList": "laboral",
+        "_defn": [
+          {
+            "_row_num": 52,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 27,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "situacion_laboral",
+        "elementName": "situacion_laboral",
+        "elementSet": "data",
+        "elementPath": "situacion_laboral"
+      },
+      "trabajo": {
+        "type": "string",
+        "valuesList": "trabajo_opciones",
+        "_defn": [
+          {
+            "_row_num": 54,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 28,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "trabajo",
+        "elementName": "trabajo",
+        "elementSet": "data",
+        "elementPath": "trabajo"
+      },
+      "fuera_casa": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 55,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 29,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "fuera_casa",
+        "elementName": "fuera_casa",
+        "elementSet": "data",
+        "elementPath": "fuera_casa"
+      },
+      "bioseguridad": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 57,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 30,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "bioseguridad",
+        "elementName": "bioseguridad",
+        "elementSet": "data",
+        "elementPath": "bioseguridad"
+      },
+      "diagnostico_positivo": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 58,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 31,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "diagnostico_positivo",
+        "elementName": "diagnostico_positivo",
+        "elementSet": "data",
+        "elementPath": "diagnostico_positivo"
+      },
+      "medida": {
+        "type": "string",
+        "valuesList": "si_no",
+        "_defn": [
+          {
+            "_row_num": 59,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 32,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "medida",
+        "elementName": "medida",
+        "elementSet": "data",
+        "elementPath": "medida"
+      },
+      "otra_necesidad": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 60,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 33,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "otra_necesidad",
+        "elementName": "otra_necesidad",
+        "elementSet": "data",
+        "elementPath": "otra_necesidad"
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "bioseguridad",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "consentimiento",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "diagnostico_positivo",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "discapacidad",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "fuera_casa",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "gender",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"genero_opciones\",\"data_value\":\"masculino\",\"display\":{\"title\":{\"text\":{\"default\":\"Masculino\",\"en\":\"Male\",\"es\":\"Masculino\"}}},\"_row_num\":5},{\"choice_list_name\":\"genero_opciones\",\"data_value\":\"femenino\",\"display\":{\"title\":{\"text\":{\"default\":\"Femenino\",\"en\":\"Female\",\"es\":\"Femenino\"}}},\"_row_num\":6},{\"choice_list_name\":\"genero_opciones\",\"data_value\":\"otro\",\"display\":{\"title\":{\"text\":{\"default\":\"Otro\",\"en\":\"Other\",\"es\":\"Otro\"}}},\"_row_num\":7}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "medicamento",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "medicamento_accesible",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "medida",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "mejoraria_otro",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "nacionalidad",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"pais\",\"data_value\":\"venezuela\",\"display\":{\"title\":{\"text\":{\"default\":\"Venezuela\",\"en\":\"Venezuela\",\"es\":\"Venezuela\"}}},\"_row_num\":9},{\"choice_list_name\":\"pais\",\"data_value\":\"peru\",\"display\":{\"title\":{\"text\":{\"default\":\"Perú\",\"en\":\"Perú\",\"es\":\"Perú\"}}},\"_row_num\":10},{\"choice_list_name\":\"pais\",\"data_value\":\"colombia\",\"display\":{\"title\":{\"text\":{\"default\":\"Colombia\",\"en\":\"Colombia\",\"es\":\"Colombia\"}}},\"_row_num\":11},{\"choice_list_name\":\"pais\",\"data_value\":\"ecuador\",\"display\":{\"title\":{\"text\":{\"default\":\"Ecuador\",\"en\":\"Ecuador\",\"es\":\"Ecuador\"}}},\"_row_num\":12},{\"choice_list_name\":\"pais\",\"data_value\":\"otro\",\"display\":{\"title\":{\"text\":{\"default\":\"Otro\",\"en\":\"Other\",\"es\":\"Otro\"}}},\"_row_num\":13}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "necesidad",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "problema_salud",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"si_no\",\"data_value\":\"si\",\"display\":{\"title\":{\"text\":{\"default\":\"Si\",\"en\":\"Yes\",\"es\":\"Si\"}}},\"_row_num\":2},{\"choice_list_name\":\"si_no\",\"data_value\":\"no\",\"display\":{\"title\":{\"text\":{\"default\":\"No\",\"en\":\"No\",\"es\":\"No\"}}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "situacion_laboral",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"laboral\",\"data_value\":\"dependiente\",\"display\":{\"title\":{\"text\":{\"default\":\"Trabajo Dependiente\",\"en\":\"Dependent worker\",\"es\":\"Trabajo Dependiente\"}}},\"_row_num\":15},{\"choice_list_name\":\"laboral\",\"data_value\":\"independiente\",\"display\":{\"title\":{\"text\":{\"default\":\"Trabajo Independiente\",\"en\":\"Independent worker\",\"es\":\"Trabajo Independiente\"}}},\"_row_num\":16},{\"choice_list_name\":\"laboral\",\"data_value\":\"estudiante\",\"display\":{\"title\":{\"text\":{\"default\":\"Estudiante\",\"en\":\"Student\",\"es\":\"Estudiante\"}}},\"_row_num\":17},{\"choice_list_name\":\"laboral\",\"data_value\":\"desempleado\",\"display\":{\"title\":{\"text\":{\"default\":\"Desempleado\",\"en\":\"Unemployed\",\"es\":\"Desempleado\"}}},\"_row_num\":18}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "trabajo",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"salud\",\"display\":{\"title\":{\"text\":{\"default\":\"Salud\",\"en\":\"Health\",\"es\":\"Salud\"}}},\"_row_num\":20},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"seguridad\",\"display\":{\"title\":{\"text\":{\"default\":\"Seguridad privada\",\"en\":\"Private Secuirty\",\"es\":\"Seguridad privada\"}}},\"_row_num\":21},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"abastecimiento\",\"display\":{\"title\":{\"text\":{\"default\":\"Abastecimiento de productos de primera necesidad (alimentos, medicamentos etc)\",\"en\":\"Supply of basic necessities (food, medicine, etc.)\",\"es\":\"Abastecimiento de productos de primera necesidad (alimentos, medicamentos etc)\"}}},\"_row_num\":22},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"financiero\",\"display\":{\"title\":{\"text\":{\"default\":\"Entidades financieras\",\"en\":\"Finance\",\"es\":\"Entidades financieras\"}}},\"_row_num\":23},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"producción_transporte\",\"display\":{\"title\":{\"text\":{\"default\":\"Producción, almacenamiento o transporte\",\"en\":\"Manufacturing, storage or transporation\",\"es\":\"Producción, almacenamiento o transporte\"}}},\"_row_num\":24},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"alojamiento\",\"display\":{\"title\":{\"text\":{\"default\":\"Hoteles y/o alojamientos\",\"en\":\"Hotels and/or accomodation\",\"es\":\"Hoteles y/o alojamientos\"}}},\"_row_num\":25},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"medios_comunicacion\",\"display\":{\"title\":{\"text\":{\"default\":\"Medios de comunicación\",\"en\":\"Media\",\"es\":\"Medios de comunicación\"}}},\"_row_num\":26},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"central_telefonica\",\"display\":{\"title\":{\"text\":{\"default\":\"Central telefónica\",\"en\":\"Telephone\",\"es\":\"Central telefónica\"}}},\"_row_num\":27},{\"choice_list_name\":\"trabajo_opciones\",\"data_value\":\"otro\",\"display\":{\"title\":{\"text\":{\"default\":\"Otro\",\"en\":\"Other\",\"es\":\"Otro\"}}},\"_row_num\":28}]"
+      },
+      {
+        "_partition": "FormType",
+        "_aspect": "default",
+        "_key": "FormType.formType",
+        "_type": "string",
+        "_value": "SURVEY"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "peru_registration"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":{\"en\":\"Registration Form\",\"es\":\"Registration Form\",\"default\":\"Registration Form\"}}"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "defaultAccessOnCreation",
+        "_type": "string",
+        "_value": "HIDDEN"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "unverifiedUserCanCreate",
+        "_type": "boolean",
+        "_value": "false"
+      }
+    ]
+  }
+}

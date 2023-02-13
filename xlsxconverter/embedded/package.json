@@ -1,0 +1,15 @@
+{
+  "name": "embeddedxlsxconverter",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "webpack --mode development"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "xlsx": "^0.14.5"
+  },
+  "devDependencies": {
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}

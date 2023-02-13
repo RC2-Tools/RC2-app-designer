@@ -2,5 +2,19 @@ build/
 *.~lock.*
 app/output/props/*
 tempZipDir
-.idea/*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# JetBrains
+.idea
+*.iml
+
+# Node
+node_modules/*
+node_modules/.bin/*
 node_modules
+debug.log

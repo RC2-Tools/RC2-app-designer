@@ -1,0 +1,2095 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "<b>SIGNOS VITALES Y ANTROPOMETRIA</b>",
+              "en": "<b>VITAL SIGNS & ANTHROPOMETRY</b>"
+            }
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "type": "select_multiple",
+        "values_list": "selecc_sv_list",
+        "name": "seleccion_sv",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Signos Vitales",
+              "en": "Vital Signs"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Puede seleccionar multiples opciones",
+              "en": "Multiple choices can be selected"
+            }
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'peso')",
+        "_row_num": 5
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'peso')",
+        "type": "decimal",
+        "name": "peso",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Peso (kg)",
+              "en": "Weight (kg)"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese el valor del peso de la persona en kg (separado por punto(.)).",
+              "en": "Enter wieght of person in kg (separated by a point '.')"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "clause": "end if",
+        "_row_num": 7
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'talla')",
+        "_row_num": 8
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'talla')",
+        "type": "decimal",
+        "name": "talla",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Talla (cm)",
+              "en": "Height (cm)"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese el valor del talla de la persona en cm (separado por punto(.)).",
+              "en": "Enter height of person in cm (spearated by a point '.')"
+            }
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "clause": "end if",
+        "_row_num": 10
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'ta')",
+        "_row_num": 11
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'ta')",
+        "type": "integer",
+        "name": "ta_sistolica",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Tensión Arterial Sistólica",
+              "en": "Systolic Blood Pressure"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese el valor de la TA Sistólica de la persona",
+              "en": "Enter value of SBP"
+            }
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'ta')",
+        "type": "integer",
+        "name": "ta_diastolica",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Tensión Arterial Diastólica",
+              "en": "Diastolic Blood Pressure"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese el valor de la TA Diastólica de la persona",
+              "en": "Enter value of DBP"
+            }
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "clause": "end if",
+        "_row_num": 14
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'fc')",
+        "_row_num": 15
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'fc')",
+        "type": "integer",
+        "name": "frecuencia_cardiaca",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Frecuencia Cardiaca (lpm)",
+              "en": "Heart Rate (bpm)"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese la frecuencia cardiaca de la persona.",
+              "en": "Enter heart rate"
+            }
+          }
+        },
+        "_row_num": 16
+      },
+      {
+        "clause": "end if",
+        "_row_num": 17
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'fr')",
+        "_row_num": 18
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'fr')",
+        "type": "integer",
+        "name": "frecuencia_respiratoria",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Frecuencia Respiratoria (rpm)",
+              "en": "Respiratory Rate (rpm)"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese la frecuencia respiratoria de la persona.",
+              "en": "Enter respiratory rate"
+            }
+          }
+        },
+        "_row_num": 19
+      },
+      {
+        "clause": "end if",
+        "_row_num": 20
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'sao2')",
+        "_row_num": 21
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'sao2')",
+        "type": "integer",
+        "name": "saturacion_oxigeno",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Saturación de Oxigeno (%)",
+              "en": "Oxygen saturation (%)"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Indique la saturación de oxigeno de la persona.",
+              "en": "Enter oxygen saturation"
+            }
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "clause": "end if",
+        "_row_num": 23
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 't')",
+        "_row_num": 24
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 't')",
+        "type": "decimal",
+        "name": "temperatura",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Temperatura (°C)",
+              "en": "Temperature (°C)"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese el valor obtenido de la persona.",
+              "en": "Enter temperature value in (°C)"
+            }
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "clause": "end if",
+        "_row_num": 26
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'glucosa')",
+        "_row_num": 27
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'glucosa')",
+        "type": "integer",
+        "name": "glicemia",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Glicemia (mg/dl)",
+              "en": "Glycemia"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese el valor de la glicemia de la persona.",
+              "en": "Enter glycemia value"
+            }
+          }
+        },
+        "_row_num": 28
+      },
+      {
+        "clause": "end if",
+        "_row_num": 29
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'muac')",
+        "_row_num": 30
+      },
+      {
+        "required": "selected(data('seleccion_sv'), 'muac')",
+        "type": "decimal",
+        "name": "muac",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "MUAC (cm)",
+              "en": "MUAC (cm)"
+            }
+          },
+          "hint": {
+            "text": {
+              "default": "Ingrese el valor del muac de la persona en kg (separado por punto(.)).",
+              "en": "Enter MUAC value in KG (separated by a point '.')"
+            }
+          }
+        },
+        "_row_num": 31
+      },
+      {
+        "clause": "end if",
+        "_row_num": 32
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 33
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 34
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Terminado",
+              "en": "Finished"
+            }
+          }
+        },
+        "_row_num": 35
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('seleccion_sv'), 'peso') && selected(data('seleccion_sv'), 'talla')",
+        "_row_num": 36
+      },
+      {
+        "type": "assign",
+        "name": "puntaje_Z",
+        "calculation": "parseFloat((data('peso') / data('talla')).toFixed(2))",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "Puntaje Z Peso/Talla",
+              "en": "Z Score"
+            }
+          }
+        },
+        "_row_num": 37
+      },
+      {
+        "type": "assign",
+        "name": "calculo_imc",
+        "calculation": "parseFloat((data('peso') / (data('talla')*data('talla'))).toFixed(2))",
+        "display": {
+          "prompt": {
+            "text": {
+              "default": "IMC",
+              "en": "Body Mass Index"
+            }
+          }
+        },
+        "_row_num": 38
+      },
+      {
+        "clause": "end if",
+        "_row_num": 39
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 40
+      }
+    ],
+    "model": [
+      {
+        "type": "select_multiple",
+        "name": "seleccion_sv",
+        "_row_num": 2
+      },
+      {
+        "type": "decimal",
+        "name": "peso",
+        "_row_num": 3
+      },
+      {
+        "type": "decimal",
+        "name": "talla",
+        "_row_num": 4
+      },
+      {
+        "type": "integer",
+        "name": "ta_sistolica",
+        "_row_num": 5
+      },
+      {
+        "type": "integer",
+        "name": "ta_diastolica",
+        "_row_num": 6
+      },
+      {
+        "type": "integer",
+        "name": "frecuencia_cardiaca",
+        "_row_num": 7
+      },
+      {
+        "type": "integer",
+        "name": "frecuencia_respiratoria",
+        "_row_num": 8
+      },
+      {
+        "type": "integer",
+        "name": "saturacion_oxigeno",
+        "_row_num": 9
+      },
+      {
+        "type": "decimal",
+        "name": "temperatura",
+        "_row_num": 10
+      },
+      {
+        "type": "integer",
+        "name": "glicemia",
+        "_row_num": 11
+      },
+      {
+        "type": "decimal",
+        "name": "muac",
+        "_row_num": 12
+      },
+      {
+        "type": "decimal",
+        "name": "puntaje_Z",
+        "_row_num": 13
+      },
+      {
+        "type": "decimal",
+        "name": "calculo_imc",
+        "_row_num": 14
+      },
+      {
+        "type": "string",
+        "name": "reg_first_name",
+        "isSessionVariable": "true",
+        "_row_num": 15
+      },
+      {
+        "type": "string",
+        "name": "reg_family_name",
+        "isSessionVariable": "true",
+        "_row_num": 16
+      },
+      {
+        "type": "birthdate",
+        "name": "reg_birthday",
+        "isSessionVariable": "true",
+        "_row_num": 17
+      },
+      {
+        "type": "select_one",
+        "name": "reg_gender",
+        "isSessionVariable": "true",
+        "_row_num": 18
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "peso",
+        "display": {
+          "title": {
+            "text": "Peso"
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "talla",
+        "display": {
+          "title": {
+            "text": "Talla"
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "ta",
+        "display": {
+          "title": {
+            "text": "TA"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "fc",
+        "display": {
+          "title": {
+            "text": "FC"
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "fr",
+        "display": {
+          "title": {
+            "text": "FR"
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "sao2",
+        "display": {
+          "title": {
+            "text": "SaO2"
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "t",
+        "display": {
+          "title": {
+            "text": "T°"
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "glucosa",
+        "display": {
+          "title": {
+            "text": "Glucosa"
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "selecc_sv_list",
+        "data_value": "muac",
+        "display": {
+          "title": {
+            "text": "MUAC"
+          }
+        },
+        "_row_num": 11
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "table_id",
+        "value": "ven_vitals",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 20200623,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "SIGNOS VITALES Y ANTROPOMETRIA",
+              "en": "VITAL SIGNS & ANTHROPOMETRY"
+            }
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "setting_name": "form_id",
+        "value": "ven_vitals",
+        "_row_num": 5
+      },
+      {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "English"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español"
+            }
+          }
+        },
+        "_row_num": 7
+      }
+    ],
+    "initial": [
+      {
+        "clause": "if // start",
+        "condition": "(opendatakit.getCurrentInstanceId() != null)",
+        "_row_num": 2
+      },
+      {
+        "clause": "do section survey",
+        "_row_num": 4
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 5
+      },
+      {
+        "clause": "else // start",
+        "_row_num": 6
+      },
+      {
+        "type": "instances",
+        "display": {
+          "text": "Saved instances"
+        },
+        "_row_num": 7
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 8
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "ven_vitals",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 20200623,
+        "_row_num": 3
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "SIGNOS VITALES Y ANTROPOMETRIA",
+              "en": "VITAL SIGNS & ANTHROPOMETRY"
+            }
+          }
+        },
+        "_row_num": 4
+      },
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "ven_vitals",
+        "_row_num": 5
+      },
+      "en": {
+        "setting_name": "en",
+        "value": "English",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "English",
+              "es": "Inglés",
+              "default": "English"
+            }
+          }
+        },
+        "_row_num": 6
+      },
+      "es": {
+        "setting_name": "es",
+        "value": "Spanish",
+        "display": {
+          "locale": {
+            "text": {
+              "en": "Spanish",
+              "es": "Español"
+            }
+          }
+        },
+        "_row_num": 7
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 4,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": {
+                  "en": "English",
+                  "es": "Inglés",
+                  "default": "English"
+                }
+              }
+            },
+            "_row_num": 6,
+            "name": "en"
+          },
+          {
+            "display": {
+              "locale": {
+                "text": "default"
+              }
+            },
+            "name": "default"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 4,
+        "value": "en"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": {
+              "default": "SIGNOS VITALES Y ANTROPOMETRIA",
+              "en": "VITAL SIGNS & ANTHROPOMETRY"
+            }
+          }
+        },
+        "_row_num": 4
+      }
+    },
+    "choices": {
+      "selecc_sv_list": [
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "peso",
+          "display": {
+            "title": {
+              "text": "Peso"
+            }
+          },
+          "_row_num": 3
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "talla",
+          "display": {
+            "title": {
+              "text": "Talla"
+            }
+          },
+          "_row_num": 4
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "ta",
+          "display": {
+            "title": {
+              "text": "TA"
+            }
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "fc",
+          "display": {
+            "title": {
+              "text": "FC"
+            }
+          },
+          "_row_num": 6
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "fr",
+          "display": {
+            "title": {
+              "text": "FR"
+            }
+          },
+          "_row_num": 7
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "sao2",
+          "display": {
+            "title": {
+              "text": "SaO2"
+            }
+          },
+          "_row_num": 8
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "t",
+          "display": {
+            "title": {
+              "text": "T°"
+            }
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "glucosa",
+          "display": {
+            "title": {
+              "text": "Glucosa"
+            }
+          },
+          "_row_num": 10
+        },
+        {
+          "choice_list_name": "selecc_sv_list",
+          "data_value": "muac",
+          "display": {
+            "title": {
+              "text": "MUAC"
+            }
+          },
+          "_row_num": 11
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "seleccion_sv": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "seleccion_sv_items"
+        },
+        "valuesList": "selecc_sv_list",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "seleccion_sv"
+      },
+      "peso": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "peso"
+      },
+      "talla": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "talla"
+      },
+      "ta_sistolica": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ta_sistolica"
+      },
+      "ta_diastolica": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ta_diastolica"
+      },
+      "frecuencia_cardiaca": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "frecuencia_cardiaca"
+      },
+      "frecuencia_respiratoria": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 19,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "frecuencia_respiratoria"
+      },
+      "saturacion_oxigeno": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "saturacion_oxigeno"
+      },
+      "temperatura": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 25,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "temperatura"
+      },
+      "glicemia": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "glicemia"
+      },
+      "muac": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 31,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "muac"
+      },
+      "puntaje_Z": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "puntaje_Z"
+      },
+      "calculo_imc": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "calculo_imc"
+      },
+      "reg_first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_first_name"
+      },
+      "reg_family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_family_name"
+      },
+      "reg_birthday": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_birthday"
+      },
+      "reg_gender": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_gender"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "<b>SIGNOS VITALES Y ANTROPOMETRIA</b>",
+                  "en": "<b>VITAL SIGNS & ANTHROPOMETRY</b>"
+                }
+              }
+            },
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "type": "select_multiple",
+            "values_list": "selecc_sv_list",
+            "name": "seleccion_sv",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Signos Vitales",
+                  "en": "Vital Signs"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Puede seleccionar multiples opciones",
+                  "en": "Multiple choices can be selected"
+                }
+              }
+            },
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_type": "select_multiple",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 1
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'peso')",
+            "type": "decimal",
+            "name": "peso",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Peso (kg)",
+                  "en": "Weight (kg)"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese el valor del peso de la persona en kg (separado por punto(.)).",
+                  "en": "Enter wieght of person in kg (separated by a point '.')"
+                }
+              }
+            },
+            "_row_num": 6,
+            "__rowNum__": 5,
+            "_token_type": "prompt",
+            "_type": "decimal",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 2
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'talla')",
+            "type": "decimal",
+            "name": "talla",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Talla (cm)",
+                  "en": "Height (cm)"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese el valor del talla de la persona en cm (separado por punto(.)).",
+                  "en": "Enter height of person in cm (spearated by a point '.')"
+                }
+              }
+            },
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "prompt",
+            "_type": "decimal",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 3
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'ta')",
+            "type": "integer",
+            "name": "ta_sistolica",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Tensión Arterial Sistólica",
+                  "en": "Systolic Blood Pressure"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese el valor de la TA Sistólica de la persona",
+                  "en": "Enter value of SBP"
+                }
+              }
+            },
+            "_row_num": 12,
+            "__rowNum__": 11,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 4
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'ta')",
+            "type": "integer",
+            "name": "ta_diastolica",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Tensión Arterial Diastólica",
+                  "en": "Diastolic Blood Pressure"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese el valor de la TA Diastólica de la persona",
+                  "en": "Enter value of DBP"
+                }
+              }
+            },
+            "_row_num": 13,
+            "__rowNum__": 12,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 5
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'fc')",
+            "type": "integer",
+            "name": "frecuencia_cardiaca",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Frecuencia Cardiaca (lpm)",
+                  "en": "Heart Rate (bpm)"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese la frecuencia cardiaca de la persona.",
+                  "en": "Enter heart rate"
+                }
+              }
+            },
+            "_row_num": 16,
+            "__rowNum__": 15,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 6
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'fr')",
+            "type": "integer",
+            "name": "frecuencia_respiratoria",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Frecuencia Respiratoria (rpm)",
+                  "en": "Respiratory Rate (rpm)"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese la frecuencia respiratoria de la persona.",
+                  "en": "Enter respiratory rate"
+                }
+              }
+            },
+            "_row_num": 19,
+            "__rowNum__": 18,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 7
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'sao2')",
+            "type": "integer",
+            "name": "saturacion_oxigeno",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Saturación de Oxigeno (%)",
+                  "en": "Oxygen saturation (%)"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Indique la saturación de oxigeno de la persona.",
+                  "en": "Enter oxygen saturation"
+                }
+              }
+            },
+            "_row_num": 22,
+            "__rowNum__": 21,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 8
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 't')",
+            "type": "decimal",
+            "name": "temperatura",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Temperatura (°C)",
+                  "en": "Temperature (°C)"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese el valor obtenido de la persona.",
+                  "en": "Enter temperature value in (°C)"
+                }
+              }
+            },
+            "_row_num": 25,
+            "__rowNum__": 24,
+            "_token_type": "prompt",
+            "_type": "decimal",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 9
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'glucosa')",
+            "type": "integer",
+            "name": "glicemia",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Glicemia (mg/dl)",
+                  "en": "Glycemia"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese el valor de la glicemia de la persona.",
+                  "en": "Enter glycemia value"
+                }
+              }
+            },
+            "_row_num": 28,
+            "__rowNum__": 27,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 10
+          },
+          {
+            "required": "selected(data('seleccion_sv'), 'muac')",
+            "type": "decimal",
+            "name": "muac",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "MUAC (cm)",
+                  "en": "MUAC (cm)"
+                }
+              },
+              "hint": {
+                "text": {
+                  "default": "Ingrese el valor del muac de la persona en kg (separado por punto(.)).",
+                  "en": "Enter MUAC value in KG (separated by a point '.')"
+                }
+              }
+            },
+            "_row_num": 31,
+            "__rowNum__": 30,
+            "_token_type": "prompt",
+            "_type": "decimal",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 11
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": {
+                  "default": "Terminado",
+                  "en": "Finished"
+                }
+              }
+            },
+            "_row_num": 35,
+            "__rowNum__": 34,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen34",
+            "promptIdx": 12
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 41,
+            "_branch_label_enclosing_screen": "survey/_screen41",
+            "promptIdx": 13
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        "operations": [
+          {
+            "clause": "begin screen",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 33,
+              "__rowNum__": 32,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nif (selected(data('seleccion_sv'), 'peso')) {\nactivePromptIndicies.push(2);\n}\nif (selected(data('seleccion_sv'), 'talla')) {\nactivePromptIndicies.push(3);\n}\nif (selected(data('seleccion_sv'), 'ta')) {\nactivePromptIndicies.push(4);\nactivePromptIndicies.push(5);\n}\nif (selected(data('seleccion_sv'), 'fc')) {\nactivePromptIndicies.push(6);\n}\nif (selected(data('seleccion_sv'), 'fr')) {\nactivePromptIndicies.push(7);\n}\nif (selected(data('seleccion_sv'), 'sao2')) {\nactivePromptIndicies.push(8);\n}\nif (selected(data('seleccion_sv'), 't')) {\nactivePromptIndicies.push(9);\n}\nif (selected(data('seleccion_sv'), 'glucosa')) {\nactivePromptIndicies.push(10);\n}\nif (selected(data('seleccion_sv'), 'muac')) {\nactivePromptIndicies.push(11);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 34,
+            "__rowNum__": 33,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 40,
+              "__rowNum__": 39,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\nif (selected(data('seleccion_sv'), 'peso') && selected(data('seleccion_sv'), 'talla')) {\nassign('puntaje_Z', parseFloat((data('peso') / data('talla')).toFixed(2)));\nassign('calculo_imc', parseFloat((data('peso') / (data('talla')*data('talla'))).toFixed(2)));\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 1
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 41,
+            "operationIdx": 2
+          },
+          {
+            "_row_num": 41,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 3
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 41,
+            "operationIdx": 4
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_screen34": 1,
+          "_contents": 3,
+          "_screen41": 3
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": {
+                  "default": "SIGNOS VITALES Y ANTROPOMETRIA",
+                  "en": "VITAL SIGNS & ANTHROPOMETRY"
+                }
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 7
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_else6": 5,
+          "_screen7": 5,
+          "_endif8": 6,
+          "_contents": 7,
+          "_screen9": 7,
+          "_finalize": 9
+        }
+      }
+    },
+    "dataTableModel": {
+      "seleccion_sv": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "seleccion_sv_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "seleccion_sv.items",
+          "notUnitOfRetention": true
+        },
+        "valuesList": "selecc_sv_list",
+        "_defn": [
+          {
+            "_row_num": 4,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "seleccion_sv",
+        "elementName": "seleccion_sv",
+        "elementSet": "data",
+        "elementPath": "seleccion_sv",
+        "listChildElementKeys": [
+          "seleccion_sv_items"
+        ]
+      },
+      "peso": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "peso",
+        "elementName": "peso",
+        "elementSet": "data",
+        "elementPath": "peso"
+      },
+      "talla": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "talla",
+        "elementName": "talla",
+        "elementSet": "data",
+        "elementPath": "talla"
+      },
+      "ta_sistolica": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ta_sistolica",
+        "elementName": "ta_sistolica",
+        "elementSet": "data",
+        "elementPath": "ta_sistolica"
+      },
+      "ta_diastolica": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ta_diastolica",
+        "elementName": "ta_diastolica",
+        "elementSet": "data",
+        "elementPath": "ta_diastolica"
+      },
+      "frecuencia_cardiaca": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "frecuencia_cardiaca",
+        "elementName": "frecuencia_cardiaca",
+        "elementSet": "data",
+        "elementPath": "frecuencia_cardiaca"
+      },
+      "frecuencia_respiratoria": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 19,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "frecuencia_respiratoria",
+        "elementName": "frecuencia_respiratoria",
+        "elementSet": "data",
+        "elementPath": "frecuencia_respiratoria"
+      },
+      "saturacion_oxigeno": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "saturacion_oxigeno",
+        "elementName": "saturacion_oxigeno",
+        "elementSet": "data",
+        "elementPath": "saturacion_oxigeno"
+      },
+      "temperatura": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 25,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "temperatura",
+        "elementName": "temperatura",
+        "elementSet": "data",
+        "elementPath": "temperatura"
+      },
+      "glicemia": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "glicemia",
+        "elementName": "glicemia",
+        "elementSet": "data",
+        "elementPath": "glicemia"
+      },
+      "muac": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 31,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "muac",
+        "elementName": "muac",
+        "elementSet": "data",
+        "elementPath": "muac"
+      },
+      "puntaje_Z": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "puntaje_Z",
+        "elementName": "puntaje_Z",
+        "elementSet": "data",
+        "elementPath": "puntaje_Z"
+      },
+      "calculo_imc": {
+        "type": "number",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "calculo_imc",
+        "elementName": "calculo_imc",
+        "elementSet": "data",
+        "elementPath": "calculo_imc"
+      },
+      "reg_first_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_first_name",
+        "elementName": "reg_first_name",
+        "elementSet": "data",
+        "elementPath": "reg_first_name"
+      },
+      "reg_family_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_family_name",
+        "elementName": "reg_family_name",
+        "elementSet": "data",
+        "elementPath": "reg_family_name"
+      },
+      "reg_birthday": {
+        "type": "string",
+        "elementType": "date",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_birthday",
+        "elementName": "reg_birthday",
+        "elementSet": "data",
+        "elementPath": "reg_birthday"
+      },
+      "reg_gender": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "reg_gender",
+        "elementName": "reg_gender",
+        "elementSet": "data",
+        "elementPath": "reg_gender"
+      },
+      "seleccion_sv_items": {
+        "type": "string",
+        "elementKey": "seleccion_sv_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "seleccion_sv.items",
+        "notUnitOfRetention": true
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "seleccion_sv",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"peso\",\"display\":{\"title\":{\"text\":\"Peso\"}},\"_row_num\":3},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"talla\",\"display\":{\"title\":{\"text\":\"Talla\"}},\"_row_num\":4},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"ta\",\"display\":{\"title\":{\"text\":\"TA\"}},\"_row_num\":5},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"fc\",\"display\":{\"title\":{\"text\":\"FC\"}},\"_row_num\":6},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"fr\",\"display\":{\"title\":{\"text\":\"FR\"}},\"_row_num\":7},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"sao2\",\"display\":{\"title\":{\"text\":\"SaO2\"}},\"_row_num\":8},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"t\",\"display\":{\"title\":{\"text\":\"T°\"}},\"_row_num\":9},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"glucosa\",\"display\":{\"title\":{\"text\":\"Glucosa\"}},\"_row_num\":10},{\"choice_list_name\":\"selecc_sv_list\",\"data_value\":\"muac\",\"display\":{\"title\":{\"text\":\"MUAC\"}},\"_row_num\":11}]"
+      },
+      {
+        "_partition": "FormType",
+        "_aspect": "default",
+        "_key": "FormType.formType",
+        "_type": "string",
+        "_value": "SURVEY"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "ven_vitals"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":{\"default\":\"SIGNOS VITALES Y ANTROPOMETRIA\",\"en\":\"VITAL SIGNS & ANTHROPOMETRY\"}}"
+      }
+    ]
+  }
+}

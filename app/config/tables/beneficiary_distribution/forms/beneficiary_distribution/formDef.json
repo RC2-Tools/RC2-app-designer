@@ -1,0 +1,3112 @@
+{
+  "xlsx": {
+    "settings": [
+      {
+        "setting_name": "form_id",
+        "value": "beneficiary_distribution",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 201801023,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "table_id",
+        "value": "beneficiary_distribution",
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "beneficiary_distribution Form"
+          }
+        },
+        "_row_num": 5
+      }
+    ],
+    "survey": [
+      {
+        "type": "text",
+        "name": "officer",
+        "display": {
+          "prompt": {
+            "text": "Name of the distribution officer"
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "type": "select_one",
+        "values_list": "ben_type",
+        "name": "ben_proxy",
+        "display": {
+          "prompt": {
+            "text": "Hi, my name is {{data.officer}} from the Red Cross. I am going to verify all necessary documents for the distribution.\n\nAre you the beneficiary, or a proxy representing the beneficiary?"
+          }
+        },
+        "required": true,
+        "_row_num": 3
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('ben_proxy'), 'proxy')",
+        "_row_num": 4
+      },
+      {
+        "type": "select_one",
+        "values_list": "yes_no",
+        "name": "proxy_verif",
+        "display": {
+          "prompt": {
+            "text": "Please show me :\n\n- the proxy letter fully filled in and signed by the beneficiary\n- Beneficiary original official ID\n- RCRC beneficiary card \n- Proxy original official ID"
+          },
+          "hint": {
+            "text": "Are all 4 documents valid and does the beneficiary card have the VERIFICATION stamp and signature?"
+          }
+        },
+        "required": "selected(data('ben_proxy'), 'proxy')",
+        "_row_num": 5
+      },
+      {
+        "clause": "end if",
+        "_row_num": 6
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('ben_proxy'), 'ben')",
+        "_row_num": 7
+      },
+      {
+        "type": "select_one",
+        "values_list": "yes_no",
+        "name": "ben_verif",
+        "display": {
+          "prompt": {
+            "text": "Please show me :\n\n- the beneficiary RCRC card \n- beneficiary original ID document"
+          },
+          "hint": {
+            "text": "Are the 2 documents valid and does the beneficiary card have the VERIFICATION stamp and signature?"
+          }
+        },
+        "required": "selected(data('ben_proxy'), 'ben')",
+        "_row_num": 8
+      },
+      {
+        "clause": "end if",
+        "_row_num": 9
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('proxy_verif'), 'No') || selected(data('ben_verif'), 'No')",
+        "_row_num": 10
+      },
+      {
+        "type": "note",
+        "name": "verif_nok",
+        "display": {
+          "prompt": {
+            "text": "Prior to the distribution, you need to go to the verification desk and get their approval.\n\nPlease go to the Verification desk."
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "clause": "end if",
+        "_row_num": 12
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('proxy_verif'), 'Yes') || selected(data('ben_verif'), 'Yes')",
+        "_row_num": 13
+      },
+      {
+        "type": "select_one",
+        "values_list": "yes_no",
+        "name": "ben_check",
+        "display": {
+          "prompt": {
+            "text": "Do they match with the beneficiary data from the ben card?"
+          },
+          "hint": {
+            "text": "Please ensure that the planned distribution date is in line with today's date"
+          }
+        },
+        "required": "selected(data('proxy_verif'), 'Yes') || selected(data('ben_verif'), 'Yes')",
+        "_row_num": 14
+      },
+      {
+        "clause": "end if",
+        "_row_num": 15
+      },
+      {
+        "clause": "if",
+        "condition": "data('ben_check') == 'Yes'",
+        "_row_num": 16
+      },
+      {
+        "type": "acknowledge",
+        "name": "correct_ben_data",
+        "display": {
+          "prompt": {
+            "text": "Beneficiary data is correct.\n\nWe are now going to key in the proxy data and then we will proceed to the distribution."
+          },
+          "hint": {
+            "text": "Please keep the proxy letter at the distribution desk for archive."
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "clause": "end if",
+        "_row_num": 18
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('proxy_verif'), 'Yes')",
+        "_row_num": 19
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 20
+      },
+      {
+        "type": "select_one",
+        "values_list": "id_type",
+        "name": "proxy_id_type",
+        "display": {
+          "prompt": {
+            "text": "Type of ID of the proxy"
+          }
+        },
+        "required": "selected(data('proxy_verif'), 'Yes')",
+        "_row_num": 21
+      },
+      {
+        "type": "text",
+        "name": "proxy_id_nb",
+        "display": {
+          "prompt": {
+            "text": "Proxy's ID Number"
+          }
+        },
+        "required": "selected(data('proxy_verif'), 'Yes')",
+        "_row_num": 22
+      },
+      {
+        "type": "text",
+        "name": "proxy_lastname",
+        "display": {
+          "prompt": {
+            "text": "Proxy's LASTNAME(s)"
+          },
+          "hint": {
+            "text": "Please type in UPPERCASE"
+          },
+          "constraint_message": {
+            "text": "Please type LASTNAME in uppercase only."
+          }
+        },
+        "required": "selected(data('proxy_verif'), 'Yes')",
+        "constraint": "/[A-Z ]+/.test(data('proxy_lastname')) || !selected(data('proxy_verif'), 'Yes')",
+        "_row_num": 23
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 24
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 25
+      },
+      {
+        "type": "text",
+        "name": "proxy_firstname",
+        "display": {
+          "prompt": {
+            "text": "Proxy's firstname(s)"
+          }
+        },
+        "required": "selected(data('proxy_verif'), 'Yes')",
+        "_row_num": 26
+      },
+      {
+        "type": "select_one",
+        "values_list": "gender",
+        "name": "proxy_gender",
+        "display": {
+          "prompt": {
+            "text": "Proxy's gender"
+          }
+        },
+        "required": "selected(data('proxy_verif'), 'Yes')",
+        "_row_num": 27
+      },
+      {
+        "type": "select_one",
+        "values_list": "relationship",
+        "name": "proxy_relatioship",
+        "display": {
+          "prompt": {
+            "text": "Proxy's relationship with the beneficiary?"
+          }
+        },
+        "required": "selected(data('proxy_verif'), 'Yes')",
+        "_row_num": 28
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 29
+      },
+      {
+        "clause": "end if",
+        "_row_num": 30
+      },
+      {
+        "type": "acknowledge",
+        "name": "assigned_nb",
+        "display": {
+          "prompt": {
+            "text": "Assigned envelop/voucher/PIN #:\n\ndata('assigned_item_code')"
+          }
+        },
+        "_row_num": 31
+      },
+      {
+        "clause": "if",
+        "condition": "data('proxy_verif') == 'Yes'",
+        "_row_num": 32
+      },
+      {
+        "type": "signature",
+        "name": "get_sign_proxy",
+        "display": {
+          "prompt": {
+            "text": "Please have the proxy: {{data.proxy_lastname}} / {{data.proxy_firstname}} signing off the reception of the above checked items, on behalf of the beneficiary {{data.ben_lastname}} / {{data.ben_firstname}}."
+          },
+          "hint": {
+            "text": "Please keep the proxy letter at the distribution desk for archive."
+          }
+        },
+        "required": "data('proxy_verif') == 'Yes'",
+        "_row_num": 33
+      },
+      {
+        "clause": "end if",
+        "_row_num": 34
+      },
+      {
+        "clause": "if",
+        "condition": "data('ben_verif') == 'Yes'",
+        "_row_num": 35
+      },
+      {
+        "type": "signature",
+        "name": "get_sign_ben",
+        "display": {
+          "prompt": {
+            "text": "Please have {{data.ben_lastname}} / {{data.ben_firstname}} sign off the reception of the above checked items."
+          }
+        },
+        "required": "data('ben_verif') == 'Yes'",
+        "_row_num": 36
+      },
+      {
+        "type": "acknowledge",
+        "name": "stamp_card_ben",
+        "display": {
+          "prompt": {
+            "text": "Please stamp and sign the beneficiary card to confirm that the above checked items have been distributed to {{data.ben_lastname}} / {{data.ben_firstname}}."
+          }
+        },
+        "_row_num": 37
+      },
+      {
+        "clause": "end if",
+        "_row_num": 38
+      },
+      {
+        "clause": "if",
+        "condition": "data('proxy_verif') == 'Yes' || data('ben_verif') == 'Yes'",
+        "_row_num": 39
+      },
+      {
+        "type": "geopoint",
+        "name": "site_gps",
+        "display": {
+          "prompt": {
+            "text": "Collect the GPS coordinates of the distribution site"
+          }
+        },
+        "required": "data('proxy_verif') == 'Yes' || data('ben_verif') == 'Yes'",
+        "_row_num": 40
+      },
+      {
+        "type": "signature",
+        "name": "rcrc_signature",
+        "display": {
+          "prompt": {
+            "text": "Please {{officer}} sign off the distribution:"
+          }
+        },
+        "required": "data('proxy_verif') == 'Yes' || data('ben_verif') == 'Yes'",
+        "_row_num": 41
+      },
+      {
+        "type": "note",
+        "name": "final_end",
+        "display": {
+          "prompt": {
+            "text": "Thank you, the process has been completed!"
+          }
+        },
+        "_row_num": 42
+      },
+      {
+        "clause": "end if",
+        "_row_num": 43
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "yes_no",
+        "data_value": "Yes",
+        "display": {
+          "title": {
+            "text": "Yes"
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "yes_no",
+        "data_value": "No",
+        "display": {
+          "title": {
+            "text": "No"
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "ben_type",
+        "data_value": "ben",
+        "display": {
+          "title": {
+            "text": "beneficiary"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "ben_type",
+        "data_value": "proxy",
+        "display": {
+          "title": {
+            "text": "proxy"
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "nic",
+        "display": {
+          "title": {
+            "text": "National identity card"
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "driving",
+        "display": {
+          "title": {
+            "text": "Driving licence"
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "passport",
+        "display": {
+          "title": {
+            "text": "Passport"
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "pin",
+        "display": {
+          "title": {
+            "text": "Card with personal identification number (PIN)"
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "health_card",
+        "display": {
+          "title": {
+            "text": "Health insurance card"
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "company_id",
+        "display": {
+          "title": {
+            "text": "Company ID"
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "senior_id",
+        "display": {
+          "title": {
+            "text": "Senior citizen ID"
+          }
+        },
+        "_row_num": 14
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "marriage",
+        "display": {
+          "title": {
+            "text": "Marriage certificate"
+          }
+        },
+        "_row_num": 15
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "student_id",
+        "display": {
+          "title": {
+            "text": "School/student ID"
+          }
+        },
+        "_row_num": 16
+      },
+      {
+        "choice_list_name": "id_type",
+        "data_value": "voter_id",
+        "display": {
+          "title": {
+            "text": "Voter ID"
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "choice_list_name": "gender",
+        "data_value": "male",
+        "display": {
+          "title": {
+            "text": "Male"
+          }
+        },
+        "_row_num": 19
+      },
+      {
+        "choice_list_name": "gender",
+        "data_value": "female",
+        "display": {
+          "title": {
+            "text": "Female"
+          }
+        },
+        "_row_num": 20
+      },
+      {
+        "choice_list_name": "gender",
+        "data_value": "third_gender",
+        "display": {
+          "title": {
+            "text": "Third gender"
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "son",
+        "display": {
+          "title": {
+            "text": "Son"
+          }
+        },
+        "_row_num": 23
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "daughter",
+        "display": {
+          "title": {
+            "text": "Daughter"
+          }
+        },
+        "_row_num": 24
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "wife",
+        "display": {
+          "title": {
+            "text": "Wife"
+          }
+        },
+        "_row_num": 25
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "husband",
+        "display": {
+          "title": {
+            "text": "Husband"
+          }
+        },
+        "_row_num": 26
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "brother",
+        "display": {
+          "title": {
+            "text": "Brother"
+          }
+        },
+        "_row_num": 27
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "sister",
+        "display": {
+          "title": {
+            "text": "Sister"
+          }
+        },
+        "_row_num": 28
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "father",
+        "display": {
+          "title": {
+            "text": "Father"
+          }
+        },
+        "_row_num": 29
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "mother",
+        "display": {
+          "title": {
+            "text": "Mother"
+          }
+        },
+        "_row_num": 30
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "cousin",
+        "display": {
+          "title": {
+            "text": "Cousin"
+          }
+        },
+        "_row_num": 31
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "uncle",
+        "display": {
+          "title": {
+            "text": "Uncle"
+          }
+        },
+        "_row_num": 32
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "aunt",
+        "display": {
+          "title": {
+            "text": "Aunt"
+          }
+        },
+        "_row_num": 33
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "neighbour",
+        "display": {
+          "title": {
+            "text": "Neighbour"
+          }
+        },
+        "_row_num": 34
+      },
+      {
+        "choice_list_name": "relationship",
+        "data_value": "friend",
+        "display": {
+          "title": {
+            "text": "Friend"
+          }
+        },
+        "_row_num": 35
+      }
+    ],
+    "initial": [
+      {
+        "clause": "do section survey",
+        "_row_num": 2
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 3
+      }
+    ],
+    "properties": [
+      {
+        "partition": "SurveyUtil",
+        "aspect": "default",
+        "key": "SurveyUtil.formId",
+        "type": "string",
+        "value": "wrong_form",
+        "_row_num": 2
+      },
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "unverifiedUserCanCreate",
+        "type": "boolean",
+        "value": "false",
+        "_row_num": 3
+      },
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "defaultAccessOnCreation",
+        "type": "string",
+        "value": "HIDDEN",
+        "_row_num": 4
+      }
+    ],
+    "model": [
+      {
+        "type": "string",
+        "name": "officer",
+        "_row_num": 2
+      },
+      {
+        "type": "string",
+        "name": "ben_proxy",
+        "_row_num": 3
+      },
+      {
+        "type": "string",
+        "name": "proxy_verif",
+        "_row_num": 4
+      },
+      {
+        "type": "string",
+        "name": "ben_verif",
+        "_row_num": 5
+      },
+      {
+        "type": "string",
+        "name": "ben_check",
+        "_row_num": 6
+      },
+      {
+        "type": "boolean",
+        "name": "correct_ben_data",
+        "_row_num": 7
+      },
+      {
+        "type": "string",
+        "name": "proxy_id_type",
+        "_row_num": 8
+      },
+      {
+        "type": "string",
+        "name": "proxy_id_nb",
+        "_row_num": 9
+      },
+      {
+        "type": "string",
+        "name": "proxy_lastname",
+        "_row_num": 10
+      },
+      {
+        "type": "string",
+        "name": "proxy_firstname",
+        "_row_num": 11
+      },
+      {
+        "type": "string",
+        "name": "proxy_gender",
+        "_row_num": 12
+      },
+      {
+        "type": "string",
+        "name": "proxy_relatioship",
+        "_row_num": 13
+      },
+      {
+        "type": "boolean",
+        "name": "assigned_nb",
+        "_row_num": 14
+      },
+      {
+        "type": "signature",
+        "name": "get_sign_proxy",
+        "_row_num": 15
+      },
+      {
+        "type": "signature",
+        "name": "get_sign_ben",
+        "_row_num": 16
+      },
+      {
+        "type": "boolean",
+        "name": "stamp_card_ben",
+        "_row_num": 17
+      },
+      {
+        "type": "geopoint",
+        "name": "site_gps",
+        "_row_num": 18
+      },
+      {
+        "type": "string",
+        "name": "assigned_item_code",
+        "_row_num": 19
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "beneficiary_distribution",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 201801023,
+        "_row_num": 3
+      },
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "beneficiary_distribution",
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "beneficiary_distribution Form"
+          }
+        },
+        "_row_num": 5
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": "default"
+              }
+            },
+            "name": "default"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "default"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "beneficiary_distribution Form"
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "yes_no": [
+        {
+          "choice_list_name": "yes_no",
+          "data_value": "Yes",
+          "display": {
+            "title": {
+              "text": "Yes"
+            }
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "yes_no",
+          "data_value": "No",
+          "display": {
+            "title": {
+              "text": "No"
+            }
+          },
+          "_row_num": 3
+        }
+      ],
+      "ben_type": [
+        {
+          "choice_list_name": "ben_type",
+          "data_value": "ben",
+          "display": {
+            "title": {
+              "text": "beneficiary"
+            }
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "ben_type",
+          "data_value": "proxy",
+          "display": {
+            "title": {
+              "text": "proxy"
+            }
+          },
+          "_row_num": 6
+        }
+      ],
+      "id_type": [
+        {
+          "choice_list_name": "id_type",
+          "data_value": "nic",
+          "display": {
+            "title": {
+              "text": "National identity card"
+            }
+          },
+          "_row_num": 8
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "driving",
+          "display": {
+            "title": {
+              "text": "Driving licence"
+            }
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "passport",
+          "display": {
+            "title": {
+              "text": "Passport"
+            }
+          },
+          "_row_num": 10
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "pin",
+          "display": {
+            "title": {
+              "text": "Card with personal identification number (PIN)"
+            }
+          },
+          "_row_num": 11
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "health_card",
+          "display": {
+            "title": {
+              "text": "Health insurance card"
+            }
+          },
+          "_row_num": 12
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "company_id",
+          "display": {
+            "title": {
+              "text": "Company ID"
+            }
+          },
+          "_row_num": 13
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "senior_id",
+          "display": {
+            "title": {
+              "text": "Senior citizen ID"
+            }
+          },
+          "_row_num": 14
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "marriage",
+          "display": {
+            "title": {
+              "text": "Marriage certificate"
+            }
+          },
+          "_row_num": 15
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "student_id",
+          "display": {
+            "title": {
+              "text": "School/student ID"
+            }
+          },
+          "_row_num": 16
+        },
+        {
+          "choice_list_name": "id_type",
+          "data_value": "voter_id",
+          "display": {
+            "title": {
+              "text": "Voter ID"
+            }
+          },
+          "_row_num": 17
+        }
+      ],
+      "gender": [
+        {
+          "choice_list_name": "gender",
+          "data_value": "male",
+          "display": {
+            "title": {
+              "text": "Male"
+            }
+          },
+          "_row_num": 19
+        },
+        {
+          "choice_list_name": "gender",
+          "data_value": "female",
+          "display": {
+            "title": {
+              "text": "Female"
+            }
+          },
+          "_row_num": 20
+        },
+        {
+          "choice_list_name": "gender",
+          "data_value": "third_gender",
+          "display": {
+            "title": {
+              "text": "Third gender"
+            }
+          },
+          "_row_num": 21
+        }
+      ],
+      "relationship": [
+        {
+          "choice_list_name": "relationship",
+          "data_value": "son",
+          "display": {
+            "title": {
+              "text": "Son"
+            }
+          },
+          "_row_num": 23
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "daughter",
+          "display": {
+            "title": {
+              "text": "Daughter"
+            }
+          },
+          "_row_num": 24
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "wife",
+          "display": {
+            "title": {
+              "text": "Wife"
+            }
+          },
+          "_row_num": 25
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "husband",
+          "display": {
+            "title": {
+              "text": "Husband"
+            }
+          },
+          "_row_num": 26
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "brother",
+          "display": {
+            "title": {
+              "text": "Brother"
+            }
+          },
+          "_row_num": 27
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "sister",
+          "display": {
+            "title": {
+              "text": "Sister"
+            }
+          },
+          "_row_num": 28
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "father",
+          "display": {
+            "title": {
+              "text": "Father"
+            }
+          },
+          "_row_num": 29
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "mother",
+          "display": {
+            "title": {
+              "text": "Mother"
+            }
+          },
+          "_row_num": 30
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "cousin",
+          "display": {
+            "title": {
+              "text": "Cousin"
+            }
+          },
+          "_row_num": 31
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "uncle",
+          "display": {
+            "title": {
+              "text": "Uncle"
+            }
+          },
+          "_row_num": 32
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "aunt",
+          "display": {
+            "title": {
+              "text": "Aunt"
+            }
+          },
+          "_row_num": 33
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "neighbour",
+          "display": {
+            "title": {
+              "text": "Neighbour"
+            }
+          },
+          "_row_num": 34
+        },
+        {
+          "choice_list_name": "relationship",
+          "data_value": "friend",
+          "display": {
+            "title": {
+              "text": "Friend"
+            }
+          },
+          "_row_num": 35
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "officer": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "officer"
+      },
+      "ben_proxy": {
+        "type": "string",
+        "valuesList": "ben_type",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ben_proxy"
+      },
+      "proxy_verif": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_verif"
+      },
+      "ben_verif": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ben_verif"
+      },
+      "ben_check": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ben_check"
+      },
+      "correct_ben_data": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "correct_ben_data"
+      },
+      "proxy_id_type": {
+        "type": "string",
+        "valuesList": "id_type",
+        "_defn": [
+          {
+            "_row_num": 21,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_id_type"
+      },
+      "proxy_id_nb": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_id_nb"
+      },
+      "proxy_lastname": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 23,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_lastname"
+      },
+      "proxy_firstname": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 26,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_firstname"
+      },
+      "proxy_gender": {
+        "type": "string",
+        "valuesList": "gender",
+        "_defn": [
+          {
+            "_row_num": 27,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_gender"
+      },
+      "proxy_relatioship": {
+        "type": "string",
+        "valuesList": "relationship",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_relatioship"
+      },
+      "assigned_nb": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 31,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "assigned_nb"
+      },
+      "get_sign_proxy": {
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "get_sign_proxy_uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "get_sign_proxy_contentType"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 33,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "get_sign_proxy"
+      },
+      "get_sign_ben": {
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "get_sign_ben_uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "get_sign_ben_contentType"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 36,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "get_sign_ben"
+      },
+      "stamp_card_ben": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 37,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "stamp_card_ben"
+      },
+      "site_gps": {
+        "type": "object",
+        "elementType": "geopoint",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "elementKey": "site_gps_latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "elementKey": "site_gps_longitude"
+          },
+          "altitude": {
+            "type": "number",
+            "elementKey": "site_gps_altitude"
+          },
+          "accuracy": {
+            "type": "number",
+            "elementKey": "site_gps_accuracy"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 40,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "site_gps"
+      },
+      "assigned_item_code": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 19,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "assigned_item_code"
+      },
+      "rcrc_signature": {
+        "_defn": [
+          {
+            "_row_num": 41,
+            "section_name": "survey"
+          }
+        ],
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "rcrc_signature_uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "rcrc_signature_contentType"
+          }
+        },
+        "elementKey": "rcrc_signature"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "text",
+            "name": "officer",
+            "display": {
+              "prompt": {
+                "text": "Name of the distribution officer"
+              }
+            },
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "prompt",
+            "_type": "text",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "type": "select_one",
+            "values_list": "ben_type",
+            "name": "ben_proxy",
+            "display": {
+              "prompt": {
+                "text": "Hi, my name is {{data.officer}} from the Red Cross. I am going to verify all necessary documents for the distribution.\n\nAre you the beneficiary, or a proxy representing the beneficiary?"
+              }
+            },
+            "required": true,
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen3",
+            "promptIdx": 1
+          },
+          {
+            "type": "select_one",
+            "values_list": "yes_no",
+            "name": "proxy_verif",
+            "display": {
+              "prompt": {
+                "text": "Please show me :\n\n- the proxy letter fully filled in and signed by the beneficiary\n- Beneficiary original official ID\n- RCRC beneficiary card \n- Proxy original official ID"
+              },
+              "hint": {
+                "text": "Are all 4 documents valid and does the beneficiary card have the VERIFICATION stamp and signature?"
+              }
+            },
+            "required": "selected(data('ben_proxy'), 'proxy')",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen5",
+            "promptIdx": 2
+          },
+          {
+            "type": "select_one",
+            "values_list": "yes_no",
+            "name": "ben_verif",
+            "display": {
+              "prompt": {
+                "text": "Please show me :\n\n- the beneficiary RCRC card \n- beneficiary original ID document"
+              },
+              "hint": {
+                "text": "Are the 2 documents valid and does the beneficiary card have the VERIFICATION stamp and signature?"
+              }
+            },
+            "required": "selected(data('ben_proxy'), 'ben')",
+            "_row_num": 8,
+            "__rowNum__": 7,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 3
+          },
+          {
+            "type": "note",
+            "name": "verif_nok",
+            "display": {
+              "prompt": {
+                "text": "Prior to the distribution, you need to go to the verification desk and get their approval.\n\nPlease go to the Verification desk."
+              }
+            },
+            "_row_num": 11,
+            "__rowNum__": 10,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen11",
+            "promptIdx": 4
+          },
+          {
+            "type": "select_one",
+            "values_list": "yes_no",
+            "name": "ben_check",
+            "display": {
+              "prompt": {
+                "text": "Do they match with the beneficiary data from the ben card?"
+              },
+              "hint": {
+                "text": "Please ensure that the planned distribution date is in line with today's date"
+              }
+            },
+            "required": "selected(data('proxy_verif'), 'Yes') || selected(data('ben_verif'), 'Yes')",
+            "_row_num": 14,
+            "__rowNum__": 13,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen14",
+            "promptIdx": 5
+          },
+          {
+            "type": "acknowledge",
+            "name": "correct_ben_data",
+            "display": {
+              "prompt": {
+                "text": "Beneficiary data is correct.\n\nWe are now going to key in the proxy data and then we will proceed to the distribution."
+              },
+              "hint": {
+                "text": "Please keep the proxy letter at the distribution desk for archive."
+              }
+            },
+            "_row_num": 17,
+            "__rowNum__": 16,
+            "_token_type": "prompt",
+            "_type": "acknowledge",
+            "_branch_label_enclosing_screen": "survey/_screen17",
+            "promptIdx": 6
+          },
+          {
+            "type": "select_one",
+            "values_list": "id_type",
+            "name": "proxy_id_type",
+            "display": {
+              "prompt": {
+                "text": "Type of ID of the proxy"
+              }
+            },
+            "required": "selected(data('proxy_verif'), 'Yes')",
+            "_row_num": 21,
+            "__rowNum__": 20,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen20",
+            "promptIdx": 7
+          },
+          {
+            "type": "text",
+            "name": "proxy_id_nb",
+            "display": {
+              "prompt": {
+                "text": "Proxy's ID Number"
+              }
+            },
+            "required": "selected(data('proxy_verif'), 'Yes')",
+            "_row_num": 22,
+            "__rowNum__": 21,
+            "_token_type": "prompt",
+            "_type": "text",
+            "_branch_label_enclosing_screen": "survey/_screen20",
+            "promptIdx": 8
+          },
+          {
+            "type": "text",
+            "name": "proxy_lastname",
+            "display": {
+              "prompt": {
+                "text": "Proxy's LASTNAME(s)"
+              },
+              "hint": {
+                "text": "Please type in UPPERCASE"
+              },
+              "constraint_message": {
+                "text": "Please type LASTNAME in uppercase only."
+              }
+            },
+            "required": "selected(data('proxy_verif'), 'Yes')",
+            "constraint": "/[A-Z ]+/.test(data('proxy_lastname')) || !selected(data('proxy_verif'), 'Yes')",
+            "_row_num": 23,
+            "__rowNum__": 22,
+            "_token_type": "prompt",
+            "_type": "text",
+            "_branch_label_enclosing_screen": "survey/_screen20",
+            "promptIdx": 9
+          },
+          {
+            "type": "text",
+            "name": "proxy_firstname",
+            "display": {
+              "prompt": {
+                "text": "Proxy's firstname(s)"
+              }
+            },
+            "required": "selected(data('proxy_verif'), 'Yes')",
+            "_row_num": 26,
+            "__rowNum__": 25,
+            "_token_type": "prompt",
+            "_type": "text",
+            "_branch_label_enclosing_screen": "survey/_screen25",
+            "promptIdx": 10
+          },
+          {
+            "type": "select_one",
+            "values_list": "gender",
+            "name": "proxy_gender",
+            "display": {
+              "prompt": {
+                "text": "Proxy's gender"
+              }
+            },
+            "required": "selected(data('proxy_verif'), 'Yes')",
+            "_row_num": 27,
+            "__rowNum__": 26,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen25",
+            "promptIdx": 11
+          },
+          {
+            "type": "select_one",
+            "values_list": "relationship",
+            "name": "proxy_relatioship",
+            "display": {
+              "prompt": {
+                "text": "Proxy's relationship with the beneficiary?"
+              }
+            },
+            "required": "selected(data('proxy_verif'), 'Yes')",
+            "_row_num": 28,
+            "__rowNum__": 27,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen25",
+            "promptIdx": 12
+          },
+          {
+            "type": "acknowledge",
+            "name": "assigned_nb",
+            "display": {
+              "prompt": {
+                "text": "Assigned envelop/voucher/PIN #:\n\ndata('assigned_item_code')"
+              }
+            },
+            "_row_num": 31,
+            "__rowNum__": 30,
+            "_token_type": "prompt",
+            "_type": "acknowledge",
+            "_branch_label_enclosing_screen": "survey/_screen31",
+            "promptIdx": 13
+          },
+          {
+            "type": "signature",
+            "name": "get_sign_proxy",
+            "display": {
+              "prompt": {
+                "text": "Please have the proxy: {{data.proxy_lastname}} / {{data.proxy_firstname}} signing off the reception of the above checked items, on behalf of the beneficiary {{data.ben_lastname}} / {{data.ben_firstname}}."
+              },
+              "hint": {
+                "text": "Please keep the proxy letter at the distribution desk for archive."
+              }
+            },
+            "required": "data('proxy_verif') == 'Yes'",
+            "_row_num": 33,
+            "__rowNum__": 32,
+            "_token_type": "prompt",
+            "_type": "signature",
+            "_branch_label_enclosing_screen": "survey/_screen33",
+            "promptIdx": 14
+          },
+          {
+            "type": "signature",
+            "name": "get_sign_ben",
+            "display": {
+              "prompt": {
+                "text": "Please have {{data.ben_lastname}} / {{data.ben_firstname}} sign off the reception of the above checked items."
+              }
+            },
+            "required": "data('ben_verif') == 'Yes'",
+            "_row_num": 36,
+            "__rowNum__": 35,
+            "_token_type": "prompt",
+            "_type": "signature",
+            "_branch_label_enclosing_screen": "survey/_screen36",
+            "promptIdx": 15
+          },
+          {
+            "type": "acknowledge",
+            "name": "stamp_card_ben",
+            "display": {
+              "prompt": {
+                "text": "Please stamp and sign the beneficiary card to confirm that the above checked items have been distributed to {{data.ben_lastname}} / {{data.ben_firstname}}."
+              }
+            },
+            "_row_num": 37,
+            "__rowNum__": 36,
+            "_token_type": "prompt",
+            "_type": "acknowledge",
+            "_branch_label_enclosing_screen": "survey/_screen37",
+            "promptIdx": 16
+          },
+          {
+            "type": "geopoint",
+            "name": "site_gps",
+            "display": {
+              "prompt": {
+                "text": "Collect the GPS coordinates of the distribution site"
+              }
+            },
+            "required": "data('proxy_verif') == 'Yes' || data('ben_verif') == 'Yes'",
+            "_row_num": 40,
+            "__rowNum__": 39,
+            "_token_type": "prompt",
+            "_type": "geopoint",
+            "_branch_label_enclosing_screen": "survey/_screen40",
+            "promptIdx": 17
+          },
+          {
+            "type": "signature",
+            "name": "rcrc_signature",
+            "display": {
+              "prompt": {
+                "text": "Please {{officer}} sign off the distribution:"
+              }
+            },
+            "required": "data('proxy_verif') == 'Yes' || data('ben_verif') == 'Yes'",
+            "_row_num": 41,
+            "__rowNum__": 40,
+            "_token_type": "prompt",
+            "_type": "signature",
+            "_branch_label_enclosing_screen": "survey/_screen41",
+            "promptIdx": 18
+          },
+          {
+            "type": "note",
+            "name": "final_end",
+            "display": {
+              "prompt": {
+                "text": "Thank you, the process has been completed!"
+              }
+            },
+            "_row_num": 42,
+            "__rowNum__": 41,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen42",
+            "promptIdx": 19
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 44,
+            "_branch_label_enclosing_screen": "survey/_screen44",
+            "promptIdx": 20
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            1,
+            2,
+            3,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            14,
+            15,
+            17,
+            18
+          ]
+        },
+        "operations": [
+          {
+            "_row_num": 2,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "_row_num": 3,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 1
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('ben_proxy'), 'proxy')",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "goto_label",
+            "_branch_label": "_then4",
+            "operationIdx": 2
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 3
+          },
+          {
+            "_row_num": 5,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 4
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif6",
+            "_row_num": 6,
+            "operationIdx": 5
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('ben_proxy'), 'ben')",
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "goto_label",
+            "_branch_label": "_then7",
+            "operationIdx": 6
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else9",
+            "_row_num": 9,
+            "operationIdx": 7
+          },
+          {
+            "_row_num": 8,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(3);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 8
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif9",
+            "_row_num": 9,
+            "operationIdx": 9
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('proxy_verif'), 'No') || selected(data('ben_verif'), 'No')",
+            "_row_num": 10,
+            "__rowNum__": 9,
+            "_token_type": "goto_label",
+            "_branch_label": "_then10",
+            "operationIdx": 10
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else12",
+            "_row_num": 12,
+            "operationIdx": 11
+          },
+          {
+            "_row_num": 11,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(4);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 12
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif12",
+            "_row_num": 12,
+            "operationIdx": 13
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('proxy_verif'), 'Yes') || selected(data('ben_verif'), 'Yes')",
+            "_row_num": 13,
+            "__rowNum__": 12,
+            "_token_type": "goto_label",
+            "_branch_label": "_then13",
+            "operationIdx": 14
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else15",
+            "_row_num": 15,
+            "operationIdx": 15
+          },
+          {
+            "_row_num": 14,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(5);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 16
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif15",
+            "_row_num": 15,
+            "operationIdx": 17
+          },
+          {
+            "clause": "if",
+            "condition": "data('ben_check') == 'Yes'",
+            "_row_num": 16,
+            "__rowNum__": 15,
+            "_token_type": "goto_label",
+            "_branch_label": "_then16",
+            "operationIdx": 18
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else18",
+            "_row_num": 18,
+            "operationIdx": 19
+          },
+          {
+            "_row_num": 17,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(6);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 20
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif18",
+            "_row_num": 18,
+            "operationIdx": 21
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('proxy_verif'), 'Yes')",
+            "_row_num": 19,
+            "__rowNum__": 18,
+            "_token_type": "goto_label",
+            "_branch_label": "_then19",
+            "operationIdx": 22
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else30",
+            "_row_num": 30,
+            "operationIdx": 23
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 20,
+            "__rowNum__": 19,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 24,
+              "__rowNum__": 23,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(7);\nactivePromptIndicies.push(8);\nactivePromptIndicies.push(9);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 24
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 25,
+            "__rowNum__": 24,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 29,
+              "__rowNum__": 28,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\nactivePromptIndicies.push(11);\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 25
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif30",
+            "_row_num": 30,
+            "operationIdx": 26
+          },
+          {
+            "_row_num": 31,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 27
+          },
+          {
+            "clause": "if",
+            "condition": "data('proxy_verif') == 'Yes'",
+            "_row_num": 32,
+            "__rowNum__": 31,
+            "_token_type": "goto_label",
+            "_branch_label": "_then32",
+            "operationIdx": 28
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else34",
+            "_row_num": 34,
+            "operationIdx": 29
+          },
+          {
+            "_row_num": 33,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 30
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif34",
+            "_row_num": 34,
+            "operationIdx": 31
+          },
+          {
+            "clause": "if",
+            "condition": "data('ben_verif') == 'Yes'",
+            "_row_num": 35,
+            "__rowNum__": 34,
+            "_token_type": "goto_label",
+            "_branch_label": "_then35",
+            "operationIdx": 32
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else38",
+            "_row_num": 38,
+            "operationIdx": 33
+          },
+          {
+            "_row_num": 36,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(15);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 34
+          },
+          {
+            "_row_num": 37,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(16);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 35
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif38",
+            "_row_num": 38,
+            "operationIdx": 36
+          },
+          {
+            "clause": "if",
+            "condition": "data('proxy_verif') == 'Yes' || data('ben_verif') == 'Yes'",
+            "_row_num": 39,
+            "__rowNum__": 38,
+            "_token_type": "goto_label",
+            "_branch_label": "_then39",
+            "operationIdx": 37
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else43",
+            "_row_num": 43,
+            "operationIdx": 38
+          },
+          {
+            "_row_num": 40,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(17);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 39
+          },
+          {
+            "_row_num": 41,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(18);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 40
+          },
+          {
+            "_row_num": 42,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(19);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 41
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif43",
+            "_row_num": 43,
+            "operationIdx": 42
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 44,
+            "operationIdx": 43
+          },
+          {
+            "_row_num": 44,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(20);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 44
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 44,
+            "operationIdx": 45
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_screen3": 1,
+          "_then4": 4,
+          "_screen5": 4,
+          "_else6": 6,
+          "_endif6": 6,
+          "_then7": 8,
+          "_screen8": 8,
+          "_else9": 10,
+          "_endif9": 10,
+          "_then10": 12,
+          "_screen11": 12,
+          "_else12": 14,
+          "_endif12": 14,
+          "_then13": 16,
+          "_screen14": 16,
+          "_else15": 18,
+          "_endif15": 18,
+          "_then16": 20,
+          "_screen17": 20,
+          "_else18": 22,
+          "_endif18": 22,
+          "_then19": 24,
+          "_screen20": 24,
+          "_screen25": 25,
+          "_else30": 27,
+          "_endif30": 27,
+          "_screen31": 27,
+          "_then32": 30,
+          "_screen33": 30,
+          "_else34": 32,
+          "_endif34": 32,
+          "_then35": 34,
+          "_screen36": 34,
+          "_screen37": 35,
+          "_else38": 37,
+          "_endif38": 37,
+          "_then39": 39,
+          "_screen40": 39,
+          "_screen41": 40,
+          "_screen42": 41,
+          "_else43": 43,
+          "_endif43": 43,
+          "_contents": 44,
+          "_screen44": 44
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": "beneficiary_distribution Form"
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 4,
+            "_branch_label_enclosing_screen": "initial/_screen4",
+            "promptIdx": 1
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "do section survey",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 0
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 1
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 4,
+            "operationIdx": 2
+          },
+          {
+            "_row_num": 4,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 3
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 4,
+            "operationIdx": 4
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 4,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 4,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 6
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 4,
+            "operationIdx": 7
+          }
+        ],
+        "branch_label_map": {
+          "_contents": 3,
+          "_screen4": 3,
+          "_finalize": 5
+        }
+      }
+    },
+    "dataTableModel": {
+      "officer": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 2,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "officer",
+        "elementName": "officer",
+        "elementSet": "data",
+        "elementPath": "officer"
+      },
+      "ben_proxy": {
+        "type": "string",
+        "valuesList": "ben_type",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ben_proxy",
+        "elementName": "ben_proxy",
+        "elementSet": "data",
+        "elementPath": "ben_proxy"
+      },
+      "proxy_verif": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_verif",
+        "elementName": "proxy_verif",
+        "elementSet": "data",
+        "elementPath": "proxy_verif"
+      },
+      "ben_verif": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ben_verif",
+        "elementName": "ben_verif",
+        "elementSet": "data",
+        "elementPath": "ben_verif"
+      },
+      "ben_check": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 14,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ben_check",
+        "elementName": "ben_check",
+        "elementSet": "data",
+        "elementPath": "ben_check"
+      },
+      "correct_ben_data": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "correct_ben_data",
+        "elementName": "correct_ben_data",
+        "elementSet": "data",
+        "elementPath": "correct_ben_data"
+      },
+      "proxy_id_type": {
+        "type": "string",
+        "valuesList": "id_type",
+        "_defn": [
+          {
+            "_row_num": 21,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_id_type",
+        "elementName": "proxy_id_type",
+        "elementSet": "data",
+        "elementPath": "proxy_id_type"
+      },
+      "proxy_id_nb": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_id_nb",
+        "elementName": "proxy_id_nb",
+        "elementSet": "data",
+        "elementPath": "proxy_id_nb"
+      },
+      "proxy_lastname": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 23,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_lastname",
+        "elementName": "proxy_lastname",
+        "elementSet": "data",
+        "elementPath": "proxy_lastname"
+      },
+      "proxy_firstname": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 26,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_firstname",
+        "elementName": "proxy_firstname",
+        "elementSet": "data",
+        "elementPath": "proxy_firstname"
+      },
+      "proxy_gender": {
+        "type": "string",
+        "valuesList": "gender",
+        "_defn": [
+          {
+            "_row_num": 27,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_gender",
+        "elementName": "proxy_gender",
+        "elementSet": "data",
+        "elementPath": "proxy_gender"
+      },
+      "proxy_relatioship": {
+        "type": "string",
+        "valuesList": "relationship",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "proxy_relatioship",
+        "elementName": "proxy_relatioship",
+        "elementSet": "data",
+        "elementPath": "proxy_relatioship"
+      },
+      "assigned_nb": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 31,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "assigned_nb",
+        "elementName": "assigned_nb",
+        "elementSet": "data",
+        "elementPath": "assigned_nb"
+      },
+      "get_sign_proxy": {
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "get_sign_proxy_uriFragment",
+            "elementName": "uriFragment",
+            "elementSet": "data",
+            "elementPath": "get_sign_proxy.uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "get_sign_proxy_contentType",
+            "elementName": "contentType",
+            "elementSet": "data",
+            "elementPath": "get_sign_proxy.contentType"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 33,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "get_sign_proxy",
+        "elementName": "get_sign_proxy",
+        "elementSet": "data",
+        "elementPath": "get_sign_proxy",
+        "listChildElementKeys": [
+          "get_sign_proxy_contentType",
+          "get_sign_proxy_uriFragment"
+        ],
+        "notUnitOfRetention": true
+      },
+      "get_sign_ben": {
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "get_sign_ben_uriFragment",
+            "elementName": "uriFragment",
+            "elementSet": "data",
+            "elementPath": "get_sign_ben.uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "get_sign_ben_contentType",
+            "elementName": "contentType",
+            "elementSet": "data",
+            "elementPath": "get_sign_ben.contentType"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 36,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "get_sign_ben",
+        "elementName": "get_sign_ben",
+        "elementSet": "data",
+        "elementPath": "get_sign_ben",
+        "listChildElementKeys": [
+          "get_sign_ben_contentType",
+          "get_sign_ben_uriFragment"
+        ],
+        "notUnitOfRetention": true
+      },
+      "stamp_card_ben": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 37,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 17,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "stamp_card_ben",
+        "elementName": "stamp_card_ben",
+        "elementSet": "data",
+        "elementPath": "stamp_card_ben"
+      },
+      "site_gps": {
+        "type": "object",
+        "elementType": "geopoint",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "elementKey": "site_gps_latitude",
+            "elementName": "latitude",
+            "elementSet": "data",
+            "elementPath": "site_gps.latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "elementKey": "site_gps_longitude",
+            "elementName": "longitude",
+            "elementSet": "data",
+            "elementPath": "site_gps.longitude"
+          },
+          "altitude": {
+            "type": "number",
+            "elementKey": "site_gps_altitude",
+            "elementName": "altitude",
+            "elementSet": "data",
+            "elementPath": "site_gps.altitude"
+          },
+          "accuracy": {
+            "type": "number",
+            "elementKey": "site_gps_accuracy",
+            "elementName": "accuracy",
+            "elementSet": "data",
+            "elementPath": "site_gps.accuracy"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 40,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 18,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "site_gps",
+        "elementName": "site_gps",
+        "elementSet": "data",
+        "elementPath": "site_gps",
+        "listChildElementKeys": [
+          "site_gps_accuracy",
+          "site_gps_altitude",
+          "site_gps_latitude",
+          "site_gps_longitude"
+        ],
+        "notUnitOfRetention": true
+      },
+      "assigned_item_code": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 19,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "assigned_item_code",
+        "elementName": "assigned_item_code",
+        "elementSet": "data",
+        "elementPath": "assigned_item_code"
+      },
+      "rcrc_signature": {
+        "_defn": [
+          {
+            "_row_num": 41,
+            "section_name": "survey"
+          }
+        ],
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "rcrc_signature_uriFragment",
+            "elementName": "uriFragment",
+            "elementSet": "data",
+            "elementPath": "rcrc_signature.uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "rcrc_signature_contentType",
+            "elementName": "contentType",
+            "elementSet": "data",
+            "elementPath": "rcrc_signature.contentType"
+          }
+        },
+        "elementKey": "rcrc_signature",
+        "elementName": "rcrc_signature",
+        "elementSet": "data",
+        "elementPath": "rcrc_signature",
+        "listChildElementKeys": [
+          "rcrc_signature_contentType",
+          "rcrc_signature_uriFragment"
+        ],
+        "notUnitOfRetention": true
+      },
+      "get_sign_proxy_uriFragment": {
+        "type": "string",
+        "elementType": "rowpath",
+        "elementKey": "get_sign_proxy_uriFragment",
+        "elementName": "uriFragment",
+        "elementSet": "data",
+        "elementPath": "get_sign_proxy.uriFragment"
+      },
+      "get_sign_proxy_contentType": {
+        "type": "string",
+        "elementType": "mimeType",
+        "default": "image/*",
+        "elementKey": "get_sign_proxy_contentType",
+        "elementName": "contentType",
+        "elementSet": "data",
+        "elementPath": "get_sign_proxy.contentType"
+      },
+      "get_sign_ben_uriFragment": {
+        "type": "string",
+        "elementType": "rowpath",
+        "elementKey": "get_sign_ben_uriFragment",
+        "elementName": "uriFragment",
+        "elementSet": "data",
+        "elementPath": "get_sign_ben.uriFragment"
+      },
+      "get_sign_ben_contentType": {
+        "type": "string",
+        "elementType": "mimeType",
+        "default": "image/*",
+        "elementKey": "get_sign_ben_contentType",
+        "elementName": "contentType",
+        "elementSet": "data",
+        "elementPath": "get_sign_ben.contentType"
+      },
+      "site_gps_latitude": {
+        "type": "number",
+        "elementKey": "site_gps_latitude",
+        "elementName": "latitude",
+        "elementSet": "data",
+        "elementPath": "site_gps.latitude"
+      },
+      "site_gps_longitude": {
+        "type": "number",
+        "elementKey": "site_gps_longitude",
+        "elementName": "longitude",
+        "elementSet": "data",
+        "elementPath": "site_gps.longitude"
+      },
+      "site_gps_altitude": {
+        "type": "number",
+        "elementKey": "site_gps_altitude",
+        "elementName": "altitude",
+        "elementSet": "data",
+        "elementPath": "site_gps.altitude"
+      },
+      "site_gps_accuracy": {
+        "type": "number",
+        "elementKey": "site_gps_accuracy",
+        "elementName": "accuracy",
+        "elementSet": "data",
+        "elementPath": "site_gps.accuracy"
+      },
+      "rcrc_signature_uriFragment": {
+        "type": "string",
+        "elementType": "rowpath",
+        "elementKey": "rcrc_signature_uriFragment",
+        "elementName": "uriFragment",
+        "elementSet": "data",
+        "elementPath": "rcrc_signature.uriFragment"
+      },
+      "rcrc_signature_contentType": {
+        "type": "string",
+        "elementType": "mimeType",
+        "default": "image/*",
+        "elementKey": "rcrc_signature_contentType",
+        "elementName": "contentType",
+        "elementSet": "data",
+        "elementPath": "rcrc_signature.contentType"
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "ben_check",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"yes_no\",\"data_value\":\"Yes\",\"display\":{\"title\":{\"text\":\"Yes\"}},\"_row_num\":2},{\"choice_list_name\":\"yes_no\",\"data_value\":\"No\",\"display\":{\"title\":{\"text\":\"No\"}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "ben_proxy",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"ben_type\",\"data_value\":\"ben\",\"display\":{\"title\":{\"text\":\"beneficiary\"}},\"_row_num\":5},{\"choice_list_name\":\"ben_type\",\"data_value\":\"proxy\",\"display\":{\"title\":{\"text\":\"proxy\"}},\"_row_num\":6}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "ben_verif",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"yes_no\",\"data_value\":\"Yes\",\"display\":{\"title\":{\"text\":\"Yes\"}},\"_row_num\":2},{\"choice_list_name\":\"yes_no\",\"data_value\":\"No\",\"display\":{\"title\":{\"text\":\"No\"}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "proxy_gender",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"gender\",\"data_value\":\"male\",\"display\":{\"title\":{\"text\":\"Male\"}},\"_row_num\":19},{\"choice_list_name\":\"gender\",\"data_value\":\"female\",\"display\":{\"title\":{\"text\":\"Female\"}},\"_row_num\":20},{\"choice_list_name\":\"gender\",\"data_value\":\"third_gender\",\"display\":{\"title\":{\"text\":\"Third gender\"}},\"_row_num\":21}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "proxy_id_type",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"id_type\",\"data_value\":\"nic\",\"display\":{\"title\":{\"text\":\"National identity card\"}},\"_row_num\":8},{\"choice_list_name\":\"id_type\",\"data_value\":\"driving\",\"display\":{\"title\":{\"text\":\"Driving licence\"}},\"_row_num\":9},{\"choice_list_name\":\"id_type\",\"data_value\":\"passport\",\"display\":{\"title\":{\"text\":\"Passport\"}},\"_row_num\":10},{\"choice_list_name\":\"id_type\",\"data_value\":\"pin\",\"display\":{\"title\":{\"text\":\"Card with personal identification number (PIN)\"}},\"_row_num\":11},{\"choice_list_name\":\"id_type\",\"data_value\":\"health_card\",\"display\":{\"title\":{\"text\":\"Health insurance card\"}},\"_row_num\":12},{\"choice_list_name\":\"id_type\",\"data_value\":\"company_id\",\"display\":{\"title\":{\"text\":\"Company ID\"}},\"_row_num\":13},{\"choice_list_name\":\"id_type\",\"data_value\":\"senior_id\",\"display\":{\"title\":{\"text\":\"Senior citizen ID\"}},\"_row_num\":14},{\"choice_list_name\":\"id_type\",\"data_value\":\"marriage\",\"display\":{\"title\":{\"text\":\"Marriage certificate\"}},\"_row_num\":15},{\"choice_list_name\":\"id_type\",\"data_value\":\"student_id\",\"display\":{\"title\":{\"text\":\"School/student ID\"}},\"_row_num\":16},{\"choice_list_name\":\"id_type\",\"data_value\":\"voter_id\",\"display\":{\"title\":{\"text\":\"Voter ID\"}},\"_row_num\":17}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "proxy_relatioship",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"relationship\",\"data_value\":\"son\",\"display\":{\"title\":{\"text\":\"Son\"}},\"_row_num\":23},{\"choice_list_name\":\"relationship\",\"data_value\":\"daughter\",\"display\":{\"title\":{\"text\":\"Daughter\"}},\"_row_num\":24},{\"choice_list_name\":\"relationship\",\"data_value\":\"wife\",\"display\":{\"title\":{\"text\":\"Wife\"}},\"_row_num\":25},{\"choice_list_name\":\"relationship\",\"data_value\":\"husband\",\"display\":{\"title\":{\"text\":\"Husband\"}},\"_row_num\":26},{\"choice_list_name\":\"relationship\",\"data_value\":\"brother\",\"display\":{\"title\":{\"text\":\"Brother\"}},\"_row_num\":27},{\"choice_list_name\":\"relationship\",\"data_value\":\"sister\",\"display\":{\"title\":{\"text\":\"Sister\"}},\"_row_num\":28},{\"choice_list_name\":\"relationship\",\"data_value\":\"father\",\"display\":{\"title\":{\"text\":\"Father\"}},\"_row_num\":29},{\"choice_list_name\":\"relationship\",\"data_value\":\"mother\",\"display\":{\"title\":{\"text\":\"Mother\"}},\"_row_num\":30},{\"choice_list_name\":\"relationship\",\"data_value\":\"cousin\",\"display\":{\"title\":{\"text\":\"Cousin\"}},\"_row_num\":31},{\"choice_list_name\":\"relationship\",\"data_value\":\"uncle\",\"display\":{\"title\":{\"text\":\"Uncle\"}},\"_row_num\":32},{\"choice_list_name\":\"relationship\",\"data_value\":\"aunt\",\"display\":{\"title\":{\"text\":\"Aunt\"}},\"_row_num\":33},{\"choice_list_name\":\"relationship\",\"data_value\":\"neighbour\",\"display\":{\"title\":{\"text\":\"Neighbour\"}},\"_row_num\":34},{\"choice_list_name\":\"relationship\",\"data_value\":\"friend\",\"display\":{\"title\":{\"text\":\"Friend\"}},\"_row_num\":35}]"
+      },
+      {
+        "_partition": "Column",
+        "_aspect": "proxy_verif",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"yes_no\",\"data_value\":\"Yes\",\"display\":{\"title\":{\"text\":\"Yes\"}},\"_row_num\":2},{\"choice_list_name\":\"yes_no\",\"data_value\":\"No\",\"display\":{\"title\":{\"text\":\"No\"}},\"_row_num\":3}]"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "wrong_form"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":\"beneficiary_distribution Form\"}"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "defaultAccessOnCreation",
+        "_type": "string",
+        "_value": "HIDDEN"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "unverifiedUserCanCreate",
+        "_type": "boolean",
+        "_value": "false"
+      }
+    ]
+  }
+}

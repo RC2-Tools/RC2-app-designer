@@ -1,0 +1,1127 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
+        "type": "select_multiple",
+        "values_list": "laboratorios",
+        "name": "valueLaboratorios",
+        "display": {
+          "prompt": {
+            "text": "Seleccione los laboratorios solicitados"
+          }
+        },
+        "required": "selected(data('tieneLaboratorio'),'SI')",
+        "_row_num": 3
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('laboratorios'),'OTRO')",
+        "_row_num": 4
+      },
+      {
+        "type": "text",
+        "name": "otrValueLaboratorio",
+        "display": {
+          "prompt": {
+            "text": "Escribe el nombre del estudio de laboratorio indicado"
+          },
+          "hint": {
+            "text": "En caso de registrar varios examenes de laboratorios por favor separarlos con (;) punto y coma"
+          }
+        },
+        "required": "selected(data('laboratorios'),'OTRO')",
+        "_row_num": 5
+      },
+      {
+        "clause": "end if",
+        "_row_num": 6
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 7
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "si_no",
+        "data_value": "SI",
+        "display": {
+          "title": {
+            "text": "Si"
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "si_no",
+        "data_value": "NO",
+        "display": {
+          "title": {
+            "text": "No"
+          }
+        },
+        "_row_num": 3
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "HEMATOLOGIA",
+        "display": {
+          "title": {
+            "text": "Hematología"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "QUIMICA",
+        "display": {
+          "title": {
+            "text": "Química"
+          }
+        },
+        "_row_num": 6
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "GLICEMIA",
+        "display": {
+          "title": {
+            "text": "Glicemia"
+          }
+        },
+        "_row_num": 7
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "VIH",
+        "display": {
+          "title": {
+            "text": "VIH"
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "VDRL",
+        "display": {
+          "title": {
+            "text": "VDRL"
+          }
+        },
+        "_row_num": 9
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "ORINA",
+        "display": {
+          "title": {
+            "text": "Orina"
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "HECES",
+        "display": {
+          "title": {
+            "text": "Heces"
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "PERFIL 20",
+        "display": {
+          "title": {
+            "text": "Perfil 20"
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "PERFIL HEPATICO",
+        "display": {
+          "title": {
+            "text": "Perfil Hepático"
+          }
+        },
+        "_row_num": 13
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "PERFIL LIPIDICO",
+        "display": {
+          "title": {
+            "text": "Perfil Lipídico"
+          }
+        },
+        "_row_num": 14
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "COPROANALISIS",
+        "display": {
+          "title": {
+            "text": "Coproanalisis"
+          }
+        },
+        "_row_num": 15
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "UROANALISIS",
+        "display": {
+          "title": {
+            "text": "Uroanalisis"
+          }
+        },
+        "_row_num": 16
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "COLESTEROL",
+        "display": {
+          "title": {
+            "text": "Colesterol"
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "UREA",
+        "display": {
+          "title": {
+            "text": "Urea"
+          }
+        },
+        "_row_num": 18
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "TRIGLICERIDOS",
+        "display": {
+          "title": {
+            "text": "Triglicerido"
+          }
+        },
+        "_row_num": 19
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "CREATININA",
+        "display": {
+          "title": {
+            "text": "Creatinina"
+          }
+        },
+        "_row_num": 20
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "PERFIL TIROIDEO",
+        "display": {
+          "title": {
+            "text": "Perfil Tiroideo"
+          }
+        },
+        "_row_num": 21
+      },
+      {
+        "choice_list_name": "laboratorios",
+        "data_value": "OTRO",
+        "display": {
+          "title": {
+            "text": "Otro Laboratorio"
+          }
+        },
+        "_row_num": 22
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "table_id",
+        "value": "VZLA_IM_Laboratorios",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_id",
+        "value": "VZLA_IM_Laboratorios",
+        "_row_num": 3
+      },
+      {
+        "setting_name": "form_version",
+        "display": {
+          "title": {
+            "text": 2020121501
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Laboratorios"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "setting_name": "es",
+        "display": {
+          "locale": {
+            "text": "Español"
+          }
+        },
+        "_row_num": 6
+      }
+    ],
+    "model": [
+      {
+        "type": "select_multiple",
+        "name": "valueLaboratorios",
+        "_row_num": 2
+      },
+      {
+        "type": "text",
+        "name": "otrValueLaboratorio",
+        "_row_num": 3
+      }
+    ],
+    "initial": [
+      {
+        "clause": "if // start",
+        "condition": "(opendatakit.getCurrentInstanceId() != null)",
+        "_row_num": 2
+      },
+      {
+        "clause": "do section survey",
+        "_row_num": 4
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 5
+      },
+      {
+        "clause": "else // start",
+        "_row_num": 6
+      },
+      {
+        "type": "instances",
+        "display": {
+          "text": "Saved instances"
+        },
+        "_row_num": 7
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 8
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "VZLA_IM_Laboratorios",
+        "_row_num": 2
+      },
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "VZLA_IM_Laboratorios",
+        "_row_num": 3
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "display": {
+          "title": {
+            "text": 2020121501
+          }
+        },
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Laboratorios"
+          }
+        },
+        "_row_num": 5
+      },
+      "es": {
+        "setting_name": "es",
+        "display": {
+          "locale": {
+            "text": "Español"
+          }
+        },
+        "_row_num": 6
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": "default"
+              }
+            },
+            "name": "default"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "default"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Laboratorios"
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "si_no": [
+        {
+          "choice_list_name": "si_no",
+          "data_value": "SI",
+          "display": {
+            "title": {
+              "text": "Si"
+            }
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "si_no",
+          "data_value": "NO",
+          "display": {
+            "title": {
+              "text": "No"
+            }
+          },
+          "_row_num": 3
+        }
+      ],
+      "laboratorios": [
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "HEMATOLOGIA",
+          "display": {
+            "title": {
+              "text": "Hematología"
+            }
+          },
+          "_row_num": 5
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "QUIMICA",
+          "display": {
+            "title": {
+              "text": "Química"
+            }
+          },
+          "_row_num": 6
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "GLICEMIA",
+          "display": {
+            "title": {
+              "text": "Glicemia"
+            }
+          },
+          "_row_num": 7
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "VIH",
+          "display": {
+            "title": {
+              "text": "VIH"
+            }
+          },
+          "_row_num": 8
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "VDRL",
+          "display": {
+            "title": {
+              "text": "VDRL"
+            }
+          },
+          "_row_num": 9
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "ORINA",
+          "display": {
+            "title": {
+              "text": "Orina"
+            }
+          },
+          "_row_num": 10
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "HECES",
+          "display": {
+            "title": {
+              "text": "Heces"
+            }
+          },
+          "_row_num": 11
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "PERFIL 20",
+          "display": {
+            "title": {
+              "text": "Perfil 20"
+            }
+          },
+          "_row_num": 12
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "PERFIL HEPATICO",
+          "display": {
+            "title": {
+              "text": "Perfil Hepático"
+            }
+          },
+          "_row_num": 13
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "PERFIL LIPIDICO",
+          "display": {
+            "title": {
+              "text": "Perfil Lipídico"
+            }
+          },
+          "_row_num": 14
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "COPROANALISIS",
+          "display": {
+            "title": {
+              "text": "Coproanalisis"
+            }
+          },
+          "_row_num": 15
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "UROANALISIS",
+          "display": {
+            "title": {
+              "text": "Uroanalisis"
+            }
+          },
+          "_row_num": 16
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "COLESTEROL",
+          "display": {
+            "title": {
+              "text": "Colesterol"
+            }
+          },
+          "_row_num": 17
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "UREA",
+          "display": {
+            "title": {
+              "text": "Urea"
+            }
+          },
+          "_row_num": 18
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "TRIGLICERIDOS",
+          "display": {
+            "title": {
+              "text": "Triglicerido"
+            }
+          },
+          "_row_num": 19
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "CREATININA",
+          "display": {
+            "title": {
+              "text": "Creatinina"
+            }
+          },
+          "_row_num": 20
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "PERFIL TIROIDEO",
+          "display": {
+            "title": {
+              "text": "Perfil Tiroideo"
+            }
+          },
+          "_row_num": 21
+        },
+        {
+          "choice_list_name": "laboratorios",
+          "data_value": "OTRO",
+          "display": {
+            "title": {
+              "text": "Otro Laboratorio"
+            }
+          },
+          "_row_num": 22
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {},
+    "calculates": {},
+    "model": {
+      "valueLaboratorios": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "valueLaboratorios_items"
+        },
+        "valuesList": "laboratorios",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "valueLaboratorios"
+      },
+      "otrValueLaboratorio": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "otrValueLaboratorio"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "select_multiple",
+            "values_list": "laboratorios",
+            "name": "valueLaboratorios",
+            "display": {
+              "prompt": {
+                "text": "Seleccione los laboratorios solicitados"
+              }
+            },
+            "required": "selected(data('tieneLaboratorio'),'SI')",
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "select_multiple",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "type": "text",
+            "name": "otrValueLaboratorio",
+            "display": {
+              "prompt": {
+                "text": "Escribe el nombre del estudio de laboratorio indicado"
+              },
+              "hint": {
+                "text": "En caso de registrar varios examenes de laboratorios por favor separarlos con (;) punto y coma"
+              }
+            },
+            "required": "selected(data('laboratorios'),'OTRO')",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "prompt",
+            "_type": "text",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 8,
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            0,
+            1
+          ]
+        },
+        "operations": [
+          {
+            "clause": "begin screen",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 7,
+              "__rowNum__": 6,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nif (selected(data('laboratorios'),'OTRO')) {\nactivePromptIndicies.push(1);\n}\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 8,
+            "operationIdx": 1
+          },
+          {
+            "_row_num": 8,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 2
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 8,
+            "operationIdx": 3
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_contents": 2,
+          "_screen8": 2
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": "Laboratorios"
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 7
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_else6": 5,
+          "_screen7": 5,
+          "_endif8": 6,
+          "_contents": 7,
+          "_screen9": 7,
+          "_finalize": 9
+        }
+      }
+    },
+    "dataTableModel": {
+      "valueLaboratorios": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "elementKey": "valueLaboratorios_items",
+          "elementName": "items",
+          "elementSet": "data",
+          "elementPath": "valueLaboratorios.items",
+          "notUnitOfRetention": true
+        },
+        "valuesList": "laboratorios",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "valueLaboratorios",
+        "elementName": "valueLaboratorios",
+        "elementSet": "data",
+        "elementPath": "valueLaboratorios",
+        "listChildElementKeys": [
+          "valueLaboratorios_items"
+        ]
+      },
+      "otrValueLaboratorio": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 5,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "otrValueLaboratorio",
+        "elementName": "otrValueLaboratorio",
+        "elementSet": "data",
+        "elementPath": "otrValueLaboratorio"
+      },
+      "valueLaboratorios_items": {
+        "type": "string",
+        "elementKey": "valueLaboratorios_items",
+        "elementName": "items",
+        "elementSet": "data",
+        "elementPath": "valueLaboratorios.items",
+        "notUnitOfRetention": true
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "Column",
+        "_aspect": "valueLaboratorios",
+        "_key": "displayChoicesList",
+        "_type": "object",
+        "_value": "[{\"choice_list_name\":\"laboratorios\",\"data_value\":\"HEMATOLOGIA\",\"display\":{\"title\":{\"text\":\"Hematología\"}},\"_row_num\":5},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"QUIMICA\",\"display\":{\"title\":{\"text\":\"Química\"}},\"_row_num\":6},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"GLICEMIA\",\"display\":{\"title\":{\"text\":\"Glicemia\"}},\"_row_num\":7},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"VIH\",\"display\":{\"title\":{\"text\":\"VIH\"}},\"_row_num\":8},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"VDRL\",\"display\":{\"title\":{\"text\":\"VDRL\"}},\"_row_num\":9},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"ORINA\",\"display\":{\"title\":{\"text\":\"Orina\"}},\"_row_num\":10},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"HECES\",\"display\":{\"title\":{\"text\":\"Heces\"}},\"_row_num\":11},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"PERFIL 20\",\"display\":{\"title\":{\"text\":\"Perfil 20\"}},\"_row_num\":12},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"PERFIL HEPATICO\",\"display\":{\"title\":{\"text\":\"Perfil Hepático\"}},\"_row_num\":13},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"PERFIL LIPIDICO\",\"display\":{\"title\":{\"text\":\"Perfil Lipídico\"}},\"_row_num\":14},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"COPROANALISIS\",\"display\":{\"title\":{\"text\":\"Coproanalisis\"}},\"_row_num\":15},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"UROANALISIS\",\"display\":{\"title\":{\"text\":\"Uroanalisis\"}},\"_row_num\":16},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"COLESTEROL\",\"display\":{\"title\":{\"text\":\"Colesterol\"}},\"_row_num\":17},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"UREA\",\"display\":{\"title\":{\"text\":\"Urea\"}},\"_row_num\":18},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"TRIGLICERIDOS\",\"display\":{\"title\":{\"text\":\"Triglicerido\"}},\"_row_num\":19},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"CREATININA\",\"display\":{\"title\":{\"text\":\"Creatinina\"}},\"_row_num\":20},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"PERFIL TIROIDEO\",\"display\":{\"title\":{\"text\":\"Perfil Tiroideo\"}},\"_row_num\":21},{\"choice_list_name\":\"laboratorios\",\"data_value\":\"OTRO\",\"display\":{\"title\":{\"text\":\"Otro Laboratorio\"}},\"_row_num\":22}]"
+      },
+      {
+        "_partition": "FormType",
+        "_aspect": "default",
+        "_key": "FormType.formType",
+        "_type": "string",
+        "_value": "SURVEY"
+      },
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "VZLA_IM_Laboratorios"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":\"Laboratorios\"}"
+      }
+    ]
+  }
+}

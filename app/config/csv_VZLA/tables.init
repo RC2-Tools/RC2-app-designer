@@ -1,0 +1,7 @@
+table_keys=authorizations, distributions, entitlements, programs, services, services_for_program
+programs.filename=config/assets/csv/programs.csv
+services.filename=config/assets/csv/services.csv
+services_for_program.filename=config/assets/csv/services_for_program.csv
+authorizations.filename=config/assets/csv/authorizations.csv
+distributions.filename=config/assets/csv/distributions.csv
+entitlements.filename=config/assets/csv/entitlements.csv

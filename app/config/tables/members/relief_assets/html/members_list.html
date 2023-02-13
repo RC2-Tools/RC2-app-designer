@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/rc2.css"/>
+
+    <title>RC2 Tool</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div class="flex-grow-1 pt-2">
+    <main role="main" id="main" class="container flex-column">        <h1 id="error" class="text-left list-view-error py-4 m-0 d-none" data-localize="no_beneficiaries_found"></h1>
+        <h1 id="title" class="text-center text-uppercase menu-title py-4 m-0 d-none"></h1>
+        
+</main>
+</div>
+
+<footer id="rc2Footer" class="d-flex justify-content-center align-items-center my-4">
+    <img src="../../../../assets/img/ifrc_logo.svg" alt="IFRC Logo" id="rc2FooterLogo" class="h-100">
+</footer>
+
+<script type="text/javascript" src="../../../../assets/libs/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../../../../assets/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../../../../assets/js/bootbox.min.js"></script>
+
+<script type="text/javascript" src="../../../../assets/commonDefinitions.js"></script>
+<script type="text/javascript" src="../../../../../system/js/odkCommon.js"></script>
+<script type="text/javascript" src="../../../../../system/js/odkData.js"></script>
+<script type="text/javascript" src="../../../../../system/tables/js/odkTables.js"></script>
+<script type="text/javascript" src="../../../../assets/libs/dayjs.min.js"></script>
+<script type="text/javascript" src="../../../../assets/js/util.js"></script>
+
+        <script type="text/javascript" src="../../../../relief_assets/js/relief_util.js"></script>
+                <template id="listItemTemplate">
+                    <div class="list-view-item mb-3 p-3">
+                        <a class="stretched-link item_space"></a>
+                        <div class="detail"></div>
+                    </div>
+                </template>
+        
+                <script type="text/javascript" src="../../tableSpecificDefinitions.js"></script>
+                        <script type="text/javascript" src="../../../members/relief_assets/js/members_list.js"></script>
+        
+                <script>
+                    'use strict';
+                    $(util.renderPage(display));
+                </script>
+</body>
+</html>

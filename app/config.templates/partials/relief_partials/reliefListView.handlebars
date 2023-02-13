@@ -1,0 +1,26 @@
+{{#> reliefLayout }}
+    {{#*inline "mainContent" }}
+        <h1 id="error" class="text-left list-view-error py-4 m-0 d-none"
+            {{~#if error}} data-localize="{{ error }}"{{/if}}></h1>
+        <h1 id="title" class="text-center text-uppercase menu-title py-4 m-0 d-none"
+            {{~#if title}} data-localize="{{ title }}"{{/if}}></h1>
+        {{#> pageSpecific }}{{/pageSpecific}}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <template id="listItemTemplate">
+            <div class="list-view-item mb-3 p-3">
+                <a class="stretched-link item_space"></a>
+                <div class="detail"></div>
+            </div>
+        </template>
+
+        <script type="text/javascript" src="../../tableSpecificDefinitions.js"></script>
+        {{> pageScripts }}
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/reliefLayout}}

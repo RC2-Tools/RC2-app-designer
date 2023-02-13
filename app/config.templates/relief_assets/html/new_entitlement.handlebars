@@ -1,0 +1,12 @@
+{{#> reliefLocateBeneficiaryBase title="enter_beneficiary_entity_id" }}
+    {{#*inline "pageSpecific" }}
+        {{> menuBtn
+                id="view_details"
+                icon=(concat @root.assetsPath "/img/view_data_icon.svg")
+                label="view_authorization_details"
+        }}
+    {{/inline}}
+    {{#*inline "pageScripts" }}
+        <script type="text/javascript" src="{{ @root.reliefAssetsPath }}/js/renderers/new_entitlement.js"></script>
+    {{/inline}}
+{{/reliefLocateBeneficiaryBase}}

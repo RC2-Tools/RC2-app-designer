@@ -1,0 +1,15 @@
+{{#> reliefLocateBeneficiaryBase title="visit_menu" }}
+    {{#*inline "pageSpecific" }}
+        {{> syncList }}
+
+        {{> menuItem
+                id="allVisits"
+                class="order-1"
+                icon=(concat @root.assetsPath "/img/view_data_icon.svg")
+                label="all_visit_programs"
+        }}
+    {{/inline}}
+    {{#*inline "pageScripts" }}
+        <script type="text/javascript" src="{{ @root.assetsPath }}/js/renderers/visit.js"></script>
+    {{/inline}}
+{{/reliefLocateBeneficiaryBase}}

@@ -1,0 +1,7 @@
+_partition,_aspect,_key,_type,_value
+Column,internal_program,displayChoicesList,object,"[{""choice_list_name"":""program_choices"",""data_value"":""PSS"",""display"":{""title"":{""text"":""PSS""}},""_row_num"":8},{""choice_list_name"":""program_choices"",""data_value"":""Meals"",""display"":{""title"":{""text"":""Meals and Wheels""}},""_row_num"":9},{""choice_list_name"":""program_choices"",""data_value"":""Rental"",""display"":{""title"":{""text"":""Financial asssitance for rental""}},""_row_num"":10},{""choice_list_name"":""program_choices"",""data_value"":""Repair"",""display"":{""title"":{""text"":""Financial asssitance for repair""}},""_row_num"":11}]"
+Column,referral_type,displayChoicesList,object,"[{""choice_list_name"":""referral_type_choices"",""data_value"":""Internal"",""display"":{""title"":{""text"":""Internal Referral""}},""_row_num"":5},{""choice_list_name"":""referral_type_choices"",""data_value"":""External"",""display"":{""title"":{""text"":""External Referral""}},""_row_num"":6}]"
+FormType,default,FormType.formType,string,SURVEY
+SurveyUtil,default,SurveyUtil.formId,string,visit_referral
+Table,default,defaultViewType,string,SPREADSHEET
+Table,default,displayName,object,"{""text"":""Visit Referral""}"

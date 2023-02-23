@@ -46,7 +46,7 @@
             "text": "Hi, my name is {{data.officer}} from the Red Cross. I am going to verify all necessary documents for the distribution.\n\nAre you the beneficiary, or a proxy representing the beneficiary?"
           }
         },
-        "required": true,
+        "required": 1,
         "_row_num": 3
       },
       {
@@ -268,7 +268,7 @@
         "name": "assigned_nb",
         "display": {
           "prompt": {
-            "text": "Assigned envelop/voucher/PIN #:\n\ndata('assigned_item_code')"
+            "text": "Assigned envelop/voucher/PIN #:\n\ndata('assigned_item_pack_code')"
           }
         },
         "_row_num": 31
@@ -795,7 +795,7 @@
       },
       {
         "type": "string",
-        "name": "assigned_item_code",
+        "name": "assigned_item_pack_code",
         "_row_num": 19
       }
     ]
@@ -1480,7 +1480,7 @@
         ],
         "elementKey": "site_gps"
       },
-      "assigned_item_code": {
+      "assigned_item_pack_code": {
         "type": "string",
         "_defn": [
           {
@@ -1488,7 +1488,7 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "assigned_item_code"
+        "elementKey": "assigned_item_pack_code"
       },
       "rcrc_signature": {
         "_defn": [
@@ -1549,7 +1549,7 @@
                 "text": "Hi, my name is {{data.officer}} from the Red Cross. I am going to verify all necessary documents for the distribution.\n\nAre you the beneficiary, or a proxy representing the beneficiary?"
               }
             },
-            "required": true,
+            "required": 1,
             "_row_num": 3,
             "__rowNum__": 2,
             "_token_type": "prompt",
@@ -1761,7 +1761,7 @@
             "name": "assigned_nb",
             "display": {
               "prompt": {
-                "text": "Assigned envelop/voucher/PIN #:\n\ndata('assigned_item_code')"
+                "text": "Assigned envelop/voucher/PIN #:\n\ndata('assigned_item_pack_code')"
               }
             },
             "_row_num": 31,
@@ -2779,7 +2779,7 @@
         ],
         "notUnitOfRetention": true
       },
-      "assigned_item_code": {
+      "assigned_item_pack_code": {
         "type": "string",
         "_defn": [
           {
@@ -2787,10 +2787,10 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "assigned_item_code",
-        "elementName": "assigned_item_code",
+        "elementKey": "assigned_item_pack_code",
+        "elementName": "assigned_item_pack_code",
         "elementSet": "data",
-        "elementPath": "assigned_item_code"
+        "elementPath": "assigned_item_pack_code"
       },
       "rcrc_signature": {
         "_defn": [

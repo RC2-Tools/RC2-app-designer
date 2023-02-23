@@ -24,7 +24,7 @@
         "type": "note",
         "display": {
           "prompt": {
-            "text": "Deliverable: {{data.item_name}}"
+            "text": "Deliverable: {{data.item_pack_name}}"
           }
         },
         "_row_num": 5
@@ -47,7 +47,7 @@
       },
       {
         "type": "barcode",
-        "name": "item_barcode",
+        "name": "item_pack_barcode",
         "display": {
           "prompt": {
             "text": "Scan Barcode"
@@ -62,7 +62,7 @@
         "name": "barcode_check",
         "display": {
           "prompt": {
-            "text": "Is this the correct barcode? {{data.item_barcode}}"
+            "text": "Is this the correct barcode? {{data.item_pack_barcode}}"
           }
         },
         "_row_num": 9
@@ -135,19 +135,19 @@
         "linked_form_id": "authorizations",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('authorization_id')]",
-        "fieldName": "item_ranges",
+        "fieldName": "item_pack_ranges",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 2
       },
       {
-        "query_name": "get_item",
+        "query_name": "get_itempack",
         "query_type": "linked_table",
         "linked_table_id": "entitlements",
         "linked_form_id": "entitlements",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('entitlement_id')]",
-        "fieldName": "item_name",
+        "fieldName": "item_pack_name",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
@@ -156,7 +156,7 @@
     "model": [
       {
         "type": "string",
-        "name": "item_barcode",
+        "name": "item_pack_barcode",
         "_row_num": 2
       },
       {
@@ -194,7 +194,7 @@
       },
       {
         "type": "string",
-        "name": "item_name",
+        "name": "item_pack_name",
         "isSessionVariable": "true",
         "_row_num": 9
       },
@@ -231,7 +231,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20200331,
+        "value": 20200107,
         "_row_num": 3
       },
       {
@@ -284,7 +284,7 @@
       },
       {
         "calculation_name": "in_range",
-        "calculation": "(function() {\n var rawCode = data('item_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
+        "calculation": "(function() {\n var rawCode = data('item_pack_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
         "_row_num": 3
       }
     ],
@@ -318,7 +318,7 @@
         "aspect": "default",
         "key": "onDeliver",
         "type": "string",
-        "value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'ex_indvidual_reg_shelter',\n                                  'SELECT reg.first_name, reg.last_name, ent.item_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, ex_indvidual_reg_shelter as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'first_name'),\n                                          lastName: result.getData(0, 'last_name'),\n                                          item_name: result.getData(0, 'item_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });",
+        "value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'ex_indvidual_reg_shelter',\n                                  'SELECT reg.first_name, reg.last_name, ent.item_pack_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, ex_indvidual_reg_shelter as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'first_name'),\n                                          lastName: result.getData(0, 'last_name'),\n                                          item_pack_name: result.getData(0, 'item_pack_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });",
         "_row_num": 5
       }
     ],
@@ -395,7 +395,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20200331,
+        "value": 20200107,
         "_row_num": 3
       },
       "table_id": {
@@ -481,19 +481,19 @@
         "linked_form_id": "authorizations",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('authorization_id')]",
-        "fieldName": "item_ranges",
+        "fieldName": "item_pack_ranges",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 2
       },
-      "get_item": {
-        "query_name": "get_item",
+      "get_itempack": {
+        "query_name": "get_itempack",
         "query_type": "linked_table",
         "linked_table_id": "entitlements",
         "linked_form_id": "entitlements",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('entitlement_id')]",
-        "fieldName": "item_name",
+        "fieldName": "item_pack_name",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
@@ -507,12 +507,12 @@
       },
       "in_range": {
         "calculation_name": "in_range",
-        "calculation": "(function() {\n var rawCode = data('item_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
+        "calculation": "(function() {\n var rawCode = data('item_pack_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
         "_row_num": 3
       }
     },
     "model": {
-      "item_barcode": {
+      "item_pack_barcode": {
         "type": "string",
         "_defn": [
           {
@@ -524,7 +524,7 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_barcode"
+        "elementKey": "item_pack_barcode"
       },
       "receive_signature": {
         "type": "object",
@@ -620,7 +620,7 @@
         "isSessionVariable": "true",
         "elementKey": "lastName"
       },
-      "item_name": {
+      "item_pack_name": {
         "type": "string",
         "_defn": [
           {
@@ -629,7 +629,7 @@
           }
         ],
         "isSessionVariable": "true",
-        "elementKey": "item_name"
+        "elementKey": "item_pack_name"
       },
       "incorrect_barcode": {
         "type": "boolean",
@@ -725,7 +725,7 @@
             "type": "note",
             "display": {
               "prompt": {
-                "text": "Deliverable: {{data.item_name}}"
+                "text": "Deliverable: {{data.item_pack_name}}"
               }
             },
             "_row_num": 5,
@@ -754,7 +754,7 @@
           },
           {
             "type": "barcode",
-            "name": "item_barcode",
+            "name": "item_pack_barcode",
             "display": {
               "prompt": {
                 "text": "Scan Barcode"
@@ -773,7 +773,7 @@
             "name": "barcode_check",
             "display": {
               "prompt": {
-                "text": "Is this the correct barcode? {{data.item_barcode}}"
+                "text": "Is this the correct barcode? {{data.item_pack_barcode}}"
               }
             },
             "_row_num": 9,
@@ -1104,7 +1104,7 @@
       }
     },
     "dataTableModel": {
-      "item_barcode": {
+      "item_pack_barcode": {
         "type": "string",
         "_defn": [
           {
@@ -1116,10 +1116,10 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_barcode",
-        "elementName": "item_barcode",
+        "elementKey": "item_pack_barcode",
+        "elementName": "item_pack_barcode",
         "elementSet": "data",
-        "elementPath": "item_barcode"
+        "elementPath": "item_pack_barcode"
       },
       "receive_signature": {
         "type": "object",
@@ -1244,7 +1244,7 @@
         "elementSet": "data",
         "elementPath": "lastName"
       },
-      "item_name": {
+      "item_pack_name": {
         "type": "string",
         "_defn": [
           {
@@ -1253,10 +1253,10 @@
           }
         ],
         "isSessionVariable": "true",
-        "elementKey": "item_name",
-        "elementName": "item_name",
+        "elementKey": "item_pack_name",
+        "elementName": "item_pack_name",
         "elementSet": "data",
-        "elementPath": "item_name"
+        "elementPath": "item_pack_name"
       },
       "incorrect_barcode": {
         "type": "boolean",
@@ -1481,7 +1481,7 @@
         "_aspect": "default",
         "_key": "onDeliver",
         "_type": "string",
-        "_value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'ex_indvidual_reg_shelter',\n                                  'SELECT reg.first_name, reg.last_name, ent.item_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, ex_indvidual_reg_shelter as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'first_name'),\n                                          lastName: result.getData(0, 'last_name'),\n                                          item_name: result.getData(0, 'item_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });"
+        "_value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'ex_indvidual_reg_shelter',\n                                  'SELECT reg.first_name, reg.last_name, ent.item_pack_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, ex_indvidual_reg_shelter as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'first_name'),\n                                          lastName: result.getData(0, 'last_name'),\n                                          item_pack_name: result.getData(0, 'item_pack_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });"
       },
       {
         "_partition": "Table",

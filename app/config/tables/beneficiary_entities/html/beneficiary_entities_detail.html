@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../assets/css/rc2.css"/>
+
+    <title>RC2 Relief Tool</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div class="flex-grow-1 pt-2">
+    <main role="main" id="main" class="container flex-column">        <h1 id="title" class="text-center text-uppercase menu-title py-4 m-0"></h1>
+        <div id="field_list" class="order-last"></div>
+                <a id="toggle_workflow" class="ml-auto mb-n4" href="#"><span>&raquo;</span></a>
+        <div id="deliveryVisitTabs" class="list-group list-group-horizontal text-center order-first">
+            <button id="deliveryTab"
+                    type="button"
+                    class="list-group-item list-group-item-action flex-fill py-1 active"
+                    data-localize="delivery_upper_case"></button>
+            <button id="visitTab"
+                    type="button"
+                    class="list-group-item list-group-item-action py-1 flex-fill"
+                    data-localize="visit_menu"></button>
+        </div>
+        <div id="switch-id" class="d-flex flex-column mb-3">
+            <h5 id="switch-title-id" class="text-uppercase"></h5>
+            <div class="btn-group btn-group-toggle w-25 toggle-switch" data-toggle="buttons">
+                <label class="btn btn-outline-success toggle-left">
+                    <input type="radio" name="options" autocomplete="off">
+                    <span>Enabled</span>
+                </label>
+                <label class="btn btn-outline-danger toggle-right">
+                    <input type="radio" name="options" autocomplete="off">
+                    <span>Disabled</span>
+                </label>
+            </div>
+        </div>
+
+</main>
+</div>
+
+<footer id="rc2Footer" class="d-flex justify-content-center align-items-center my-4">
+    <img src="../../../assets/img/ifrc_logo.svg" alt="IFRC Logo" id="rc2FooterLogo" class="h-100">
+</footer>
+
+<script type="text/javascript" src="../../../assets/libs/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../../../assets/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/bootbox.min.js"></script>
+
+<script type="text/javascript" src="../../../assets/commonDefinitions.js"></script>
+<script type="text/javascript" src="../../../../system/js/odkCommon.js"></script>
+<script type="text/javascript" src="../../../../system/js/odkData.js"></script>
+<script type="text/javascript" src="../../../../system/tables/js/odkTables.js"></script>
+<script type="text/javascript" src="../../../assets/libs/dayjs.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/util.js"></script>
+
+        <script type="text/javascript" src="../tableSpecificDefinitions.js"></script>
+                <script type="text/javascript" src="../js/beneficiary_entities_detail.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+</body>
+</html>

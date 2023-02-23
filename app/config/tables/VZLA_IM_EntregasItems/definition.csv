@@ -1,8 +1,0 @@
-_element_key,_element_name,_element_type,_list_child_element_keys
-otrSlcItems,otrSlcItems,string,[]
-otrSlcMedicamento,otrSlcMedicamento,string,[]
-slcItems,slcItems,array,"[""slcItems_items""]"
-slcItems_items,items,string,[]
-slcMedicamento,slcMedicamento,array,"[""slcMedicamento_items""]"
-slcMedicamento_items,items,string,[]
-tieneEntregas,tieneEntregas,string,[]

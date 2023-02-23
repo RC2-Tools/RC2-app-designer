@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/rc2.css"/>
+
+    <title>RC2 Relief Tool</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<div class="flex-grow-1 pt-2">
+    <main role="main" id="main" class="container flex-column">        <h1 id="title" class="text-center text-uppercase menu-title py-4 m-0" data-localize="registration_title"></h1>
+                <div class="mb-3">
+            <div class="text-uppercase text-center sync-list">
+                <span id="newSinceSyncCount"></span>
+            </div>
+                <div class="text-uppercase text-center sync-list">
+                    <span id="editedSinceSyncCount"></span>
+                </div>
+        </div>        <select id="choose_user" class="custom-select text-center rounded-pill w-75 mx-auto mb-3 workflow-superuser">
+            <option selected data-localize="select_group"></option>
+        </select>
+
+        <div class="menu-item mb-3 mx-auto w-75 ">
+            <button type="button" id="barcode"
+                    class="btn btn-primary btn-block align-items-center rounded-pill btn-menu-red">
+                <span class="d-flex justify-content-center align-items-center menu-btn-icon">
+                    <img src="../img/barcode_icon.svg" alt="">
+                </span>
+                <span class="text-left text-uppercase font-weight-bold pr-3" data-localize="scan_barcode"></span>
+            </button>
+        </div>
+
+        <input type="text" id="code" class="form-control mb-3 mx-auto w-50">
+        <div class="menu-item mb-3 mx-auto w-75 ">
+            <button type="button" id="enter"
+                    class="btn btn-primary btn-block align-items-center rounded-pill btn-menu-red">
+                <span class="d-flex justify-content-center align-items-center menu-btn-icon">
+                    <img src="../img/enter_icon.svg" alt="">
+                </span>
+                <span class="text-left text-uppercase font-weight-bold pr-3" data-localize="enter"></span>
+            </button>
+        </div>
+
+        <h4 id="search_results" class="text-uppercase text-center"></h4></main>
+</div>
+
+<footer id="rc2Footer" class="d-flex justify-content-center align-items-center my-4">
+    <img src="../img/ifrc_logo.svg" alt="IFRC Logo" id="rc2FooterLogo" class="h-100">
+</footer>
+
+<script type="text/javascript" src="../libs/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../js/bootbox.min.js"></script>
+
+<script type="text/javascript" src="../commonDefinitions.js"></script>
+<script type="text/javascript" src="../../../system/js/odkCommon.js"></script>
+<script type="text/javascript" src="../../../system/js/odkData.js"></script>
+<script type="text/javascript" src="../../../system/tables/js/odkTables.js"></script>
+<script type="text/javascript" src="../libs/dayjs.min.js"></script>
+<script type="text/javascript" src="../js/util.js"></script>
+
+        <script type="text/javascript" src="../libs/underscore-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../js/chooseBeneficiaryUtil.js"></script>
+                <script type="text/javascript" src="../js/renderers/registration.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+</body>
+</html>

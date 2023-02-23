@@ -1,0 +1,1914 @@
+{
+  "xlsx": {
+    "survey": [
+      {
+        "clause": "begin screen",
+        "_row_num": 2
+      },
+      {
+        "type": "async_assign_single_string",
+        "values_list": "get_barcoderanges",
+        "name": "ranges",
+        "_row_num": 3
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": "Nombre: {{data.firstName}} <br/> Apellido: {{data.lastName}}"
+          }
+        },
+        "_row_num": 4
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": "Tipo tarjeta: {{data.item_pack_name}}"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "type": "acknowledge",
+        "name": "ack_name",
+        "display": {
+          "prompt": {
+            "text": "Favor confirmar"
+          }
+        },
+        "required": 1,
+        "constraint": "data('ack_name') === true",
+        "_row_num": 6
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 7
+      },
+      {
+        "type": "string",
+        "name": "email",
+        "display": {
+          "prompt": {
+            "text": "Correo electrónico"
+          }
+        },
+        "_row_num": 8
+      },
+      {
+        "clause": "begin screen",
+        "branch_label": "scan_label",
+        "_row_num": 9
+      },
+      {
+        "type": "barcode",
+        "name": "item_pack_barcode",
+        "display": {
+          "prompt": {
+            "text": "Escanea el código de barras del sobre"
+          }
+        },
+        "_row_num": 10
+      },
+      {
+        "type": "note",
+        "display": {
+          "prompt": {
+            "text": "<br><br><br>---------------------------"
+          }
+        },
+        "_row_num": 11
+      },
+      {
+        "type": "select_one",
+        "values_list": "yes_no",
+        "name": "enter_manual_barcode",
+        "display": {
+          "prompt": {
+            "text": "Would you like to type in the barcode instead?"
+          }
+        },
+        "_row_num": 12
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 13
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('enter_manual_barcode'), 'yes')",
+        "_row_num": 14
+      },
+      {
+        "type": "string",
+        "name": "item_pack_barcode",
+        "display": {
+          "prompt": {
+            "text": "Please enter the barcode"
+          }
+        },
+        "inputAttributes": {
+          "type": "number"
+        },
+        "_row_num": 15
+      },
+      {
+        "clause": "end if",
+        "_row_num": 16
+      },
+      {
+        "type": "select_one",
+        "values_list": "yes_no",
+        "name": "barcode_check",
+        "display": {
+          "prompt": {
+            "text": "¿Es correcto el código de barras? {{data.item_pack_barcode}}"
+          }
+        },
+        "_row_num": 17
+      },
+      {
+        "clause": "if",
+        "condition": "selected(data('barcode_check'), 'no')",
+        "_row_num": 18
+      },
+      {
+        "clause": "goto scan_label",
+        "_row_num": 19
+      },
+      {
+        "clause": "end if",
+        "_row_num": 20
+      },
+      {
+        "clause": "if",
+        "condition": "!calculates.in_range()",
+        "_row_num": 21
+      },
+      {
+        "type": "acknowledge",
+        "name": "incorrect_barcode",
+        "display": {
+          "prompt": {
+            "text": "Código de barras incorrecto. Por favor seleccione la tarjeta que le corresponde a este beneficiario."
+          }
+        },
+        "_row_num": 22
+      },
+      {
+        "clause": "goto scan_label",
+        "_row_num": 23
+      },
+      {
+        "clause": "end if",
+        "_row_num": 24
+      },
+      {
+        "clause": "begin screen",
+        "_row_num": 25
+      },
+      {
+        "type": "acknowledge",
+        "name": "ack_deliv_card",
+        "display": {
+          "prompt": {
+            "text": "Entregue la tarjeta al beneficiario."
+          }
+        },
+        "required": 1,
+        "constraint": "data('ack_deliv_card') === true",
+        "_row_num": 26
+      },
+      {
+        "clause": "end screen",
+        "_row_num": 27
+      },
+      {
+        "type": "integer",
+        "name": "card_number",
+        "display": {
+          "prompt": {
+            "text": "Número de la tarjeta"
+          }
+        },
+        "inputAttributes": {
+          "type": "number"
+        },
+        "_row_num": 28
+      },
+      {
+        "type": "signature",
+        "name": "receive_signature",
+        "display": {
+          "prompt": {
+            "text": "Firma de recepcion de la tarjeta."
+          }
+        },
+        "required": true,
+        "_row_num": 29
+      }
+    ],
+    "queries": [
+      {
+        "query_name": "get_barcoderanges",
+        "query_type": "linked_table",
+        "linked_table_id": "authorizations",
+        "linked_form_id": "authorizations",
+        "selection": "_savepoint_type = ? and _id = ?",
+        "selectionArgs": "['COMPLETE', data('authorization_id')]",
+        "fieldName": "item_pack_ranges",
+        "newRowInitialElementKeyToValueMap": "{}",
+        "openRowInitialElementKeyToValueMap": "{}",
+        "_row_num": 2
+      },
+      {
+        "query_name": "get_itempack",
+        "query_type": "linked_table",
+        "linked_table_id": "entitlements",
+        "linked_form_id": "entitlements",
+        "selection": "_savepoint_type = ? and _id = ?",
+        "selectionArgs": "['COMPLETE', data('entitlement_id')]",
+        "fieldName": "item_pack_name",
+        "newRowInitialElementKeyToValueMap": "{}",
+        "openRowInitialElementKeyToValueMap": "{}",
+        "_row_num": 3
+      }
+    ],
+    "model": [
+      {
+        "type": "string",
+        "name": "item_pack_barcode",
+        "_row_num": 2
+      },
+      {
+        "type": "signature",
+        "name": "receive_signature",
+        "_row_num": 3
+      },
+      {
+        "type": "string",
+        "name": "barcode_check",
+        "isSessionVariable": "true",
+        "_row_num": 4
+      },
+      {
+        "type": "acknowledge",
+        "name": "ack_name",
+        "_row_num": 5
+      },
+      {
+        "type": "string",
+        "name": "email",
+        "_row_num": 6
+      },
+      {
+        "type": "acknowledge",
+        "name": "ack_deliv_card",
+        "_row_num": 7
+      },
+      {
+        "type": "string",
+        "name": "firstName",
+        "isSessionVariable": "true",
+        "_row_num": 8
+      },
+      {
+        "type": "string",
+        "name": "lastName",
+        "isSessionVariable": "true",
+        "_row_num": 9
+      },
+      {
+        "type": "string",
+        "name": "item_pack_name",
+        "isSessionVariable": "true",
+        "_row_num": 10
+      },
+      {
+        "type": "acknowledge",
+        "name": "incorrect_barcode",
+        "isSessionVariable": "true",
+        "_row_num": 11
+      },
+      {
+        "type": "string",
+        "name": "barcode_ranges",
+        "isSessionVariable": "true",
+        "_row_num": 12
+      },
+      {
+        "type": "string",
+        "name": "authorization_id",
+        "isSessionVariable": "true",
+        "_row_num": 13
+      },
+      {
+        "type": "string",
+        "name": "ranges",
+        "isSessionVariable": "true",
+        "_row_num": 14
+      },
+      {
+        "type": "integer",
+        "name": "card_number",
+        "_row_num": 15
+      },
+      {
+        "type": "select_one",
+        "name": "enter_manual_barcode",
+        "isSessionVariable": true,
+        "_row_num": 16
+      }
+    ],
+    "settings": [
+      {
+        "setting_name": "form_id",
+        "value": "peru_distribution",
+        "_row_num": 2
+      },
+      {
+        "setting_name": "form_version",
+        "value": 20202704,
+        "_row_num": 3
+      },
+      {
+        "setting_name": "table_id",
+        "value": "peru_distribution",
+        "_row_num": 4
+      },
+      {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Distribución Perú"
+          }
+        },
+        "_row_num": 5
+      },
+      {
+        "setting_name": "instance_name",
+        "value": "ctp",
+        "_row_num": 6
+      }
+    ],
+    "choices": [
+      {
+        "choice_list_name": "yes_no",
+        "data_value": "true",
+        "display": {
+          "title": {
+            "text": "Si"
+          }
+        },
+        "_row_num": 2
+      },
+      {
+        "choice_list_name": "yes_no",
+        "data_value": "false",
+        "display": {
+          "title": {
+            "text": "No"
+          }
+        },
+        "_row_num": 3
+      }
+    ],
+    "calculates": [
+      {
+        "calculation_name": "parse_ranges",
+        "calculation": "(function() {var obj = JSON.parse(data('ranges'));\n if (obj === null || obj === undefined) {\n  return 'with any barcode value';\n }\n if (obj.length < 1) {\n  return 'with any barcode value';\n } else {\n  var str = 'within the range of ';\n  for (var i = 0; i < obj.length; i++) {\n   str += obj[i].min + ' to ' + obj[i].max + ',\\n';\n  }\n  if (obj.length > 1) {\n   str += 'or ';\n  }\n  str += obj[obj.length - 1].min + ' to ' + obj[obj.length - 1].max;\n  return str;\n  } \n})()",
+        "_row_num": 2
+      },
+      {
+        "calculation_name": "in_range",
+        "calculation": "(function() {\n var rawCode = data('item_pack_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
+        "_row_num": 3
+      }
+    ],
+    "properties": [
+      {
+        "partition": "SurveyUtil",
+        "aspect": "default",
+        "key": "SurveyUtil.formId",
+        "type": "string",
+        "value": "wrong_form",
+        "_row_num": 2
+      },
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "unverifiedUserCanCreate",
+        "type": "boolean",
+        "value": "false",
+        "_row_num": 3
+      },
+      {
+        "partition": "Table",
+        "aspect": "security",
+        "key": "defaultAccessOnCreation",
+        "type": "string",
+        "value": "HIDDEN",
+        "_row_num": 4
+      },
+      {
+        "partition": "Table",
+        "aspect": "default",
+        "key": "onDeliver",
+        "type": "string",
+        "value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'peru_registration',\n                                  'SELECT reg.first_name, reg.last_name, ent.item_pack_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, peru_registration as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'first_name'),\n                                          lastName: result.getData(0, 'last_name'),\n                                          item_pack_name: result.getData(0, 'item_pack_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });",
+        "_row_num": 5
+      }
+    ],
+    "prompt_types": [
+      {
+        "prompt_type_name": "async_assign_max",
+        "type": "number",
+        "_row_num": 2
+      },
+      {
+        "prompt_type_name": "async_assign_min",
+        "type": "number",
+        "_row_num": 3
+      },
+      {
+        "prompt_type_name": "async_assign_avg",
+        "type": "number",
+        "_row_num": 4
+      },
+      {
+        "prompt_type_name": "async_assign_sum",
+        "type": "number",
+        "_row_num": 5
+      },
+      {
+        "prompt_type_name": "async_assign_total",
+        "type": "number",
+        "_row_num": 6
+      },
+      {
+        "prompt_type_name": "async_assign_count",
+        "type": "number",
+        "_row_num": 7
+      },
+      {
+        "prompt_type_name": "async_assign_single_string",
+        "type": "string",
+        "_row_num": 8
+      }
+    ],
+    "initial": [
+      {
+        "clause": "if // start",
+        "condition": "(opendatakit.getCurrentInstanceId() != null)",
+        "_row_num": 2
+      },
+      {
+        "clause": "do section survey",
+        "_row_num": 4
+      },
+      {
+        "clause": "goto _finalize",
+        "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+        "_row_num": 5
+      },
+      {
+        "clause": "else // start",
+        "_row_num": 6
+      },
+      {
+        "type": "instances",
+        "display": {
+          "text": "Saved instances"
+        },
+        "_row_num": 7
+      },
+      {
+        "clause": "end if // start",
+        "_row_num": 8
+      }
+    ]
+  },
+  "specification": {
+    "column_types": {
+      "_screen_block": "function",
+      "condition": "formula",
+      "constraint": "formula",
+      "required": "formula",
+      "calculation": "formula",
+      "newRowInitialElementKeyToValueMap": "formula",
+      "openRowInitialElementKeyToValueMap": "formula",
+      "selectionArgs": "formula",
+      "url": "formula",
+      "uri": "formula",
+      "callback": "formula(context)",
+      "choice_filter": "formula(choice_item)",
+      "templatePath": "requirejs_path"
+    },
+    "settings": {
+      "form_id": {
+        "setting_name": "form_id",
+        "value": "peru_distribution",
+        "_row_num": 2
+      },
+      "form_version": {
+        "setting_name": "form_version",
+        "value": 20202704,
+        "_row_num": 3
+      },
+      "table_id": {
+        "setting_name": "table_id",
+        "value": "peru_distribution",
+        "_row_num": 4
+      },
+      "survey": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Distribución Perú"
+          }
+        },
+        "_row_num": 5
+      },
+      "instance_name": {
+        "setting_name": "instance_name",
+        "value": "ctp",
+        "_row_num": 6
+      },
+      "_locales": {
+        "setting_name": "_locales",
+        "_row_num": 5,
+        "value": [
+          {
+            "display": {
+              "locale": {
+                "text": "default"
+              }
+            },
+            "name": "default"
+          }
+        ]
+      },
+      "_default_locale": {
+        "setting_name": "_default_locale",
+        "_row_num": 5,
+        "value": "default"
+      },
+      "initial": {
+        "setting_name": "survey",
+        "display": {
+          "title": {
+            "text": "Distribución Perú"
+          }
+        },
+        "_row_num": 5
+      }
+    },
+    "choices": {
+      "yes_no": [
+        {
+          "choice_list_name": "yes_no",
+          "data_value": "true",
+          "display": {
+            "title": {
+              "text": "Si"
+            }
+          },
+          "_row_num": 2
+        },
+        {
+          "choice_list_name": "yes_no",
+          "data_value": "false",
+          "display": {
+            "title": {
+              "text": "No"
+            }
+          },
+          "_row_num": 3
+        }
+      ]
+    },
+    "table_specific_definitions": {
+      "_tokens": {}
+    },
+    "queries": {
+      "get_barcoderanges": {
+        "query_name": "get_barcoderanges",
+        "query_type": "linked_table",
+        "linked_table_id": "authorizations",
+        "linked_form_id": "authorizations",
+        "selection": "_savepoint_type = ? and _id = ?",
+        "selectionArgs": "['COMPLETE', data('authorization_id')]",
+        "fieldName": "item_pack_ranges",
+        "newRowInitialElementKeyToValueMap": "{}",
+        "openRowInitialElementKeyToValueMap": "{}",
+        "_row_num": 2
+      },
+      "get_itempack": {
+        "query_name": "get_itempack",
+        "query_type": "linked_table",
+        "linked_table_id": "entitlements",
+        "linked_form_id": "entitlements",
+        "selection": "_savepoint_type = ? and _id = ?",
+        "selectionArgs": "['COMPLETE', data('entitlement_id')]",
+        "fieldName": "item_pack_name",
+        "newRowInitialElementKeyToValueMap": "{}",
+        "openRowInitialElementKeyToValueMap": "{}",
+        "_row_num": 3
+      }
+    },
+    "calculates": {
+      "parse_ranges": {
+        "calculation_name": "parse_ranges",
+        "calculation": "(function() {var obj = JSON.parse(data('ranges'));\n if (obj === null || obj === undefined) {\n  return 'with any barcode value';\n }\n if (obj.length < 1) {\n  return 'with any barcode value';\n } else {\n  var str = 'within the range of ';\n  for (var i = 0; i < obj.length; i++) {\n   str += obj[i].min + ' to ' + obj[i].max + ',\\n';\n  }\n  if (obj.length > 1) {\n   str += 'or ';\n  }\n  str += obj[obj.length - 1].min + ' to ' + obj[obj.length - 1].max;\n  return str;\n  } \n})()",
+        "_row_num": 2
+      },
+      "in_range": {
+        "calculation_name": "in_range",
+        "calculation": "(function() {\n var rawCode = data('item_pack_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
+        "_row_num": 3
+      }
+    },
+    "model": {
+      "item_pack_barcode": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "item_pack_barcode"
+      },
+      "receive_signature": {
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "receive_signature_uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "receive_signature_contentType"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 29,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "receive_signature"
+      },
+      "barcode_check": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "barcode_check"
+      },
+      "ack_name": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ack_name"
+      },
+      "email": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "email"
+      },
+      "ack_deliv_card": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 26,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ack_deliv_card"
+      },
+      "firstName": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "firstName"
+      },
+      "lastName": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "lastName"
+      },
+      "item_pack_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "item_pack_name"
+      },
+      "incorrect_barcode": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "incorrect_barcode"
+      },
+      "barcode_ranges": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "barcode_ranges"
+      },
+      "authorization_id": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "authorization_id"
+      },
+      "ranges": {
+        "prompt_type_name": "async_assign_single_string",
+        "type": "string",
+        "valuesList": "get_barcoderanges",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "ranges"
+      },
+      "card_number": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "card_number"
+      },
+      "enter_manual_barcode": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": true,
+        "elementKey": "enter_manual_barcode"
+      }
+    },
+    "section_names": [
+      "initial",
+      "survey"
+    ],
+    "sections": {
+      "survey": {
+        "section_name": "survey",
+        "nested_sections": {},
+        "reachable_sections": {},
+        "prompts": [
+          {
+            "type": "async_assign_single_string",
+            "values_list": "get_barcoderanges",
+            "name": "ranges",
+            "_row_num": 3,
+            "__rowNum__": 2,
+            "_token_type": "prompt",
+            "_type": "async_assign_single_string",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 0
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": "Nombre: {{data.firstName}} <br/> Apellido: {{data.lastName}}"
+              }
+            },
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 1
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": "Tipo tarjeta: {{data.item_pack_name}}"
+              }
+            },
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 2
+          },
+          {
+            "type": "acknowledge",
+            "name": "ack_name",
+            "display": {
+              "prompt": {
+                "text": "Favor confirmar"
+              }
+            },
+            "required": 1,
+            "constraint": "data('ack_name') === true",
+            "_row_num": 6,
+            "__rowNum__": 5,
+            "_token_type": "prompt",
+            "_type": "acknowledge",
+            "_branch_label_enclosing_screen": "survey/_screen2",
+            "promptIdx": 3
+          },
+          {
+            "type": "string",
+            "name": "email",
+            "display": {
+              "prompt": {
+                "text": "Correo electrónico"
+              }
+            },
+            "_row_num": 8,
+            "__rowNum__": 7,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen8",
+            "promptIdx": 4
+          },
+          {
+            "type": "barcode",
+            "name": "item_pack_barcode",
+            "display": {
+              "prompt": {
+                "text": "Escanea el código de barras del sobre"
+              }
+            },
+            "_row_num": 10,
+            "__rowNum__": 9,
+            "_token_type": "prompt",
+            "_type": "barcode",
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 5
+          },
+          {
+            "type": "note",
+            "display": {
+              "prompt": {
+                "text": "<br><br><br>---------------------------"
+              }
+            },
+            "_row_num": 11,
+            "__rowNum__": 10,
+            "_token_type": "prompt",
+            "_type": "note",
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 6
+          },
+          {
+            "type": "select_one",
+            "values_list": "yes_no",
+            "name": "enter_manual_barcode",
+            "display": {
+              "prompt": {
+                "text": "Would you like to type in the barcode instead?"
+              }
+            },
+            "_row_num": 12,
+            "__rowNum__": 11,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen9",
+            "promptIdx": 7
+          },
+          {
+            "type": "string",
+            "name": "item_pack_barcode",
+            "display": {
+              "prompt": {
+                "text": "Please enter the barcode"
+              }
+            },
+            "inputAttributes": {
+              "type": "number"
+            },
+            "_row_num": 15,
+            "__rowNum__": 14,
+            "_token_type": "prompt",
+            "_type": "string",
+            "_branch_label_enclosing_screen": "survey/_screen15",
+            "promptIdx": 8
+          },
+          {
+            "type": "select_one",
+            "values_list": "yes_no",
+            "name": "barcode_check",
+            "display": {
+              "prompt": {
+                "text": "¿Es correcto el código de barras? {{data.item_pack_barcode}}"
+              }
+            },
+            "_row_num": 17,
+            "__rowNum__": 16,
+            "_token_type": "prompt",
+            "_type": "select_one",
+            "_branch_label_enclosing_screen": "survey/_screen17",
+            "promptIdx": 9
+          },
+          {
+            "type": "acknowledge",
+            "name": "incorrect_barcode",
+            "display": {
+              "prompt": {
+                "text": "Código de barras incorrecto. Por favor seleccione la tarjeta que le corresponde a este beneficiario."
+              }
+            },
+            "_row_num": 22,
+            "__rowNum__": 21,
+            "_token_type": "prompt",
+            "_type": "acknowledge",
+            "_branch_label_enclosing_screen": "survey/_screen22",
+            "promptIdx": 10
+          },
+          {
+            "type": "acknowledge",
+            "name": "ack_deliv_card",
+            "display": {
+              "prompt": {
+                "text": "Entregue la tarjeta al beneficiario."
+              }
+            },
+            "required": 1,
+            "constraint": "data('ack_deliv_card') === true",
+            "_row_num": 26,
+            "__rowNum__": 25,
+            "_token_type": "prompt",
+            "_type": "acknowledge",
+            "_branch_label_enclosing_screen": "survey/_screen25",
+            "promptIdx": 11
+          },
+          {
+            "type": "integer",
+            "name": "card_number",
+            "display": {
+              "prompt": {
+                "text": "Número de la tarjeta"
+              }
+            },
+            "inputAttributes": {
+              "type": "number"
+            },
+            "_row_num": 28,
+            "__rowNum__": 27,
+            "_token_type": "prompt",
+            "_type": "integer",
+            "_branch_label_enclosing_screen": "survey/_screen28",
+            "promptIdx": 12
+          },
+          {
+            "type": "signature",
+            "name": "receive_signature",
+            "display": {
+              "prompt": {
+                "text": "Firma de recepcion de la tarjeta."
+              }
+            },
+            "required": true,
+            "_row_num": 29,
+            "__rowNum__": 28,
+            "_token_type": "prompt",
+            "_type": "signature",
+            "_branch_label_enclosing_screen": "survey/_screen29",
+            "promptIdx": 13
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 30,
+            "_branch_label_enclosing_screen": "survey/_screen30",
+            "promptIdx": 14
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": [
+            3,
+            11,
+            13
+          ]
+        },
+        "operations": [
+          {
+            "clause": "begin screen",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 7,
+              "__rowNum__": 6,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(0);\nactivePromptIndicies.push(1);\nactivePromptIndicies.push(2);\nactivePromptIndicies.push(3);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 0
+          },
+          {
+            "_row_num": 8,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(4);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 1
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 9,
+            "__rowNum__": 8,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 13,
+              "__rowNum__": 12,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(5);\nactivePromptIndicies.push(6);\nactivePromptIndicies.push(7);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 2
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('enter_manual_barcode'), 'yes')",
+            "_row_num": 14,
+            "__rowNum__": 13,
+            "_token_type": "goto_label",
+            "_branch_label": "_then14",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else16",
+            "_row_num": 16,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 15,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif16",
+            "_row_num": 16,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 17,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 7
+          },
+          {
+            "clause": "if",
+            "condition": "selected(data('barcode_check'), 'no')",
+            "_row_num": 18,
+            "__rowNum__": 17,
+            "_token_type": "goto_label",
+            "_branch_label": "_then18",
+            "operationIdx": 8
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else20",
+            "_row_num": 20,
+            "operationIdx": 9
+          },
+          {
+            "clause": "goto scan_label",
+            "_row_num": 19,
+            "__rowNum__": 18,
+            "_token_type": "goto_label",
+            "_branch_label": "scan_label",
+            "operationIdx": 10
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif20",
+            "_row_num": 20,
+            "operationIdx": 11
+          },
+          {
+            "clause": "if",
+            "condition": "!calculates.in_range()",
+            "_row_num": 21,
+            "__rowNum__": 20,
+            "_token_type": "goto_label",
+            "_branch_label": "_then21",
+            "operationIdx": 12
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_else24",
+            "_row_num": 24,
+            "operationIdx": 13
+          },
+          {
+            "_row_num": 22,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 14
+          },
+          {
+            "clause": "goto scan_label",
+            "_row_num": 23,
+            "__rowNum__": 22,
+            "_token_type": "goto_label",
+            "_branch_label": "scan_label",
+            "operationIdx": 15
+          },
+          {
+            "clause": "end if",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif24",
+            "_row_num": 24,
+            "operationIdx": 16
+          },
+          {
+            "clause": "begin screen",
+            "_row_num": 25,
+            "__rowNum__": 24,
+            "_token_type": "begin_screen",
+            "_end_screen_clause": {
+              "clause": "end screen",
+              "_row_num": 27,
+              "__rowNum__": 26,
+              "_token_type": "end_screen"
+            },
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(11);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 17
+          },
+          {
+            "_row_num": 28,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(12);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 18
+          },
+          {
+            "_row_num": 29,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(13);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 19
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 30,
+            "operationIdx": 20
+          },
+          {
+            "_row_num": 30,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(14);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 21
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 30,
+            "operationIdx": 22
+          }
+        ],
+        "branch_label_map": {
+          "_screen2": 0,
+          "_screen8": 1,
+          "scan_label": 2,
+          "_screen9": 2,
+          "_then14": 5,
+          "_screen15": 5,
+          "_else16": 7,
+          "_endif16": 7,
+          "_screen17": 7,
+          "_then18": 10,
+          "_else20": 12,
+          "_endif20": 12,
+          "_then21": 14,
+          "_screen22": 14,
+          "_else24": 17,
+          "_endif24": 17,
+          "_screen25": 17,
+          "_screen28": 18,
+          "_screen29": 19,
+          "_contents": 21,
+          "_screen30": 21
+        }
+      },
+      "initial": {
+        "section_name": "initial",
+        "nested_sections": {
+          "survey": true
+        },
+        "reachable_sections": {
+          "survey": true
+        },
+        "prompts": [
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "prompt",
+            "_do_section_name": "survey",
+            "_type": "_section",
+            "promptIdx": 0,
+            "display": {
+              "title": {
+                "text": "Distribución Perú"
+              }
+            },
+            "_branch_label_enclosing_screen": "survey/0"
+          },
+          {
+            "type": "instances",
+            "display": {
+              "text": "Saved instances"
+            },
+            "_row_num": 7,
+            "__rowNum__": 6,
+            "_token_type": "prompt",
+            "_type": "instances",
+            "_branch_label_enclosing_screen": "initial/_screen7",
+            "promptIdx": 1
+          },
+          {
+            "_token_type": "prompt",
+            "type": "contents",
+            "_type": "contents",
+            "_row_num": 9,
+            "_branch_label_enclosing_screen": "initial/_screen9",
+            "promptIdx": 2
+          }
+        ],
+        "validation_tag_map": {
+          "finalize": []
+        },
+        "operations": [
+          {
+            "clause": "if // start",
+            "condition": "(opendatakit.getCurrentInstanceId() != null)",
+            "_row_num": 2,
+            "__rowNum__": 1,
+            "_token_type": "goto_label",
+            "_tag_name": "start",
+            "_branch_label": "_then2",
+            "operationIdx": 0
+          },
+          {
+            "clause": "else // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_else6",
+            "_row_num": 6,
+            "operationIdx": 1
+          },
+          {
+            "clause": "do section survey",
+            "_row_num": 4,
+            "__rowNum__": 3,
+            "_token_type": "do_section",
+            "_do_section_name": "survey",
+            "operationIdx": 2
+          },
+          {
+            "clause": "goto _finalize",
+            "comments": "skips the finalize screen where the user chooses to save as incomplete or finalized and instead saves as finalized",
+            "_row_num": 5,
+            "__rowNum__": 4,
+            "_token_type": "goto_label",
+            "_branch_label": "_finalize",
+            "operationIdx": 3
+          },
+          {
+            "clause": "end if // start",
+            "_token_type": "goto_label",
+            "_branch_label": "_endif8",
+            "_row_num": 8,
+            "operationIdx": 4
+          },
+          {
+            "_row_num": 7,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(1);\n\nreturn activePromptIndicies;\n}\n",
+            "operationIdx": 5
+          },
+          {
+            "_token_type": "exit_section",
+            "clause": "exit section",
+            "_row_num": 9,
+            "operationIdx": 6
+          },
+          {
+            "_row_num": 9,
+            "_token_type": "begin_screen",
+            "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(2);\n\nreturn activePromptIndicies;\n}\n",
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 7
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 8
+          },
+          {
+            "_token_type": "validate",
+            "clause": "validate finalize",
+            "_sweep_name": "finalize",
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 9
+          },
+          {
+            "_token_type": "save_and_terminate",
+            "clause": "save and terminate",
+            "calculation": true,
+            "_row_num": 9,
+            "screen": {
+              "hideInBackHistory": true
+            },
+            "operationIdx": 10
+          },
+          {
+            "_token_type": "resume",
+            "clause": "resume",
+            "_row_num": 9,
+            "operationIdx": 11
+          }
+        ],
+        "branch_label_map": {
+          "_then2": 2,
+          "_else6": 5,
+          "_screen7": 5,
+          "_endif8": 6,
+          "_contents": 7,
+          "_screen9": 7,
+          "_finalize": 9
+        }
+      }
+    },
+    "dataTableModel": {
+      "item_pack_barcode": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 2,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "item_pack_barcode",
+        "elementName": "item_pack_barcode",
+        "elementSet": "data",
+        "elementPath": "item_pack_barcode"
+      },
+      "receive_signature": {
+        "type": "object",
+        "elementType": "mimeUri",
+        "properties": {
+          "uriFragment": {
+            "type": "string",
+            "elementType": "rowpath",
+            "elementKey": "receive_signature_uriFragment",
+            "elementName": "uriFragment",
+            "elementSet": "data",
+            "elementPath": "receive_signature.uriFragment"
+          },
+          "contentType": {
+            "type": "string",
+            "elementType": "mimeType",
+            "default": "image/*",
+            "elementKey": "receive_signature_contentType",
+            "elementName": "contentType",
+            "elementSet": "data",
+            "elementPath": "receive_signature.contentType"
+          }
+        },
+        "_defn": [
+          {
+            "_row_num": 29,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 3,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "receive_signature",
+        "elementName": "receive_signature",
+        "elementSet": "data",
+        "elementPath": "receive_signature",
+        "listChildElementKeys": [
+          "receive_signature_contentType",
+          "receive_signature_uriFragment"
+        ],
+        "notUnitOfRetention": true
+      },
+      "barcode_check": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 17,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 4,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "barcode_check",
+        "elementName": "barcode_check",
+        "elementSet": "data",
+        "elementPath": "barcode_check"
+      },
+      "ack_name": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 6,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 5,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ack_name",
+        "elementName": "ack_name",
+        "elementSet": "data",
+        "elementPath": "ack_name"
+      },
+      "email": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 6,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "email",
+        "elementName": "email",
+        "elementSet": "data",
+        "elementPath": "email"
+      },
+      "ack_deliv_card": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 26,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 7,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "ack_deliv_card",
+        "elementName": "ack_deliv_card",
+        "elementSet": "data",
+        "elementPath": "ack_deliv_card"
+      },
+      "firstName": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 8,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "firstName",
+        "elementName": "firstName",
+        "elementSet": "data",
+        "elementPath": "firstName"
+      },
+      "lastName": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 9,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "lastName",
+        "elementName": "lastName",
+        "elementSet": "data",
+        "elementPath": "lastName"
+      },
+      "item_pack_name": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 10,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "item_pack_name",
+        "elementName": "item_pack_name",
+        "elementSet": "data",
+        "elementPath": "item_pack_name"
+      },
+      "incorrect_barcode": {
+        "type": "boolean",
+        "_defn": [
+          {
+            "_row_num": 22,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 11,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "incorrect_barcode",
+        "elementName": "incorrect_barcode",
+        "elementSet": "data",
+        "elementPath": "incorrect_barcode"
+      },
+      "barcode_ranges": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "barcode_ranges",
+        "elementName": "barcode_ranges",
+        "elementSet": "data",
+        "elementPath": "barcode_ranges"
+      },
+      "authorization_id": {
+        "type": "string",
+        "_defn": [
+          {
+            "_row_num": 13,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "authorization_id",
+        "elementName": "authorization_id",
+        "elementSet": "data",
+        "elementPath": "authorization_id"
+      },
+      "ranges": {
+        "prompt_type_name": "async_assign_single_string",
+        "type": "string",
+        "valuesList": "get_barcoderanges",
+        "_defn": [
+          {
+            "_row_num": 3,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 14,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": "true",
+        "elementKey": "ranges",
+        "elementName": "ranges",
+        "elementSet": "data",
+        "elementPath": "ranges"
+      },
+      "card_number": {
+        "type": "integer",
+        "_defn": [
+          {
+            "_row_num": 28,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 15,
+            "section_name": "model"
+          }
+        ],
+        "elementKey": "card_number",
+        "elementName": "card_number",
+        "elementSet": "data",
+        "elementPath": "card_number"
+      },
+      "enter_manual_barcode": {
+        "type": "string",
+        "valuesList": "yes_no",
+        "_defn": [
+          {
+            "_row_num": 12,
+            "section_name": "survey"
+          },
+          {
+            "_row_num": 16,
+            "section_name": "model"
+          }
+        ],
+        "isSessionVariable": true,
+        "elementKey": "enter_manual_barcode",
+        "elementName": "enter_manual_barcode",
+        "elementSet": "data",
+        "elementPath": "enter_manual_barcode"
+      },
+      "receive_signature_uriFragment": {
+        "type": "string",
+        "elementType": "rowpath",
+        "elementKey": "receive_signature_uriFragment",
+        "elementName": "uriFragment",
+        "elementSet": "data",
+        "elementPath": "receive_signature.uriFragment"
+      },
+      "receive_signature_contentType": {
+        "type": "string",
+        "elementType": "mimeType",
+        "default": "image/*",
+        "elementKey": "receive_signature_contentType",
+        "elementName": "contentType",
+        "elementSet": "data",
+        "elementPath": "receive_signature.contentType"
+      },
+      "_id": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_id",
+        "elementName": "_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_id"
+      },
+      "_row_etag": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_etag",
+        "elementName": "_row_etag",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_etag"
+      },
+      "_sync_state": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_sync_state",
+        "elementName": "_sync_state",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_sync_state"
+      },
+      "_conflict_type": {
+        "type": "integer",
+        "isNotNullable": false,
+        "elementKey": "_conflict_type",
+        "elementName": "_conflict_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_conflict_type"
+      },
+      "_default_access": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_default_access",
+        "elementName": "_default_access",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_default_access"
+      },
+      "_form_id": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_form_id",
+        "elementName": "_form_id",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_form_id"
+      },
+      "_group_modify": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_modify",
+        "elementName": "_group_modify",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_modify"
+      },
+      "_group_privileged": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_privileged",
+        "elementName": "_group_privileged",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_privileged"
+      },
+      "_group_read_only": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_group_read_only",
+        "elementName": "_group_read_only",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_group_read_only"
+      },
+      "_locale": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_locale",
+        "elementName": "_locale",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_locale"
+      },
+      "_row_owner": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_row_owner",
+        "elementName": "_row_owner",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_row_owner"
+      },
+      "_savepoint_type": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_type",
+        "elementName": "_savepoint_type",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_type"
+      },
+      "_savepoint_timestamp": {
+        "type": "string",
+        "isNotNullable": true,
+        "elementKey": "_savepoint_timestamp",
+        "elementName": "_savepoint_timestamp",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_timestamp"
+      },
+      "_savepoint_creator": {
+        "type": "string",
+        "isNotNullable": false,
+        "elementKey": "_savepoint_creator",
+        "elementName": "_savepoint_creator",
+        "elementSet": "instanceMetadata",
+        "elementPath": "_savepoint_creator"
+      }
+    },
+    "properties": [
+      {
+        "_partition": "SurveyUtil",
+        "_aspect": "default",
+        "_key": "SurveyUtil.formId",
+        "_type": "string",
+        "_value": "wrong_form"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "defaultViewType",
+        "_type": "string",
+        "_value": "SPREADSHEET"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "displayName",
+        "_type": "object",
+        "_value": "{\"text\":\"Distribución Perú\"}"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "default",
+        "_key": "onDeliver",
+        "_type": "string",
+        "_value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'peru_registration',\n                                  'SELECT reg.first_name, reg.last_name, ent.item_pack_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, peru_registration as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'first_name'),\n                                          lastName: result.getData(0, 'last_name'),\n                                          item_pack_name: result.getData(0, 'item_pack_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "defaultAccessOnCreation",
+        "_type": "string",
+        "_value": "HIDDEN"
+      },
+      {
+        "_partition": "Table",
+        "_aspect": "security",
+        "_key": "unverifiedUserCanCreate",
+        "_type": "boolean",
+        "_value": "false"
+      }
+    ]
+  }
+}

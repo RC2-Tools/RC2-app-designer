@@ -2,6 +2,8 @@ build/
 *.~lock.*
 app/output/props/*
 tempZipDir
+node_modules/*
+node_modules/.bin/*
 
 # Excel temporary
 ~$*.xls*
@@ -17,4 +19,3 @@ tempZipDir
 node_modules/*
 node_modules/.bin/*
 node_modules
-debug.log

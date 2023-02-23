@@ -64,22 +64,22 @@
       },
       {
         "type": "string",
-        "name": "item_description",
+        "name": "item_pack_description",
         "_row_num": 8
       },
       {
         "type": "string",
-        "name": "item_id",
+        "name": "item_pack_id",
         "_row_num": 9
       },
       {
         "type": "string",
-        "name": "item_name",
+        "name": "item_pack_name",
         "_row_num": 10
       },
       {
         "type": "string",
-        "name": "assigned_item_code",
+        "name": "assigned_item_pack_code",
         "_row_num": 11
       },
       {
@@ -289,7 +289,7 @@
         ],
         "elementKey": "is_override"
       },
-      "item_description": {
+      "item_pack_description": {
         "type": "string",
         "_defn": [
           {
@@ -297,9 +297,9 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_description"
+        "elementKey": "item_pack_description"
       },
-      "item_id": {
+      "item_pack_id": {
         "type": "string",
         "_defn": [
           {
@@ -307,9 +307,9 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_id"
+        "elementKey": "item_pack_id"
       },
-      "item_name": {
+      "item_pack_name": {
         "type": "string",
         "_defn": [
           {
@@ -317,9 +317,9 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_name"
+        "elementKey": "item_pack_name"
       },
-      "assigned_item_code": {
+      "assigned_item_pack_code": {
         "type": "string",
         "_defn": [
           {
@@ -327,7 +327,7 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "assigned_item_code"
+        "elementKey": "assigned_item_pack_code"
       },
       "status": {
         "type": "string",
@@ -619,7 +619,7 @@
         "elementSet": "data",
         "elementPath": "is_override"
       },
-      "item_description": {
+      "item_pack_description": {
         "type": "string",
         "_defn": [
           {
@@ -627,12 +627,12 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_description",
-        "elementName": "item_description",
+        "elementKey": "item_pack_description",
+        "elementName": "item_pack_description",
         "elementSet": "data",
-        "elementPath": "item_description"
+        "elementPath": "item_pack_description"
       },
-      "item_id": {
+      "item_pack_id": {
         "type": "string",
         "_defn": [
           {
@@ -640,12 +640,12 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_id",
-        "elementName": "item_id",
+        "elementKey": "item_pack_id",
+        "elementName": "item_pack_id",
         "elementSet": "data",
-        "elementPath": "item_id"
+        "elementPath": "item_pack_id"
       },
-      "item_name": {
+      "item_pack_name": {
         "type": "string",
         "_defn": [
           {
@@ -653,12 +653,12 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_name",
-        "elementName": "item_name",
+        "elementKey": "item_pack_name",
+        "elementName": "item_pack_name",
         "elementSet": "data",
-        "elementPath": "item_name"
+        "elementPath": "item_pack_name"
       },
-      "assigned_item_code": {
+      "assigned_item_pack_code": {
         "type": "string",
         "_defn": [
           {
@@ -666,10 +666,10 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "assigned_item_code",
-        "elementName": "assigned_item_code",
+        "elementKey": "assigned_item_pack_code",
+        "elementName": "assigned_item_pack_code",
         "elementSet": "data",
-        "elementPath": "assigned_item_code"
+        "elementPath": "assigned_item_pack_code"
       },
       "status": {
         "type": "string",

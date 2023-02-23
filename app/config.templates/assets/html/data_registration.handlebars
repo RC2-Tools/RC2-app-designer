@@ -1,0 +1,35 @@
+{{#> layout }}
+    {{#*inline "mainContent" }}
+        {{> pageTitle token="registration_data" }}
+
+        {{> menuItem
+                id="enabledBeneficiaryEnt"
+                icon="../img/reg_icon.svg"
+        }}
+
+        {{> menuItem
+                id="disabledBeneficiaryEnt"
+                icon="../img/reg_icon.svg"
+        }}
+
+        {{> menuItem
+                id="searchBeneficiaryEnt"
+                icon="../img/search_icon.svg"
+        }}
+
+        {{> menuItem
+                id="searchMember"
+                icon="../img/search_icon.svg"
+                label="search_members"
+        }}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="../js/renderers/data_registration.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/layout}}

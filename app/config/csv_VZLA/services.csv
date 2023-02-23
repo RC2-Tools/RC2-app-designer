@@ -1,9 +1,0 @@
-_id,_form_id,_locale,_savepoint_type,_savepoint_timestamp,_savepoint_creator,description,end_with_referrals,name,referral_form_id,referral_table_id,requires_referral,service_form_id,service_table_id,_default_access,_group_modify,_group_privileged,_group_read_only,_row_etag,_row_owner
-s20,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,ANTECEDENTES,0,ANTECEDENTES,,,0,VZLA_IM_Antecedentes,VZLA_IM_Antecedentes,,,,,,
-s21,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,CONSULTA MEDICA,1,CONSULTA MEDICA,,,0,VZLA_IM_ConsultaMedica,VZLA_IM_ConsultaMedica,,,,,,
-s22,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,ENTREGAS ITEMS,0,ENTREGAS ITEMS,,,0,VZLA_IM_EntregasItems,VZLA_IM_EntregasItems,,,,,,
-s23,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,Laboratorios,0,Laboratorios,VZLA_IM_Laboratorios,VZLA_IM_Laboratorios,1,,,,,,,,
-s24,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,RECETA MEDICA,0,RECETA MEDICA,,,0,VZLA_IM_RecetaMedica,VZLA_IM_RecetaMedica,,,,,,
-s25,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,SESIONES EDUCATIVAS,0,SESIONES EDUCATIVAS,,,0,VZLA_IM_SesionesEducativas,VZLA_IM_SesionesEducativas,,,,,,
-s26,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,SIGNOS VITALES Y ANTROPOMETRIA,0,SIGNOS VITALES Y ANTROPOMETRIA,,,0,VZLA_IM_SignosVitales,VZLA_IM_SignosVitales,,,,,,
-s27,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,REFERECIA HOSPITALARIA,0,REFERECIA HOSPITALARIA,VZLA_IM_ReferenciaHospitalaria,VZLA_IM_ReferenciaHospitalaria,1,,,,,,,,

@@ -918,10 +918,10 @@ window.odkCommonDefinitions = {
       },
       "_row_num": 129
     },
-    "item_id": {
-      "string_token": "item_id",
+    "item_pack_id": {
+      "string_token": "item_pack_id",
       "text": {
-        "default": "Item ID",
+        "default": "Item Pack ID",
         "el": "Αναγνωριστικό πακέτου στοιχείου",
         "ar": "رقم الحزمة",
         "fa": "شماره بسته",
@@ -929,10 +929,10 @@ window.odkCommonDefinitions = {
       },
       "_row_num": 130
     },
-    "item_name": {
-      "string_token": "item_name",
+    "item_pack_name": {
+      "string_token": "item_pack_name",
       "text": {
-        "default": "Item Name",
+        "default": "Item Pack Name",
         "el": "Όνομα πακέτου στοιχείου",
         "ar": "اسم الحزمة",
         "fa": "نام بسته",
@@ -940,10 +940,10 @@ window.odkCommonDefinitions = {
       },
       "_row_num": 131
     },
-    "item_description": {
-      "string_token": "item_description",
+    "item_pack_description": {
+      "string_token": "item_pack_description",
       "text": {
-        "default": "Item Description",
+        "default": "Item Pack Description",
         "el": "Περιγραφή πακέτου στοιχείου",
         "ar": "وصف الحزمة",
         "fa": "شرح بسته",
@@ -967,10 +967,10 @@ window.odkCommonDefinitions = {
       },
       "_row_num": 134
     },
-    "assigned_item_code": {
-      "string_token": "assigned_item_code",
+    "assigned_item_pack_code": {
+      "string_token": "assigned_item_pack_code",
       "text": {
-        "default": "Assigned Item Barcode",
+        "default": "Assigned Item Pack Barcode",
         "es": "Código de barras de paquete de artículo asignado"
       },
       "_row_num": 135
@@ -991,10 +991,10 @@ window.odkCommonDefinitions = {
       },
       "_row_num": 138
     },
-    "item_ranges": {
-      "string_token": "item_ranges",
+    "item_pack_ranges": {
+      "string_token": "item_pack_ranges",
       "text": {
-        "default": "Item Ranges",
+        "default": "Item Pack Ranges",
         "es": "Rangos de paquetes de artículos"
       },
       "_row_num": 139
@@ -1071,13 +1071,20 @@ window.odkCommonDefinitions = {
       },
       "_row_num": 149
     },
+    "all_visit_programs": {
+      "string_token": "all_visit_programs",
+      "text": {
+        "default": "All Visit Programs"
+      },
+      "_row_num": 150
+    },
     "address": {
       "string_token": "address",
       "text": {
         "default": "Address",
         "es": "Dirección"
       },
-      "_row_num": 151
+      "_row_num": 152
     },
     "telephone": {
       "string_token": "telephone",
@@ -1085,7 +1092,7 @@ window.odkCommonDefinitions = {
         "default": "Telephone",
         "es": "Teléfono"
       },
-      "_row_num": 152
+      "_row_num": 153
     },
     "mobile_provider": {
       "string_token": "mobile_provider",
@@ -1093,7 +1100,7 @@ window.odkCommonDefinitions = {
         "default": "Mobile Provider",
         "es": "Proveedor de telefonía móvil"
       },
-      "_row_num": 153
+      "_row_num": 154
     },
     "delivery_site": {
       "string_token": "delivery_site",
@@ -1101,7 +1108,7 @@ window.odkCommonDefinitions = {
         "default": "Delivery Site",
         "es": "Sitio de Entrega"
       },
-      "_row_num": 154
+      "_row_num": 155
     },
     "location": {
       "string_token": "location",
@@ -1109,7 +1116,7 @@ window.odkCommonDefinitions = {
         "default": "Location",
         "es": "Ubicación"
       },
-      "_row_num": 155
+      "_row_num": 156
     },
     "tent_caravan": {
       "string_token": "tent_caravan",
@@ -1117,7 +1124,7 @@ window.odkCommonDefinitions = {
         "default": "Tent/Caravan Code",
         "es": "Código de tienda/caravana"
       },
-      "_row_num": 156
+      "_row_num": 157
     },
     "hh_size": {
       "string_token": "hh_size",
@@ -1125,7 +1132,7 @@ window.odkCommonDefinitions = {
         "default": "Household Size",
         "es": "Tamaño de la Familia"
       },
-      "_row_num": 157
+      "_row_num": 158
     },
     "first_name": {
       "string_token": "first_name",
@@ -1133,7 +1140,7 @@ window.odkCommonDefinitions = {
         "default": "First Name",
         "es": "Primer Nombre"
       },
-      "_row_num": 159
+      "_row_num": 160
     },
     "last_name": {
       "string_token": "last_name",
@@ -1141,7 +1148,7 @@ window.odkCommonDefinitions = {
         "default": "Last Name",
         "es": "Apellidos"
       },
-      "_row_num": 160
+      "_row_num": 161
     },
     "first_last_name": {
       "string_token": "first_last_name",
@@ -1149,7 +1156,7 @@ window.odkCommonDefinitions = {
         "default": "First and Last Name",
         "es": "Nombre y Apellido"
       },
-      "_row_num": 161
+      "_row_num": 162
     },
     "birth_date": {
       "string_token": "birth_date",
@@ -1157,7 +1164,7 @@ window.odkCommonDefinitions = {
         "default": "Birth Date",
         "es": "Fecha de nacimiento"
       },
-      "_row_num": 162
+      "_row_num": 163
     },
     "age": {
       "string_token": "age",
@@ -1165,7 +1172,7 @@ window.odkCommonDefinitions = {
         "default": "Age",
         "es": "Edad"
       },
-      "_row_num": 163
+      "_row_num": 164
     },
     "gender": {
       "string_token": "gender",
@@ -1173,7 +1180,7 @@ window.odkCommonDefinitions = {
         "default": "Gender",
         "es": "Género"
       },
-      "_row_num": 164
+      "_row_num": 165
     },
     "id_type": {
       "string_token": "id_type",
@@ -1181,7 +1188,7 @@ window.odkCommonDefinitions = {
         "default": "ID Type",
         "es": "Tipo de Identificación"
       },
-      "_row_num": 165
+      "_row_num": 166
     },
     "id_number": {
       "string_token": "id_number",
@@ -1189,7 +1196,7 @@ window.odkCommonDefinitions = {
         "default": "ID Number",
         "es": "Número de identificación"
       },
-      "_row_num": 166
+      "_row_num": 167
     },
     "is_head_of_household": {
       "string_token": "is_head_of_household",
@@ -1197,7 +1204,7 @@ window.odkCommonDefinitions = {
         "default": "Is Head of Household",
         "es": "Es jefe de familia"
       },
-      "_row_num": 167
+      "_row_num": 168
     },
     "picture": {
       "string_token": "picture",
@@ -1205,7 +1212,7 @@ window.odkCommonDefinitions = {
         "default": "Picture",
         "es": "Fotografía"
       },
-      "_row_num": 168
+      "_row_num": 169
     },
     "email": {
       "string_token": "email",
@@ -1213,7 +1220,7 @@ window.odkCommonDefinitions = {
         "default": "Email",
         "es": "Correo electrónico"
       },
-      "_row_num": 169
+      "_row_num": 170
     },
     "vulnerability": {
       "string_token": "vulnerability",
@@ -1221,7 +1228,7 @@ window.odkCommonDefinitions = {
         "default": "Vulnerability",
         "es": "Vulnerabilidad"
       },
-      "_row_num": 170
+      "_row_num": 171
     },
     "no_distributions": {
       "string_token": "no_distributions",
@@ -1229,7 +1236,7 @@ window.odkCommonDefinitions = {
         "default": "No Distributions",
         "es": "Sin Distribuciones"
       },
-      "_row_num": 171
+      "_row_num": 172
     },
     "choose_distribution": {
       "string_token": "choose_distribution",
@@ -1237,7 +1244,7 @@ window.odkCommonDefinitions = {
         "default": "Choose Distribution",
         "es": "Elegir Distribución"
       },
-      "_row_num": 172
+      "_row_num": 173
     },
     "register": {
       "string_token": "register",
@@ -1245,7 +1252,7 @@ window.odkCommonDefinitions = {
         "default": "Register",
         "es": "Registrar"
       },
-      "_row_num": 173
+      "_row_num": 174
     },
     "choose_dept": {
       "string_token": "choose_dept",
@@ -1253,7 +1260,7 @@ window.odkCommonDefinitions = {
         "default": "Choose Department",
         "es": "Elegir departamento"
       },
-      "_row_num": 175
+      "_row_num": 176
     },
     "choose_pam": {
       "string_token": "choose_pam",
@@ -1261,7 +1268,7 @@ window.odkCommonDefinitions = {
         "default": "Choose PAM",
         "es": "Elija PAM"
       },
-      "_row_num": 176
+      "_row_num": 177
     },
     "continue": {
       "string_token": "continue",
@@ -1269,7 +1276,7 @@ window.odkCommonDefinitions = {
         "default": "Continue",
         "es": "Continuar"
       },
-      "_row_num": 177
+      "_row_num": 178
     },
     "beneficiary_not_entitled": {
       "string_token": "beneficiary_not_entitled",
@@ -1277,7 +1284,7 @@ window.odkCommonDefinitions = {
         "default": "Beneficiary is not entitled to any more of these items",
         "es": "El beneficiario no tiene derecho a más de estos artículos"
       },
-      "_row_num": 178
+      "_row_num": 179
     },
     "no_id_found": {
       "string_token": "no_id_found",
@@ -1285,7 +1292,7 @@ window.odkCommonDefinitions = {
         "default": "No id found",
         "es": "No se ha encontrado ninguna identificación"
       },
-      "_row_num": 179
+      "_row_num": 180
     },
     "error_while_storing_department_and_PAM": {
       "string_token": "error_while_storing_department_and_PAM",
@@ -1293,7 +1300,7 @@ window.odkCommonDefinitions = {
         "default": "Error while storing department and PAM",
         "es": "Error al almacenar departamento y PAM"
       },
-      "_row_num": 180
+      "_row_num": 181
     },
     "error_while_initializing": {
       "string_token": "error_while_initializing",
@@ -1301,7 +1308,7 @@ window.odkCommonDefinitions = {
         "default": "Error while initializing",
         "es": "Error durante la inicialización"
       },
-      "_row_num": 181
+      "_row_num": 182
     },
     "error_while_retrieving_department_and_PAM": {
       "string_token": "error_while_retrieving_department_and_PAM",
@@ -1309,79 +1316,14 @@ window.odkCommonDefinitions = {
         "default": "Error while retrieving department and PAM",
         "es": "Error al recuperar el departamento y el PAM"
       },
-      "_row_num": 182
+      "_row_num": 183
     },
     "edit_label": {
       "string_token": "edit_label",
       "text": {
-        "default": "Edit",
-        "es": "Editar"
-      },
-      "_row_num": 184
-    },
-    "volunteers": {
-      "string_token": "volunteers",
-      "text": {
-        "default": "Volunteers",
-        "es": "Voluntarios"
+        "default": "Edit"
       },
       "_row_num": 185
-    },
-    "update_profile": {
-      "string_token": "update_profile",
-      "text": {
-        "default": "Update Profile",
-        "es": "Actualizar Perfil"
-      },
-      "_row_num": 186
-    },
-    "medical_history_menu": {
-      "string_token": "medical_history_menu",
-      "text": {
-        "default": "Medical History",
-        "es": "Historial Médico"
-      },
-      "_row_num": 188
-    },
-    "service_menu": {
-      "string_token": "service_menu",
-      "text": {
-        "default": "Services",
-        "es": "Servicio"
-      },
-      "_row_num": 189
-    },
-    "referrals": {
-      "string_token": "referrals",
-      "text": {
-        "default": "Referrals",
-        "es": "Referencias"
-      },
-      "_row_num": 190
-    },
-    "distributions": {
-      "string_token": "distributions",
-      "text": {
-        "default": "Distributions",
-        "es": "Distribucións"
-      },
-      "_row_num": 191
-    },
-    "no_service_found": {
-      "string_token": "no_service_found",
-      "text": {
-        "default": "No Service Found",
-        "es": "No se encontró el Servicio"
-      },
-      "_row_num": 192
-    },
-    "all_visit_programs": {
-      "string_token": "all_visit_programs",
-      "text": {
-        "default": "All Visit Programs",
-        "es": "Todos los Programas de Visita"
-      },
-      "_row_num": 193
     }
   },
   "_locales": {

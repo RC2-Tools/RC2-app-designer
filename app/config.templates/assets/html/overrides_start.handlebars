@@ -1,0 +1,26 @@
+{{#> layout }}
+    {{#*inline "mainContent" }}
+        {{> pageTitle token="administrator_options" }}
+
+        {{> menuItem
+                id="registration"
+                icon="../img/reg_icon.svg"
+                label="registration"
+        }}
+
+        {{> menuItem
+                id="distribution"
+                icon="../img/dist_icon.svg"
+                label="distribution"
+        }}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="../js/renderers/overrides_start.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/layout}}

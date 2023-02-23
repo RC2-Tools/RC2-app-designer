@@ -1,0 +1,26 @@
+{{#> layout }}
+    {{#*inline "mainContent" }}
+        {{> pageTitle token="administrator_options" }}
+
+        {{> menuItem
+                id="terminate"
+                icon="../img/on_off_icon.svg"
+                label="terminate_authorization"
+        }}
+
+        {{> menuItem
+                id="create"
+                icon="../img/reg_icon.svg"
+                label="start_new_authorization"
+        }}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="../js/renderers/token_overrides.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/layout}}

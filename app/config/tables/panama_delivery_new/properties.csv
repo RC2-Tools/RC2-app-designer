@@ -6,7 +6,7 @@ Table,default,onDeliver,string,"(function (entitlementRowId) {
                             return new Promise(function (resolve, reject) {
                                 odkData.arbitraryQuery(
                                   'panamaRegistration',
-                                  'SELECT reg.firstName, reg.lastName, ent.item_name, ent.authorization_id' +
+                                  'SELECT reg.firstName, reg.lastName, ent.item_pack_name, ent.authorization_id' +
                                   ' FROM entitlements as ent, panamaRegistration as reg, beneficiary_entities as ben' +
                                   ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +
                                  ' ben.custom_beneficiary_entity_row_id = reg._id',
@@ -23,7 +23,7 @@ Table,default,onDeliver,string,"(function (entitlementRowId) {
                                       jsonMapSurvey: {
                                           firstName: result.getData(0, 'firstName'),
                                           lastName: result.getData(0, 'lastName'),
-                                          item_name: result.getData(0, 'item_name'),
+                                          item_pack_name: result.getData(0, 'item_pack_name'),
                                           authorization_id: result.getData(0, 'authorization_id')
                                       }
                                   };

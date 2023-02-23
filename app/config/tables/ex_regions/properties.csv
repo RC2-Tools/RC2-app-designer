@@ -1,6 +1,0 @@
-_partition,_aspect,_key,_type,_value
-Column,noteInfor,displayChoicesList,object,"[{""choice_list_name"":""si_no"",""data_value"":""SI"",""display"":{""title"":{""text"":""Si""}},""_row_num"":2},{""choice_list_name"":""si_no"",""data_value"":""NO"",""display"":{""title"":{""text"":""No""}},""_row_num"":3}]"
-FormType,default,FormType.formType,string,SURVEY
-SurveyUtil,default,SurveyUtil.formId,string,ex_regions
-Table,default,defaultViewType,string,SPREADSHEET
-Table,default,displayName,object,"{""text"":""SISTEMA SALUD""}"

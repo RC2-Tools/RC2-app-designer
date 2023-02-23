@@ -2189,10 +2189,7 @@ var zipAllFiles = function( destZipFile, filesList, completionFn ) {
       'Compile app/config.templates',
       function () {
         var templatesToCompile = grunt.file.expandMapping(
-          ['assets/**/*.handlebars',
-           'relief_assets/**/*.handlebars',
-           'health_assets/**/*.handlebars',
-           'tables/**/*.handlebars'],
+          ['assets/**/*.handlebars', 'tables/**/*.handlebars'],
           templateConfig.outDir,
           {
             filter: 'isFile',
@@ -2217,10 +2214,6 @@ var zipAllFiles = function( destZipFile, filesList, completionFn ) {
           '**/*.handlebars'
         );
 
-        Handlebars.registerHelper( 'concat', 
-            (...args) => args.slice(0, -1).join('')
-        );
-
         for (var partial of hbsPartials) {
           Handlebars.registerPartial(
             path.basename(partial, '.handlebars'),
@@ -2236,47 +2229,17 @@ var zipAllFiles = function( destZipFile, filesList, completionFn ) {
             path.posix.join(templateConfig.templateDir, 'assets')
           );
 
-          var reliefAssetsRelativePath = path.posix.relative(
-            path.posix.dirname(templ.src[0]),
-            path.posix.join(templateConfig.templateDir, 'relief_assets')
-          );
-
-          var healthAssetsRelativePath = path.posix.relative(
-            path.posix.dirname(templ.src[0]),
-            path.posix.join(templateConfig.templateDir, 'health_assets')
-          );
-
-          var tablesRelativePath = path.posix.relative(
-            path.posix.dirname(templ.src[0]),
-            path.posix.join(templateConfig.templateDir, 'tables')
-          );
-
           var systemRelativePath = path.posix.relative(
             path.posix.dirname(templ.src[0]),
             path.posix.join(templateConfig.templateDir, '../system')
           );
 
           if (assetsRelativePath === '') {
-            assetsRelativePath = '../assets';
-          }
-
-          if (reliefAssetsRelativePath === '') {
-            reliefAssetsRelativePath = '../relief_assets';
-          }
-
-          if (healthAssetsRelativePath === '') {
-            healthAssetsRelativePath = '../health_assets';
-          }
-
-          if (tablesRelativePath === '') {
-            tablesRelativePath = '../tables';
+            assetsRelativePath = '.';
           }
 
           grunt.file.write(templ.dest, hbs({
             assetsPath: assetsRelativePath,
-            reliefAssetsPath: reliefAssetsRelativePath,
-            healthAssetsPath: healthAssetsRelativePath,
-            tablesPath: tablesRelativePath,
             systemPath: systemRelativePath
           }));
         }

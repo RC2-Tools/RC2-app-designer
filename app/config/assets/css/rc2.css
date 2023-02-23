@@ -194,7 +194,7 @@ select.text-center {
     border-color: #4d4d4d;
 }
 
-.btn-menu-red, .btn-red {
+.btn-menu-red {
     background-color: var(--rc-red);
     border-color: var(--rc-red);
 }

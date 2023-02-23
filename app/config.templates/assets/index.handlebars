@@ -1,27 +1,59 @@
 {{#> layout }}
     {{#*inline "mainContent" }}
-        <p>Loading...</p>
+        {{> pageTitle token="main_title" }}
+
+        {{> menuItem
+                id="register"
+                class="workflow-required workflow-optional workflow-id-only"
+                icon="img/reg_icon.svg"
+                label="registration"
+        }}
+
+        {{> menuItem
+                id="deliver"
+                class="workflow-required workflow-optional workflow-none"
+                icon="img/dist_icon.svg"
+                label="delivery_upper_case"
+        }}
+
+        {{> menuItem
+                id="visit"
+                class="workflow-required workflow-optional"
+                icon="img/visit_icon.svg"
+                label="visit_menu"
+        }}
+
+        {{> menuItem
+                id="data"
+                class="workflow-required workflow-optional workflow-id-only workflow-none"
+                icon="img/view_data_icon.svg"
+                label="data_path"
+        }}
+
+        {{> menuItem
+                id="overrides"
+                class="workflow-superuser"
+                icon="img/admin_icon.svg"
+                label="administrator_options"
+        }}
     {{/inline}}
 
     {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="js/renderers/beneficiary_index.js"></script>
+        <script type="text/javascript" src="js/renderers/token_index.js"></script>
+
         <script>
             'use strict';
 
             $(function () {
-                let module = util.getModule();
-                switch(module) {
-                    case 'RELIEF':
-                        odkTables.launchHTML(null, 'config/relief_assets/relief_index.html');
-                        break;
-                    case 'HEALTH':
-                        odkTables.launchHTML(null, 'config/health_assets/health_index.html');
-                        break;
-                    default:
-                        // Show error
-                        break;
-                };
+              if (util.getWorkflowMode() === util.workflow.none) {
+                  $(util.renderPage(tokenIndex.display));
+              } else if (util.getWorkflowMode() === util.workflow.optional ||
+                      util.getWorkflowMode() === util.workflow.required ||
+                      util.getWorkflowMode() === util.workflow.idOnly) {
+                  $(util.renderPage(beneficiaryIndex.display));
+              }
             });
         </script>
     {{/inline}}
 {{/layout}}
-

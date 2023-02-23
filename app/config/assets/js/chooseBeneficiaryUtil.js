@@ -50,8 +50,6 @@ function populateChooseUser() {
 
         var superUser = $.inArray('ROLE_SUPER_USER_TABLES', roles) > -1;
         if (superUser && filteredRoles.length > 0) {
-			var selectgroup = document.getElementById('choose_user');
-			selectgroup.style.visibility = 'visible';
             return util.renderSuperuserFeatures(function () {
                 var chooseUserSelect = $('#choose_user');
 
@@ -77,8 +75,6 @@ function populateChooseUser() {
                 });
             });
         } else {
-			var selectgroup = document.getElementById('choose_user');
-			selectgroup.style.visibility = 'hidden';
             return Promise.resolve();
         }
     }, function(err) {

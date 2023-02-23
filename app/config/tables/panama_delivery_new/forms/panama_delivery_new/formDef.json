@@ -24,7 +24,7 @@
         "type": "note",
         "display": {
           "prompt": {
-            "text": "Tipo tarjeta: {{data.item_name}}"
+            "text": "Tipo tarjeta: {{data.item_pack_name}}"
           }
         },
         "_row_num": 5
@@ -46,18 +46,15 @@
         "_row_num": 7
       },
       {
-        "branch_label": "scan_label",
-        "_row_num": 8
-      },
-      {
         "type": "barcode",
-        "name": "item_barcode",
+        "name": "item_pack_barcode",
         "display": {
           "prompt": {
             "text": "Escanea el código de barras"
           }
         },
-        "_row_num": 9
+        "branch_label": "scan_label",
+        "_row_num": 8
       },
       {
         "type": "select_one",
@@ -65,28 +62,28 @@
         "name": "barcode_check",
         "display": {
           "prompt": {
-            "text": "¿Es correcto el código de barras? {{data.item_barcode}}"
+            "text": "¿Es correcto el código de barras? {{data.item_pack_barcode}}"
           }
         },
-        "_row_num": 10
+        "_row_num": 9
       },
       {
         "clause": "if",
         "condition": "selected(data('barcode_check'), 'no')",
-        "_row_num": 11
+        "_row_num": 10
       },
       {
         "clause": "goto scan_label",
-        "_row_num": 12
+        "_row_num": 11
       },
       {
         "clause": "end if",
-        "_row_num": 13
+        "_row_num": 12
       },
       {
         "clause": "if",
         "condition": "!calculates.in_range()",
-        "_row_num": 14
+        "_row_num": 13
       },
       {
         "type": "acknowledge",
@@ -96,19 +93,19 @@
             "text": "Código de barras incorrecto. Por favor seleccione la tarjeta que le corresponde a este beneficiario."
           }
         },
-        "_row_num": 15
+        "_row_num": 14
       },
       {
         "clause": "goto scan_label",
-        "_row_num": 16
+        "_row_num": 15
       },
       {
         "clause": "end if",
-        "_row_num": 17
+        "_row_num": 16
       },
       {
         "clause": "begin screen",
-        "_row_num": 18
+        "_row_num": 17
       },
       {
         "type": "acknowledge",
@@ -120,7 +117,7 @@
         },
         "required": 1,
         "constraint": "data('ack_deliv_card') === true",
-        "_row_num": 19
+        "_row_num": 18
       },
       {
         "type": "acknowledge",
@@ -132,11 +129,11 @@
         },
         "required": 1,
         "constraint": "data('ack_deliv_leaflet') === true",
-        "_row_num": 20
+        "_row_num": 19
       },
       {
         "clause": "end screen",
-        "_row_num": 21
+        "_row_num": 20
       },
       {
         "type": "signature",
@@ -147,7 +144,7 @@
           }
         },
         "required": true,
-        "_row_num": 22
+        "_row_num": 21
       }
     ],
     "queries": [
@@ -158,19 +155,19 @@
         "linked_form_id": "authorizations",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('authorization_id')]",
-        "fieldName": "item_ranges",
+        "fieldName": "item_pack_ranges",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 2
       },
       {
-        "query_name": "get_item",
+        "query_name": "get_itempack",
         "query_type": "linked_table",
         "linked_table_id": "entitlements",
         "linked_form_id": "entitlements",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('entitlement_id')]",
-        "fieldName": "item_name",
+        "fieldName": "item_pack_name",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
@@ -179,7 +176,7 @@
     "model": [
       {
         "type": "string",
-        "name": "item_barcode",
+        "name": "item_pack_barcode",
         "_row_num": 2
       },
       {
@@ -222,7 +219,7 @@
       },
       {
         "type": "string",
-        "name": "item_name",
+        "name": "item_pack_name",
         "isSessionVariable": "true",
         "_row_num": 10
       },
@@ -259,7 +256,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20200331,
+        "value": 20191209,
         "_row_num": 3
       },
       {
@@ -312,7 +309,7 @@
       },
       {
         "calculation_name": "in_range",
-        "calculation": "(function() {\n var rawCode = data('item_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
+        "calculation": "(function() {\n var rawCode = data('item_pack_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
         "_row_num": 3
       }
     ],
@@ -346,7 +343,7 @@
         "aspect": "default",
         "key": "onDeliver",
         "type": "string",
-        "value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'panamaRegistration',\n                                  'SELECT reg.firstName, reg.lastName, ent.item_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, panamaRegistration as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'firstName'),\n                                          lastName: result.getData(0, 'lastName'),\n                                          item_name: result.getData(0, 'item_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });",
+        "value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'panamaRegistration',\n                                  'SELECT reg.firstName, reg.lastName, ent.item_pack_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, panamaRegistration as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'firstName'),\n                                          lastName: result.getData(0, 'lastName'),\n                                          item_pack_name: result.getData(0, 'item_pack_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });",
         "_row_num": 5
       }
     ],
@@ -423,7 +420,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20200331,
+        "value": 20191209,
         "_row_num": 3
       },
       "table_id": {
@@ -509,19 +506,19 @@
         "linked_form_id": "authorizations",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('authorization_id')]",
-        "fieldName": "item_ranges",
+        "fieldName": "item_pack_ranges",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 2
       },
-      "get_item": {
-        "query_name": "get_item",
+      "get_itempack": {
+        "query_name": "get_itempack",
         "query_type": "linked_table",
         "linked_table_id": "entitlements",
         "linked_form_id": "entitlements",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('entitlement_id')]",
-        "fieldName": "item_name",
+        "fieldName": "item_pack_name",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
@@ -535,16 +532,16 @@
       },
       "in_range": {
         "calculation_name": "in_range",
-        "calculation": "(function() {\n var rawCode = data('item_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
+        "calculation": "(function() {\n var rawCode = data('item_pack_barcode');\n if (rawCode === null || rawCode === undefined) {return false;}\n var code = parseInt(rawCode);\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return true;\n }\n if (json.length < 1) {\n  return true;\n }\n var valid = false;\n var i = 0;\n while (valid === false && i < json.length) {\n  if ((json[i].min <= code) && (json[i].max >= code)) {\n   valid = true;\n   return valid;\n  }\n  i++;\n }\n return valid;\n})()",
         "_row_num": 3
       }
     },
     "model": {
-      "item_barcode": {
+      "item_pack_barcode": {
         "type": "string",
         "_defn": [
           {
-            "_row_num": 9,
+            "_row_num": 8,
             "section_name": "survey"
           },
           {
@@ -552,7 +549,7 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_barcode"
+        "elementKey": "item_pack_barcode"
       },
       "receive_signature": {
         "type": "object",
@@ -572,7 +569,7 @@
         },
         "_defn": [
           {
-            "_row_num": 22,
+            "_row_num": 21,
             "section_name": "survey"
           },
           {
@@ -587,7 +584,7 @@
         "valuesList": "yes_no",
         "_defn": [
           {
-            "_row_num": 10,
+            "_row_num": 9,
             "section_name": "survey"
           },
           {
@@ -616,7 +613,7 @@
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 19,
+            "_row_num": 18,
             "section_name": "survey"
           },
           {
@@ -630,7 +627,7 @@
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 20,
+            "_row_num": 19,
             "section_name": "survey"
           },
           {
@@ -662,7 +659,7 @@
         "isSessionVariable": "true",
         "elementKey": "lastName"
       },
-      "item_name": {
+      "item_pack_name": {
         "type": "string",
         "_defn": [
           {
@@ -671,13 +668,13 @@
           }
         ],
         "isSessionVariable": "true",
-        "elementKey": "item_name"
+        "elementKey": "item_pack_name"
       },
       "incorrect_barcode": {
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 15,
+            "_row_num": 14,
             "section_name": "survey"
           },
           {
@@ -767,7 +764,7 @@
             "type": "note",
             "display": {
               "prompt": {
-                "text": "Tipo tarjeta: {{data.item_name}}"
+                "text": "Tipo tarjeta: {{data.item_pack_name}}"
               }
             },
             "_row_num": 5,
@@ -796,17 +793,17 @@
           },
           {
             "type": "barcode",
-            "name": "item_barcode",
+            "name": "item_pack_barcode",
             "display": {
               "prompt": {
                 "text": "Escanea el código de barras"
               }
             },
-            "_row_num": 9,
-            "__rowNum__": 8,
+            "_row_num": 8,
+            "__rowNum__": 7,
             "_token_type": "prompt",
             "_type": "barcode",
-            "_branch_label_enclosing_screen": "survey/_screen9",
+            "_branch_label_enclosing_screen": "survey/_screen8",
             "promptIdx": 4
           },
           {
@@ -815,14 +812,14 @@
             "name": "barcode_check",
             "display": {
               "prompt": {
-                "text": "¿Es correcto el código de barras? {{data.item_barcode}}"
+                "text": "¿Es correcto el código de barras? {{data.item_pack_barcode}}"
               }
             },
-            "_row_num": 10,
-            "__rowNum__": 9,
+            "_row_num": 9,
+            "__rowNum__": 8,
             "_token_type": "prompt",
             "_type": "select_one",
-            "_branch_label_enclosing_screen": "survey/_screen10",
+            "_branch_label_enclosing_screen": "survey/_screen9",
             "promptIdx": 5
           },
           {
@@ -833,11 +830,11 @@
                 "text": "Código de barras incorrecto. Por favor seleccione la tarjeta que le corresponde a este beneficiario."
               }
             },
-            "_row_num": 15,
-            "__rowNum__": 14,
+            "_row_num": 14,
+            "__rowNum__": 13,
             "_token_type": "prompt",
             "_type": "acknowledge",
-            "_branch_label_enclosing_screen": "survey/_screen15",
+            "_branch_label_enclosing_screen": "survey/_screen14",
             "promptIdx": 6
           },
           {
@@ -850,11 +847,11 @@
             },
             "required": 1,
             "constraint": "data('ack_deliv_card') === true",
-            "_row_num": 19,
-            "__rowNum__": 18,
+            "_row_num": 18,
+            "__rowNum__": 17,
             "_token_type": "prompt",
             "_type": "acknowledge",
-            "_branch_label_enclosing_screen": "survey/_screen18",
+            "_branch_label_enclosing_screen": "survey/_screen17",
             "promptIdx": 7
           },
           {
@@ -867,11 +864,11 @@
             },
             "required": 1,
             "constraint": "data('ack_deliv_leaflet') === true",
-            "_row_num": 20,
-            "__rowNum__": 19,
+            "_row_num": 19,
+            "__rowNum__": 18,
             "_token_type": "prompt",
             "_type": "acknowledge",
-            "_branch_label_enclosing_screen": "survey/_screen18",
+            "_branch_label_enclosing_screen": "survey/_screen17",
             "promptIdx": 8
           },
           {
@@ -883,19 +880,19 @@
               }
             },
             "required": true,
-            "_row_num": 22,
-            "__rowNum__": 21,
+            "_row_num": 21,
+            "__rowNum__": 20,
             "_token_type": "prompt",
             "_type": "signature",
-            "_branch_label_enclosing_screen": "survey/_screen22",
+            "_branch_label_enclosing_screen": "survey/_screen21",
             "promptIdx": 9
           },
           {
             "_token_type": "prompt",
             "type": "contents",
             "_type": "contents",
-            "_row_num": 23,
-            "_branch_label_enclosing_screen": "survey/_screen23",
+            "_row_num": 22,
+            "_branch_label_enclosing_screen": "survey/_screen22",
             "promptIdx": 10
           }
         ],
@@ -923,13 +920,13 @@
             "operationIdx": 0
           },
           {
-            "_row_num": 9,
+            "_row_num": 8,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(4);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 1
           },
           {
-            "_row_num": 10,
+            "_row_num": 9,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(5);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 2
@@ -937,23 +934,23 @@
           {
             "clause": "if",
             "condition": "selected(data('barcode_check'), 'no')",
-            "_row_num": 11,
-            "__rowNum__": 10,
+            "_row_num": 10,
+            "__rowNum__": 9,
             "_token_type": "goto_label",
-            "_branch_label": "_then11",
+            "_branch_label": "_then10",
             "operationIdx": 3
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else13",
-            "_row_num": 13,
+            "_branch_label": "_else12",
+            "_row_num": 12,
             "operationIdx": 4
           },
           {
             "clause": "goto scan_label",
-            "_row_num": 12,
-            "__rowNum__": 11,
+            "_row_num": 11,
+            "__rowNum__": 10,
             "_token_type": "goto_label",
             "_branch_label": "scan_label",
             "operationIdx": 5
@@ -961,36 +958,36 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif13",
-            "_row_num": 13,
+            "_branch_label": "_endif12",
+            "_row_num": 12,
             "operationIdx": 6
           },
           {
             "clause": "if",
             "condition": "!calculates.in_range()",
-            "_row_num": 14,
-            "__rowNum__": 13,
+            "_row_num": 13,
+            "__rowNum__": 12,
             "_token_type": "goto_label",
-            "_branch_label": "_then14",
+            "_branch_label": "_then13",
             "operationIdx": 7
           },
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_else17",
-            "_row_num": 17,
+            "_branch_label": "_else16",
+            "_row_num": 16,
             "operationIdx": 8
           },
           {
-            "_row_num": 15,
+            "_row_num": 14,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(6);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 9
           },
           {
             "clause": "goto scan_label",
-            "_row_num": 16,
-            "__rowNum__": 15,
+            "_row_num": 15,
+            "__rowNum__": 14,
             "_token_type": "goto_label",
             "_branch_label": "scan_label",
             "operationIdx": 10
@@ -998,26 +995,26 @@
           {
             "clause": "end if",
             "_token_type": "goto_label",
-            "_branch_label": "_endif17",
-            "_row_num": 17,
+            "_branch_label": "_endif16",
+            "_row_num": 16,
             "operationIdx": 11
           },
           {
             "clause": "begin screen",
-            "_row_num": 18,
-            "__rowNum__": 17,
+            "_row_num": 17,
+            "__rowNum__": 16,
             "_token_type": "begin_screen",
             "_end_screen_clause": {
               "clause": "end screen",
-              "_row_num": 21,
-              "__rowNum__": 20,
+              "_row_num": 20,
+              "__rowNum__": 19,
               "_token_type": "end_screen"
             },
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(7);\nactivePromptIndicies.push(8);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 12
           },
           {
-            "_row_num": 22,
+            "_row_num": 21,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(9);\n\nreturn activePromptIndicies;\n}\n",
             "operationIdx": 13
@@ -1025,11 +1022,11 @@
           {
             "_token_type": "exit_section",
             "clause": "exit section",
-            "_row_num": 23,
+            "_row_num": 22,
             "operationIdx": 14
           },
           {
-            "_row_num": 23,
+            "_row_num": 22,
             "_token_type": "begin_screen",
             "_screen_block": "function() {var activePromptIndicies = [];\nactivePromptIndicies.push(10);\n\nreturn activePromptIndicies;\n}\n",
             "screen": {
@@ -1040,26 +1037,26 @@
           {
             "_token_type": "resume",
             "clause": "resume",
-            "_row_num": 23,
+            "_row_num": 22,
             "operationIdx": 16
           }
         ],
         "branch_label_map": {
           "_screen2": 0,
           "scan_label": 1,
-          "_screen9": 1,
-          "_screen10": 2,
-          "_then11": 5,
-          "_else13": 7,
-          "_endif13": 7,
-          "_then14": 9,
-          "_screen15": 9,
-          "_else17": 12,
-          "_endif17": 12,
-          "_screen18": 12,
-          "_screen22": 13,
+          "_screen8": 1,
+          "_screen9": 2,
+          "_then10": 5,
+          "_else12": 7,
+          "_endif12": 7,
+          "_then13": 9,
+          "_screen14": 9,
+          "_else16": 12,
+          "_endif16": 12,
+          "_screen17": 12,
+          "_screen21": 13,
           "_contents": 15,
-          "_screen23": 15
+          "_screen22": 15
         }
       },
       "initial": {
@@ -1172,11 +1169,11 @@
       }
     },
     "dataTableModel": {
-      "item_barcode": {
+      "item_pack_barcode": {
         "type": "string",
         "_defn": [
           {
-            "_row_num": 9,
+            "_row_num": 8,
             "section_name": "survey"
           },
           {
@@ -1184,10 +1181,10 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_barcode",
-        "elementName": "item_barcode",
+        "elementKey": "item_pack_barcode",
+        "elementName": "item_pack_barcode",
         "elementSet": "data",
-        "elementPath": "item_barcode"
+        "elementPath": "item_pack_barcode"
       },
       "receive_signature": {
         "type": "object",
@@ -1213,7 +1210,7 @@
         },
         "_defn": [
           {
-            "_row_num": 22,
+            "_row_num": 21,
             "section_name": "survey"
           },
           {
@@ -1236,7 +1233,7 @@
         "valuesList": "yes_no",
         "_defn": [
           {
-            "_row_num": 10,
+            "_row_num": 9,
             "section_name": "survey"
           },
           {
@@ -1271,7 +1268,7 @@
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 19,
+            "_row_num": 18,
             "section_name": "survey"
           },
           {
@@ -1288,7 +1285,7 @@
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 20,
+            "_row_num": 19,
             "section_name": "survey"
           },
           {
@@ -1329,7 +1326,7 @@
         "elementSet": "data",
         "elementPath": "lastName"
       },
-      "item_name": {
+      "item_pack_name": {
         "type": "string",
         "_defn": [
           {
@@ -1338,16 +1335,16 @@
           }
         ],
         "isSessionVariable": "true",
-        "elementKey": "item_name",
-        "elementName": "item_name",
+        "elementKey": "item_pack_name",
+        "elementName": "item_pack_name",
         "elementSet": "data",
-        "elementPath": "item_name"
+        "elementPath": "item_pack_name"
       },
       "incorrect_barcode": {
         "type": "boolean",
         "_defn": [
           {
-            "_row_num": 15,
+            "_row_num": 14,
             "section_name": "survey"
           },
           {
@@ -1566,7 +1563,7 @@
         "_aspect": "default",
         "_key": "onDeliver",
         "_type": "string",
-        "_value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'panamaRegistration',\n                                  'SELECT reg.firstName, reg.lastName, ent.item_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, panamaRegistration as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'firstName'),\n                                          lastName: result.getData(0, 'lastName'),\n                                          item_name: result.getData(0, 'item_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });"
+        "_value": "(function (entitlementRowId) {\n                            return new Promise(function (resolve, reject) {\n                                odkData.arbitraryQuery(\n                                  'panamaRegistration',\n                                  'SELECT reg.firstName, reg.lastName, ent.item_pack_name, ent.authorization_id' +\n                                  ' FROM entitlements as ent, panamaRegistration as reg, beneficiary_entities as ben' +\n                                  ' WHERE ent._id = ? AND ent.beneficiary_entity_id = ben.beneficiary_entity_id AND' +\n                                 ' ben.custom_beneficiary_entity_row_id = reg._id',\n                                  [entitlementRowId],\n                                  1,\n                                  null,\n                                  resolve,\n                                  reject\n                                );\n                            })\n                              .then(function (result) {\n                                  console.log(result);\n                                  return {\n                                      jsonMapSurvey: {\n                                          firstName: result.getData(0, 'firstName'),\n                                          lastName: result.getData(0, 'lastName'),\n                                          item_pack_name: result.getData(0, 'item_pack_name'),\n                                          authorization_id: result.getData(0, 'authorization_id')\n                                      }\n                                  };\n                              });\n                        });"
       },
       {
         "_partition": "Table",

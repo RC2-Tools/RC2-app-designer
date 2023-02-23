@@ -1,4 +1,0 @@
-_id,_form_id,_locale,_savepoint_type,_savepoint_timestamp,_savepoint_creator,date,description,distribution_id,funder,location_id,location_name,name,status,status_reason,summary_form_id,summary_table_id,summary_version,_default_access,_group_modify,_group_privileged,_group_read_only,_row_etag,_row_owner
-p1,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,2009-07-13T00:00:00.000000000,Community Health Services,,USAID,,Main Ave,Health Fair,ACTIVE,,,,,,,,,,
-p2,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,2009-07-13T00:00:00.000000000,Immigration Health Check,,American Red Cross,,Ellis Island,Immigration Health Check,ACTIVE,,,,,,,,,,
-p3,,default,COMPLETE,2020-12-13T16:01:59.016000000,anonymous,2020-12-13T16:01:59.016000000,VZLA_IM Demo,,IFRC,,VZLA,VZLA_IM Demo,ACTIVE,,,,,,,,,,

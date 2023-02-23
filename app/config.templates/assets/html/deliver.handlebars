@@ -1,0 +1,22 @@
+{{#> layout }}
+    {{#*inline "mainContent" }}
+        {{> pageTitle token="deliver_items" }}
+
+        {{> menuBtn
+                id="deliver"
+                icon="../img/enter_icon.svg"
+                label="confirm_delivery"
+        }}
+
+        {{> textBlock id="confirmation" }}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="../js/renderers/deliver.js"></script>
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/layout}}

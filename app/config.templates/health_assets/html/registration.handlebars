@@ -1,9 +1,0 @@
-{{#> healthLocateBeneficiaryBase title="registration_title" }}
-    {{#*inline "pageSpecific" }}
-        {{> syncList registration=true }}
-        {{> chooseDefaultGroup }}
-    {{/inline}}
-    {{#*inline "pageScripts" }}
-        <script type="text/javascript" src="{{ @root.healthAssetsPath }}/js/renderers/registration.js"></script>
-    {{/inline}}
-{{/healthLocateBeneficiaryBase}}

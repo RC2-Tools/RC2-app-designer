@@ -1,0 +1,18 @@
+{{#> layout }}
+    {{#*inline "mainContent" }}
+        <h1 id="title" class="text-center text-uppercase menu-title py-4 m-0"
+            {{~#if title}} data-localize="{{ title }}"{{/if}}></h1>
+        <div id="field_list" class="order-last"></div>
+        {{#> pageSpecific }}{{/pageSpecific}}
+    {{/inline}}
+
+    {{#*inline "bodyEnd" }}
+        <script type="text/javascript" src="../tableSpecificDefinitions.js"></script>
+        {{> pageScripts }}
+
+        <script>
+            'use strict';
+            $(util.renderPage(display));
+        </script>
+    {{/inline}}
+{{/layout}}

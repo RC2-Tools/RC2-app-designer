@@ -209,21 +209,6 @@ util.displayError = function(text) {
     });
 };
 
-util.displayConfirm = function(text, callback) {
-    var locale = window.locale || odkCommon.getPreferredLocale();
-
-    bootbox.alert({
-        message: odkCommon.localizeText(locale, text) || text,
-        buttons: {
-            ok: {
-                label: odkCommon.localizeText(locale, 'ok'),
-                className: 'btn-danger'
-            }
-        },
-        callback: callback
-    });
-}
-
 util.localizePage = function() {
     var elemToLocalize = document.querySelectorAll('[data-localize]');
     if (elemToLocalize.length < 1) {
@@ -255,8 +240,8 @@ util.renderSuperuserFeatures = function(featureSetupFunc) {
     });
 };
 
-util.resolveViewPath = function (tableId, viewType, moduleDir) {
-    return `config/tables/${tableId}/${moduleDir}/html/${tableId}_${viewType}.html`;
+util.resolveViewPath = function (tableId, viewType) {
+    return `config/tables/${tableId}/html/${tableId}_${viewType}.html`;
 }
 
 function custom_alert( message, title ) {
@@ -290,9 +275,6 @@ util.distributionTable = 'distributions';
 util.distributionReportTable = 'distribution_reports';
 util.visitsTable = "visits";
 util.visitProgramsTable = "visit_programs";
-util.servicesTable = 'services';
-util.beneficiaryServicesTable = 'beneficiary_services';
-util.referralsTable = 'referrals';
 util.savepointSuccess = "COMPLETE";
 util.configPath = odkCommon.getBaseUrl() + 'config/assets/config.json';
 util.actionTypeKey = 'actionTypeKey';
@@ -338,10 +320,6 @@ $.ajax({
 
         util.getCustomBeneficiaryRowIdColumn = function() {
             return configSingleton['CUSTOM_BENEFICIARY_ROW_ID_COLUMN'];
-        };
-
-        util.getModule = function() {
-            return configSingleton['MODULE'];
         };
     },
     async: false
@@ -412,6 +390,62 @@ dataUtil.entitlementIsDelivered = function(entitlement_id) {
     });
 };
 
+util.getBeneficiariesListForVisit = function(visit_prog_id) {
+    var selectFromClause =
+        'SELECT\n' +
+        '  visits._id,\n' +
+        '  visits.custom_visit_row_id AS customVisitRowId,\n' +
+        '  beneficiary_entities.beneficiary_entity_id AS rcId,\n ' +
+        '  visits.custom_visit_table_id AS customVisitTableId,\n' +
+        '  visits.custom_visit_form_id AS customVisitFormId\n' +
+        'FROM visits\n';
+
+    var innerJoinClause =
+        '  INNER JOIN beneficiary_entities ON visits.beneficiary_unit_id = beneficiary_entities._id\n';
+
+    var whereClause = 'WHERE visit_program_id = ?\n';
+
+    var orderByClause = 'ORDER BY rcId ASC';
+
+    var query = selectFromClause + innerJoinClause + whereClause + orderByClause;
+    console.log('visit query: ' + query);
+
+    var selectionArgs = [visit_prog_id];
+
+    odkTables.openTableToListViewArbitraryQuery(
+        null,
+        'visits',
+        query,
+        selectionArgs,
+        'config/tables/visits/html/visits_list.html'
+    );
+};
+
+util.getVisitProgListForBeneficiary = function(rcId) {
+    var query =
+      'SELECT' +
+      '       visit_programs._id,' +
+      '       visit_programs.name,' +
+      '       visit_programs.status,' +
+      '       visits._id AS visitRowId,' +
+      '       visits.custom_visit_row_id, ' +
+      '       visits.custom_visit_table_id, ' +
+      '       visits.custom_visit_form_id ' +
+      'FROM visit_programs, visits ' +
+      'WHERE visits.visit_program_id = visit_programs._id AND visits.beneficiary_unit_id IN (' +
+      '    SELECT beneficiary_entities._id FROM beneficiary_entities' +
+      '    WHERE beneficiary_entities.beneficiary_entity_id = ?' +
+      ')';
+
+    odkTables.openTableToListViewArbitraryQuery(
+      null,
+      'visit_programs',
+      query,
+      [rcId],
+      'config/tables/visit_programs/html/visit_programs_list.html?rcId=' + encodeURIComponent(rcId)
+    );
+};
+
 util.triggerVisit = function(visitId, actionTypeValue, dispatchStruct) {
     var visitRow;
     var customVisitRowId;
@@ -452,6 +486,117 @@ util.triggerVisit = function(visitId, actionTypeValue, dispatchStruct) {
     }).catch(function(reason) {
         console.log('Could not update row in visit table: ' + reason);
     });
+};
+
+
+
+/**
+ * if there is no delivery form, then launch to simple delivery html page
+ * else create the base delivery row and create and launch survey for custom delivery row
+ */
+dataUtil.triggerEntitlementDelivery = function(entitlementId, actionTypeValue) {
+    var entitlementRow;
+    dataUtil.getRow(util.entitlementTable, entitlementId).then( function(result) {
+        entitlementRow = result;
+        if (entitlementRow === undefined || entitlementRow.getCount === 0) {
+            return Promise.reject('Failed to retrieve entitlement.');
+        }
+        return dataUtil.getRow(util.authorizationTable, entitlementRow.get('authorization_id'));
+    }).then(function(authorizationRow) {
+        if (authorizationRow !== undefined && authorizationRow !== null && authorizationRow.getCount() !== 0) {
+            if (dataUtil.isCustomDeliveryAuthorization(authorizationRow)) {
+                var customDeliveryFormTableId = authorizationRow.getData(0, 'custom_delivery_form_id');
+                dataUtil.tableExists(customDeliveryFormTableId)
+                    .then(function (result) {
+                        if (!result) {
+                            util.displayError('Specified delivery form cannot be found. Unable to deliver.');
+                            return Promise.reject('Specified delivery form cannot be found. Unable to deliver.')
+                        }
+
+                        return new Promise(function (resolve, reject) {
+                            odkData.query(customDeliveryFormTableId, null, null, null, null, null, null, 1, null, true, resolve, reject);
+                        })
+                          .then(function (value) {
+							  try{
+								var onDeliverFunc = value.getMetadata().kvMap['Table']['default']['onDeliver']['value'];
+							  } catch (exception) {
+								  return {};
+							  }
+
+                              if (onDeliverFunc !== undefined && onDeliverFunc !== null && onDeliverFunc !== '') {
+                                  var onDeliverPromise = eval(onDeliverFunc)(entitlementId);
+                                  return Promise.resolve(onDeliverPromise);
+                              } else {
+                                 return {};
+                              }
+                          });
+                    })
+                  .then(function (result) {
+                      result = result || {};
+                      var jsonMapSurvey = result['jsonMapSurvey'] || {};
+
+                      var customDeliveryRowId = util.genUUID();
+                      var jsonMap = result['jsonMap'] || {};
+                      var assigned_code = entitlementRow.get('assigned_item_pack_code');
+                      if (assigned_code !== undefined && assigned_code !== null && assigned_code !== "") {
+                          util.setJSONMap(jsonMap, 'assigned_item_pack_code', assigned_code);
+                      }
+
+                      return dataUtil.addDeliveryRowByEntitlement(entitlementRow, authorizationRow.get("custom_delivery_form_id"), customDeliveryRowId)
+                        .then(function (rootDeliveryRow) {
+                            return dataUtil.createCustomRowFromBaseEntry(rootDeliveryRow, "custom_delivery_form_id", "custom_delivery_row_id", actionTypeValue, null, "_group_read_only", jsonMap, jsonMapSurvey);
+                        }).catch(function (reason) {
+                            console.log('Failed to perform custom entitlement delivery: ' + reason);
+                        });
+                  })
+            } else {
+                console.log('Performing simple delivery');
+                odkTables.launchHTML(null, 'config/assets/html/deliver.html?entitlement_id=' +  encodeURIComponent(entitlementRow.getRowId(0)));
+            }
+        } else {
+            util.displayError("Authorization missing from phone, please contact administrator");
+        }
+
+    });
+};
+
+dataUtil.triggerAuthorizationDelivery = function(authorizationId, beneficiaryEntityId, actionTypeValue, customDeliveryJsonMap) {
+    dataUtil
+      .getRow(util.authorizationTable, authorizationId)
+      .then(function(authorizationRow) {
+          if (authorizationRow !== undefined && authorizationRow !== null && authorizationRow.getCount() !== 0) {
+              if (dataUtil.isCustomDeliveryAuthorization(authorizationRow)) {
+                  dataUtil.tableExists(authorizationRow.getData(0, 'custom_delivery_form_id'))
+                    .then(function (result) {
+                        if (!result) {
+                            util.displayError('Specified delivery form cannot be found. Unable to deliver.');
+                            return;
+                        }
+
+                        var customDeliveryRowId = util.genUUID();
+
+                        return dataUtil.addDeliveryRowWithoutEntitlement(beneficiaryEntityId, authorizationRow, customDeliveryRowId)
+                          .then(function (rootDeliveryRow) {
+                              return dataUtil.createCustomRowFromBaseEntry(rootDeliveryRow, "custom_delivery_form_id",
+                                  "custom_delivery_row_id", actionTypeValue, null, "_group_read_only", customDeliveryJsonMap);
+                          }).catch(function (reason) {
+                            console.log('Failed to perform custom entitlement delivery: ' + reason);
+                        });
+                    });
+              } else {
+                  console.log('Performing simple delivery');
+                  odkTables.launchHTML(
+                    null,
+                    'config/assets/html/deliver.html' +
+                    '?beneficiary_entity_id=' + encodeURIComponent(beneficiaryEntityId) +
+                    '&authorization_id=' + encodeURIComponent(authorizationId)
+                  );
+              }
+          } else {
+              util.displayError("Authorization missing from phone, please contact administrator");
+          }
+
+      });
 };
 
 dataUtil.tableExists = function(tableId) {
@@ -616,16 +761,16 @@ dataUtil.addDeliveryRowByEntitlement = function(entitlementRow, customDeliveryFo
     util.setJSONMap(jsonMap, 'authorization_id', entitlementRow.get('authorization_id'));
     util.setJSONMap(jsonMap, 'distribution_name', entitlementRow.get('distribution_name'));
     util.setJSONMap(jsonMap, 'authorization_type', entitlementRow.get('authorization_type'));
-    util.setJSONMap(jsonMap, 'item_id', entitlementRow.get('item_id'));
-    util.setJSONMap(jsonMap, 'item_name', entitlementRow.get('item_name'));
-    util.setJSONMap(jsonMap, 'item_description', entitlementRow.get('item_description'));
+    util.setJSONMap(jsonMap, 'item_pack_id', entitlementRow.get('item_pack_id'));
+    util.setJSONMap(jsonMap, 'item_pack_name', entitlementRow.get('item_pack_name'));
+    util.setJSONMap(jsonMap, 'item_pack_description', entitlementRow.get('item_pack_description'));
     util.setJSONMap(jsonMap, 'is_override', entitlementRow.get('is_override'));
     util.setJSONMap(jsonMap, 'custom_delivery_form_id', customDeliveryFormId);
     util.setJSONMap(jsonMap, 'custom_delivery_row_id', customDeliveryRowId);
     util.setJSONMap(jsonMap, '_row_owner', odkCommon.getActiveUser());
     util.setJSONMap(jsonMap, 'date_created', util.getCurrentOdkTimestamp());
     util.setJSONMap(jsonMap, '_default_access', entitlementRow.get('_default_access'));
-    util.setJSONMap(jsonMap, 'assigned_item_code', entitlementRow.get('assigned_item_code'));
+    util.setJSONMap(jsonMap, 'assigned_item_pack_code', entitlementRow.get('assigned_item_pack_code'));
     util.setJSONMap(jsonMap, '_group_read_only', entitlementRow.get('_group_read_only'));
 
     return new Promise(function(resolve, reject) {
@@ -639,9 +784,9 @@ dataUtil.addDeliveryRowWithoutEntitlement = function(beneficiaryEntityId, author
     util.setJSONMap(jsonMap, 'authorization_id', authorizationRow.get('_id'));
     util.setJSONMap(jsonMap, 'distribution_name', authorizationRow.get('distribution_name'));
     util.setJSONMap(jsonMap, 'authorization_type', authorizationRow.get('type'));
-    util.setJSONMap(jsonMap, 'item_id', authorizationRow.get('item_id'));
-    util.setJSONMap(jsonMap, 'item_name', authorizationRow.get('item_name'));
-    util.setJSONMap(jsonMap, 'item_description', authorizationRow.get('item_description'));
+    util.setJSONMap(jsonMap, 'item_pack_id', authorizationRow.get('item_pack_id'));
+    util.setJSONMap(jsonMap, 'item_pack_name', authorizationRow.get('item_pack_name'));
+    util.setJSONMap(jsonMap, 'item_pack_description', authorizationRow.get('item_description'));
     util.setJSONMap(jsonMap, 'is_override', 'FALSE');
     util.setJSONMap(jsonMap, 'custom_delivery_form_id', authorizationRow.get('custom_delivery_form_id'));
     util.setJSONMap(jsonMap, 'custom_delivery_row_id', customDeliveryRowId);

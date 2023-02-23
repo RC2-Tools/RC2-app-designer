@@ -3,10 +3,10 @@
     "survey": [
       {
         "type": "barcode",
-        "name": "item_barcode",
+        "name": "item_pack_barcode",
         "display": {
           "prompt": {
-            "text": "Scan the item with barcode: {{data.assigned_item_code}}"
+            "text": "Scan the item pack with barcode: {{data.assigned_item_pack_code}}"
           }
         },
         "branch_label": "item_scan",
@@ -17,16 +17,16 @@
       },
       {
         "type": "string",
-        "name": "item_barcode",
+        "name": "item_pack_barcode",
         "display": {
           "prompt": {
-            "text": "Please confirm or update item  barcode."
+            "text": "Please confirm or update item pack barcode."
           }
         },
         "model": {
           "isSessionVariable": true
         },
-        "constraint": "data('assigned_item_code') === data('item_barcode') || data('assigned_item_code') == '' || data('assigned_item_code') == null || data('assigned_item_code') == undefined",
+        "constraint": "data('assigned_item_pack_code') === data('item_pack_barcode') || data('assigned_item_pack_code') == '' || data('assigned_item_pack_code') == null || data('assigned_item_pack_code') == undefined",
         "_row_num": 3
       },
       {
@@ -49,19 +49,19 @@
         "linked_form_id": "authorizations",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('authorization_id')]",
-        "fieldName": "item_ranges",
+        "fieldName": "item_pack_ranges",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 2
       },
       {
-        "query_name": "get_item",
+        "query_name": "get_itempack",
         "query_type": "linked_table",
         "linked_table_id": "entitlements",
         "linked_form_id": "entitlements",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('entitlement_id')]",
-        "fieldName": "item_name",
+        "fieldName": "item_pack_name",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
@@ -70,7 +70,7 @@
     "model": [
       {
         "type": "string",
-        "name": "item_barcode",
+        "name": "item_pack_barcode",
         "_row_num": 2
       },
       {
@@ -80,7 +80,7 @@
       },
       {
         "type": "string",
-        "name": "assigned_item_code",
+        "name": "assigned_item_pack_code",
         "_row_num": 4
       },
       {
@@ -98,7 +98,7 @@
       },
       {
         "setting_name": "form_version",
-        "value": 20200331,
+        "value": 1,
         "_row_num": 3
       },
       {
@@ -151,7 +151,7 @@
       },
       {
         "calculation_name": "in_range",
-        "calculation": "(function() {var code = parseInt(data('item_barcode'));\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return 'true';\n }\n if (json.ranges.length < 1) {\n  return 'true';\n }\n var valid = 'false';\n var i = 0;\n while (valid == 'false' && i < json.ranges.length) {\n  if ((json.ranges[i].min <= code) && (json.ranges[i].max >= code)) {\n   valid = 'true';\n  }\n  i++;\n }\n return valid;\n})()",
+        "calculation": "(function() {var code = parseInt(data('item_pack_barcode'));\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return 'true';\n }\n if (json.ranges.length < 1) {\n  return 'true';\n }\n var valid = 'false';\n var i = 0;\n while (valid == 'false' && i < json.ranges.length) {\n  if ((json.ranges[i].min <= code) && (json.ranges[i].max >= code)) {\n   valid = 'true';\n  }\n  i++;\n }\n return valid;\n})()",
         "_row_num": 3
       }
     ],
@@ -254,7 +254,7 @@
       },
       "form_version": {
         "setting_name": "form_version",
-        "value": 20200331,
+        "value": 1,
         "_row_num": 3
       },
       "table_id": {
@@ -340,19 +340,19 @@
         "linked_form_id": "authorizations",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('authorization_id')]",
-        "fieldName": "item_ranges",
+        "fieldName": "item_pack_ranges",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 2
       },
-      "get_item": {
-        "query_name": "get_item",
+      "get_itempack": {
+        "query_name": "get_itempack",
         "query_type": "linked_table",
         "linked_table_id": "entitlements",
         "linked_form_id": "entitlements",
         "selection": "_savepoint_type = ? and _id = ?",
         "selectionArgs": "['COMPLETE', data('entitlement_id')]",
-        "fieldName": "item_name",
+        "fieldName": "item_pack_name",
         "newRowInitialElementKeyToValueMap": "{}",
         "openRowInitialElementKeyToValueMap": "{}",
         "_row_num": 3
@@ -366,12 +366,12 @@
       },
       "in_range": {
         "calculation_name": "in_range",
-        "calculation": "(function() {var code = parseInt(data('item_barcode'));\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return 'true';\n }\n if (json.ranges.length < 1) {\n  return 'true';\n }\n var valid = 'false';\n var i = 0;\n while (valid == 'false' && i < json.ranges.length) {\n  if ((json.ranges[i].min <= code) && (json.ranges[i].max >= code)) {\n   valid = 'true';\n  }\n  i++;\n }\n return valid;\n})()",
+        "calculation": "(function() {var code = parseInt(data('item_pack_barcode'));\n var json = JSON.parse(data('ranges'));\n if (json === null || json === undefined) {\n   return 'true';\n }\n if (json.ranges.length < 1) {\n  return 'true';\n }\n var valid = 'false';\n var i = 0;\n while (valid == 'false' && i < json.ranges.length) {\n  if ((json.ranges[i].min <= code) && (json.ranges[i].max >= code)) {\n   valid = 'true';\n  }\n  i++;\n }\n return valid;\n})()",
         "_row_num": 3
       }
     },
     "model": {
-      "item_barcode": {
+      "item_pack_barcode": {
         "type": "string",
         "isSessionVariable": true,
         "_defn": [
@@ -388,7 +388,7 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_barcode"
+        "elementKey": "item_pack_barcode"
       },
       "receive_signature": {
         "type": "object",
@@ -418,7 +418,7 @@
         ],
         "elementKey": "receive_signature"
       },
-      "assigned_item_code": {
+      "assigned_item_pack_code": {
         "type": "string",
         "_defn": [
           {
@@ -426,7 +426,7 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "assigned_item_code"
+        "elementKey": "assigned_item_pack_code"
       },
       "try_again": {
         "type": "string",
@@ -452,10 +452,10 @@
         "prompts": [
           {
             "type": "barcode",
-            "name": "item_barcode",
+            "name": "item_pack_barcode",
             "display": {
               "prompt": {
-                "text": "Scan the item with barcode: {{data.assigned_item_code}}"
+                "text": "Scan the item pack with barcode: {{data.assigned_item_pack_code}}"
               }
             },
             "model": {
@@ -470,16 +470,16 @@
           },
           {
             "type": "string",
-            "name": "item_barcode",
+            "name": "item_pack_barcode",
             "display": {
               "prompt": {
-                "text": "Please confirm or update item  barcode."
+                "text": "Please confirm or update item pack barcode."
               }
             },
             "model": {
               "isSessionVariable": true
             },
-            "constraint": "data('assigned_item_code') === data('item_barcode') || data('assigned_item_code') == '' || data('assigned_item_code') == null || data('assigned_item_code') == undefined",
+            "constraint": "data('assigned_item_pack_code') === data('item_pack_barcode') || data('assigned_item_pack_code') == '' || data('assigned_item_pack_code') == null || data('assigned_item_pack_code') == undefined",
             "_row_num": 3,
             "__rowNum__": 2,
             "_token_type": "prompt",
@@ -678,7 +678,7 @@
       }
     },
     "dataTableModel": {
-      "item_barcode": {
+      "item_pack_barcode": {
         "type": "string",
         "isSessionVariable": true,
         "_defn": [
@@ -695,10 +695,10 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "item_barcode",
-        "elementName": "item_barcode",
+        "elementKey": "item_pack_barcode",
+        "elementName": "item_pack_barcode",
         "elementSet": "data",
-        "elementPath": "item_barcode"
+        "elementPath": "item_pack_barcode"
       },
       "receive_signature": {
         "type": "object",
@@ -742,7 +742,7 @@
         ],
         "notUnitOfRetention": true
       },
-      "assigned_item_code": {
+      "assigned_item_pack_code": {
         "type": "string",
         "_defn": [
           {
@@ -750,10 +750,10 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "assigned_item_code",
-        "elementName": "assigned_item_code",
+        "elementKey": "assigned_item_pack_code",
+        "elementName": "assigned_item_pack_code",
         "elementSet": "data",
-        "elementPath": "assigned_item_code"
+        "elementPath": "assigned_item_pack_code"
       },
       "try_again": {
         "type": "string",

@@ -1,8 +1,0 @@
-_id,_form_id,_locale,_savepoint_type,_savepoint_timestamp,_savepoint_creator,program_id,service_id,_default_access,_group_modify,_group_privileged,_group_read_only,_row_etag,_row_owner
-sfp1,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,p1,s1,,,,,,
-sfp2,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,p1,s2,,,,,,
-sfp3,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,p2,s1,,,,,,
-sfp4,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,p1,s4,,,,,,
-sfp5,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,p1,s5,,,,,,
-sfp10,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,p3,s10,,,,,,
-sfp11,,default,COMPLETE,2014-02-19T16:01:59.016000000,anonymous,p3,s11,,,,,,

@@ -331,7 +331,7 @@ window.odkFrameworkDefinitions = {
         "el": "Βγάλε φωτογραφία",
         "ar": "تصوير",
         "fa": "عکس گرفتن",
-        "es": "Tomar una foto"
+        "es": "Tomé una foto"
       },
       "_row_num": 33
     },
@@ -353,7 +353,7 @@ window.odkFrameworkDefinitions = {
         "el": "Ξεκινήστε την πρόθεση",
         "ar": "إطلاق القصد",
         "fa": "قصد راه اندازی",
-        "es": "Intento de Lanzamiento"
+        "es": "Lanzamiento de intención"
       },
       "_row_num": 35
     },
@@ -460,7 +460,7 @@ window.odkFrameworkDefinitions = {
         "el": "Αποεπιλέξτε",
         "ar": "إلغاء",
         "fa": "از حالت انتخاب خارج",
-        "es": "Deseleccionar"
+        "es": "Deseleccioanr"
       },
       "_row_num": 45
     },

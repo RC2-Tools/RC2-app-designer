@@ -1,6 +1,0 @@
-_partition,_aspect,_key,_type,_value
-Column,referMedica,displayChoicesList,object,"[{""choice_list_name"":""referencia"",""data_value"":""HOSPITAL CRV"",""display"":{""title"":{""text"":""Hospital de la Cruz Roja Venezolana""}},""_row_num"":2},{""choice_list_name"":""referencia"",""data_value"":""ODONTOLOGIA"",""display"":{""title"":{""text"":""Servicio Odontológico""}},""_row_num"":3},{""choice_list_name"":""referencia"",""data_value"":""PSICOLOGO"",""display"":{""title"":{""text"":""Psicólogo""}},""_row_num"":4},{""choice_list_name"":""referencia"",""data_value"":""HOSPITAL EXTERNO"",""display"":{""title"":{""text"":""Hospital externo""}},""_row_num"":5}]"
-FormType,default,FormType.formType,string,SURVEY
-SurveyUtil,default,SurveyUtil.formId,string,VZLA_IM_ReferenciaHospitalaria
-Table,default,defaultViewType,string,SPREADSHEET
-Table,default,displayName,object,"{""text"":""REFERECIA HOSPITALARIA""}"

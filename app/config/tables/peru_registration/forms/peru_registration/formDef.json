@@ -299,7 +299,7 @@
       },
       {
         "type": "integer",
-        "name": "mas65",
+        "name": "over65",
         "display": {
           "prompt": {
             "text": {
@@ -779,7 +779,7 @@
       },
       {
         "type": "integer",
-        "name": "mas65",
+        "name": "over65",
         "_row_num": 18
       },
       {
@@ -1956,7 +1956,7 @@
         ],
         "elementKey": "range24_65"
       },
-      "mas65": {
+      "over65": {
         "type": "integer",
         "_defn": [
           {
@@ -1968,7 +1968,7 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "mas65"
+        "elementKey": "over65"
       },
       "discapacidad": {
         "type": "string",
@@ -2543,7 +2543,7 @@
           },
           {
             "type": "integer",
-            "name": "mas65",
+            "name": "over65",
             "display": {
               "prompt": {
                 "text": {
@@ -3454,7 +3454,7 @@
         "elementSet": "data",
         "elementPath": "range24_65"
       },
-      "mas65": {
+      "over65": {
         "type": "integer",
         "_defn": [
           {
@@ -3466,10 +3466,10 @@
             "section_name": "model"
           }
         ],
-        "elementKey": "mas65",
-        "elementName": "mas65",
+        "elementKey": "over65",
+        "elementName": "over65",
         "elementSet": "data",
-        "elementPath": "mas65"
+        "elementPath": "over65"
       },
       "discapacidad": {
         "type": "string",
